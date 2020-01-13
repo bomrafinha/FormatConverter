@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{3CB971E9-5EE1-4EDF-8D51-34890FA8EF95}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Conversor_XML_JSON.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Testador.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Conversor_XML_JSON">
+        <MSBuild Projects="Conversor_XML_JSON.dproj"/>
+    </Target>
+    <Target Name="Conversor_XML_JSON:Clean">
+        <MSBuild Projects="Conversor_XML_JSON.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Conversor_XML_JSON:Make">
+        <MSBuild Projects="Conversor_XML_JSON.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Testador">
+        <MSBuild Projects="Testador.dproj"/>
+    </Target>
+    <Target Name="Testador:Clean">
+        <MSBuild Projects="Testador.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Testador:Make">
+        <MSBuild Projects="Testador.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Conversor_XML_JSON;Testador"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Conversor_XML_JSON:Clean;Testador:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Conversor_XML_JSON:Make;Testador:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

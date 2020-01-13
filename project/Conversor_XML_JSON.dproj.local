@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2019/12/14 19:01:17.000.280,=rtl.dcp</Transaction>
+    <Transaction>2020/01/13 13:11:48.051,=rtl.dcp</Transaction>
+    <Transaction>2020/01/13 13:15:58.082,D:\Trabalho\Ridge Dynamics (Rafael Rossa)\Softwares\Públicos\Dynamics Conversor XML JSON\project\DynamicsConversorXML_JSON.dproj=D:\Users\Bomrafinha\Documents\Embarcadero\Studio\Projects\Package1.dproj</Transaction>
+    <Transaction>2020/01/13 13:21:13.317,D:\Trabalho\Ridge Dynamics (Rafael Rossa)\Softwares\Públicos\Dynamics Conversor XML JSON\project\Conversor_XML_JSON.dproj=D:\Trabalho\Ridge Dynamics (Rafael Rossa)\Softwares\Públicos\Dynamics Conversor XML JSON\project\DynamicsConversorXML_JSON.dproj</Transaction>
+  </Transactions>
+</BorlandProject>
