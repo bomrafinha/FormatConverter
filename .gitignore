@@ -1,0 +1,12 @@
+*.dcu
+*.dcp
+*.lib
+*.bpl
+*.bpi
+*.identcache
+*.local
+*.dproj.local
+.~lock.*
+*.stat
+__history/
+__recovery/

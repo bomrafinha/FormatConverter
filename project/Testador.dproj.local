@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
-  <Transactions>
-    <Transaction>2020/01/13 13:17:17.183,=D:\Users\Bomrafinha\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2020/01/13 13:19:29.417,D:\Trabalho\Ridge Dynamics (Rafael Rossa)\Softwares\Públicos\Dynamics Conversor XML JSON\modules\U_Testador.View.fmx=D:\Users\Bomrafinha\Documents\Embarcadero\Studio\Projects\Unit1.fmx</Transaction>
-    <Transaction>2020/01/13 13:19:29.417,D:\Trabalho\Ridge Dynamics (Rafael Rossa)\Softwares\Públicos\Dynamics Conversor XML JSON\modules\U_Testador.View.pas=D:\Users\Bomrafinha\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2020/01/13 13:19:44.980,D:\Trabalho\Ridge Dynamics (Rafael Rossa)\Softwares\Públicos\Dynamics Conversor XML JSON\project\Testador.dproj=D:\Users\Bomrafinha\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+	<Transactions>
+    <Transaction>2020/01/13 13:17:17.000.183,=D:\Users\Bomrafinha\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/01/13 13:19:29.000.417,D:\Users\Bomrafinha\Documents\Embarcadero\Studio\Projects\Unit1.fmx=D:\Trabalho\Ridge Dynamics (Rafael Rossa)\Softwares\Públicos\Dynamics Conversor XML JSON\modules\U_Testador.View.fmx</Transaction>
+    <Transaction>2020/01/13 13:19:29.000.417,D:\Users\Bomrafinha\Documents\Embarcadero\Studio\Projects\Unit1.pas=D:\Trabalho\Ridge Dynamics (Rafael Rossa)\Softwares\Públicos\Dynamics Conversor XML JSON\modules\U_Testador.View.pas</Transaction>
+    <Transaction>2020/01/13 13:19:44.000.980,D:\Users\Bomrafinha\Documents\Embarcadero\Studio\Projects\Project1.dproj=D:\Trabalho\Ridge Dynamics (Rafael Rossa)\Softwares\Públicos\Dynamics Conversor XML JSON\project\Testador.dproj</Transaction>
   </Transactions>
-  <ActiveMobileDevice>   <NoProfile iOSSimulator="iPhone5"/>
-  </ActiveMobileDevice>
+	<ActiveMobileDevice>
+		<NoProfile iOSSimulator="iPhone5"/>
+	</ActiveMobileDevice>
 </BorlandProject>

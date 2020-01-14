@@ -1,7 +1,7 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{41878DBB-AC34-4EE4-B829-0AF3B2CD5C98}</ProjectGuid>
-        <MainSource>Conversor_XML_JSON.dpk</MainSource>
+        <MainSource>XMLtoJSON.dpk</MainSource>
         <ProjectVersion>18.4</ProjectVersion>
         <FrameworkType>None</FrameworkType>
         <Base>True</Base>
@@ -66,7 +66,7 @@
         <GenPackage>true</GenPackage>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
         <DCC_CBuilderOutput>All</DCC_CBuilderOutput>
-        <SanitizedProjectName>Conversor_XML_JSON</SanitizedProjectName>
+        <SanitizedProjectName>XMLtoJSON</SanitizedProjectName>
         <DCC_DcpOutput>../app/conversor_xml_json</DCC_DcpOutput>
         <DCC_BplOutput>../app/conversor_xml_json</DCC_BplOutput>
         <VerInfo_Locale>1046</VerInfo_Locale>
@@ -116,6 +116,7 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="rtl.dcp"/>
+        <DCCReference Include="..\src\XMLtoJSON\U_XMLtoJSON.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -134,7 +135,7 @@
         <BorlandProject>
             <Delphi.Personality>
                 <Source>
-                    <Source Name="MainSource">Conversor_XML_JSON.dpk</Source>
+                    <Source Name="MainSource">XMLtoJSON.dpk</Source>
                 </Source>
                 <Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k250.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
@@ -162,9 +163,9 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="C:\Users\Public\Documents\Embarcadero\Studio\19.0\Bpl\Conversor_XML_JSON.bpl" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="..\app\conversor_xml_json\XMLtoJSON.bpl" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
-                        <RemoteName>Conversor_XML_JSON.bpl</RemoteName>
+                        <RemoteName>XMLtoJSON.bpl</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

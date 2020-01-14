@@ -3,7 +3,7 @@
         <ProjectGuid>{3CB971E9-5EE1-4EDF-8D51-34890FA8EF95}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="Conversor_XML_JSON.dproj">
+        <Projects Include="XMLtoJSON.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="Testador.dproj">
@@ -17,14 +17,14 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="Conversor_XML_JSON">
-        <MSBuild Projects="Conversor_XML_JSON.dproj"/>
+    <Target Name="XMLtoJSON">
+        <MSBuild Projects="XMLtoJSON.dproj"/>
     </Target>
-    <Target Name="Conversor_XML_JSON:Clean">
-        <MSBuild Projects="Conversor_XML_JSON.dproj" Targets="Clean"/>
+    <Target Name="XMLtoJSON:Clean">
+        <MSBuild Projects="XMLtoJSON.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="Conversor_XML_JSON:Make">
-        <MSBuild Projects="Conversor_XML_JSON.dproj" Targets="Make"/>
+    <Target Name="XMLtoJSON:Make">
+        <MSBuild Projects="XMLtoJSON.dproj" Targets="Make"/>
     </Target>
     <Target Name="Testador">
         <MSBuild Projects="Testador.dproj"/>
@@ -36,13 +36,13 @@
         <MSBuild Projects="Testador.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="Conversor_XML_JSON;Testador"/>
+        <CallTarget Targets="XMLtoJSON;Testador"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Conversor_XML_JSON:Clean;Testador:Clean"/>
+        <CallTarget Targets="XMLtoJSON:Clean;Testador:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Conversor_XML_JSON:Make;Testador:Make"/>
+        <CallTarget Targets="XMLtoJSON:Make;Testador:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
