@@ -13,7 +13,7 @@
 ![GitHub issues](https://img.shields.io/github/issues/bomrafinha/FormatConverter)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/bomrafinha/FormatConverter)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/bomrafinha/FormatConverter)
-![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/bomrafinha/FormatConverter)
+![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/bomrafinha/FormatConverter)
 ![GitHub forks](https://img.shields.io/github/forks/bomrafinha/FormatConverter)
 ![GitHub stars](https://img.shields.io/github/stars/bomrafinha/FormatConverter)
 ![GitHub All Releases](https://img.shields.io/github/downloads/bomrafinha/FormatConverter/total)
