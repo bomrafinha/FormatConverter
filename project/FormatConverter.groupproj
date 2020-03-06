@@ -21,7 +21,7 @@
         <Projects Include="XMLtoJSON.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="Testador.dproj">
+        <Projects Include="Format_Converter.dproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -86,23 +86,23 @@
     <Target Name="XMLtoJSON:Make">
         <MSBuild Projects="XMLtoJSON.dproj" Targets="Make"/>
     </Target>
-    <Target Name="Testador">
-        <MSBuild Projects="Testador.dproj"/>
+    <Target Name="Format_Converter">
+        <MSBuild Projects="Format_Converter.dproj"/>
     </Target>
-    <Target Name="Testador:Clean">
-        <MSBuild Projects="Testador.dproj" Targets="Clean"/>
+    <Target Name="Format_Converter:Clean">
+        <MSBuild Projects="Format_Converter.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="Testador:Make">
-        <MSBuild Projects="Testador.dproj" Targets="Make"/>
+    <Target Name="Format_Converter:Make">
+        <MSBuild Projects="Format_Converter.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="CSVtoJSON;CSVtoXML;JSONtoCSV;JSONtoXML;XMLtoCSV;XMLtoJSON;Testador"/>
+        <CallTarget Targets="CSVtoJSON;CSVtoXML;JSONtoCSV;JSONtoXML;XMLtoCSV;XMLtoJSON;Format_Converter"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="CSVtoJSON:Clean;CSVtoXML:Clean;JSONtoCSV:Clean;JSONtoXML:Clean;XMLtoCSV:Clean;XMLtoJSON:Clean;Testador:Clean"/>
+        <CallTarget Targets="CSVtoJSON:Clean;CSVtoXML:Clean;JSONtoCSV:Clean;JSONtoXML:Clean;XMLtoCSV:Clean;XMLtoJSON:Clean;Format_Converter:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="CSVtoJSON:Make;CSVtoXML:Make;JSONtoCSV:Make;JSONtoXML:Make;XMLtoCSV:Make;XMLtoJSON:Make;Testador:Make"/>
+        <CallTarget Targets="CSVtoJSON:Make;CSVtoXML:Make;JSONtoCSV:Make;JSONtoXML:Make;XMLtoCSV:Make;XMLtoJSON:Make;Format_Converter:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

@@ -119,6 +119,7 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="rtl.dcp"/>
+        <DCCReference Include="xmlrtl.dcp"/>
         <DCCReference Include="..\src\XMLtoJSON\U_XML.JSON.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
@@ -166,7 +167,7 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\app\conversor_xml_json\XMLtoJSON.bpl" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="..\app\XMLtoJSON.bpl" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>XMLtoJSON.bpl</RemoteName>
                         <Overwrite>true</Overwrite>

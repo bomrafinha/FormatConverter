@@ -2,8 +2,10 @@
 
 >Conversor de formatos (JSON, XML, etc) para Delphi
 
+<br />
+
 ![Maintenance](https://img.shields.io/maintenance/yes/2020)
-![Build](https://img.shields.io/badge/Build-1.0.0.0-brightgreen) 
+![Build](https://img.shields.io/badge/Build-1.0.0.15-brightgreen) 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/bomrafinha/FormatConverter)
 ![GitHub Release Date](https://img.shields.io/github/release-date/bomrafinha/FormatConverter)
 
@@ -122,16 +124,13 @@ Verificar tipo de licença.
   - LICENCE
   - usage
   - sitemap
-  - workgroup
   - configuração do fonte
   - arquivo padronização de código e documentação
   - forma de versionamento
+  - checklist de atualização
 
 + Estrutura básica do código
-  - Criação da forma que ficarão os pacotes
   - Pacotes com recursos visuais (arrastar e soltar)
-  - Criação dos testadores
-  - Configurações de path e versionamento
 
 + Conversor JSON -> XML
   - Entrada JSON    -> Saída XML
