@@ -1,7 +1,7 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{41878DBB-AC34-4EE4-B829-0AF3B2CD5C98}</ProjectGuid>
-        <MainSource>XMLtoJSON.dpk</MainSource>
+        <ProjectGuid>{23B4A911-BEAF-4874-9030-062CC4E592E5}</ProjectGuid>
+        <MainSource>CSVtoJSON.dpk</MainSource>
         <ProjectVersion>18.4</ProjectVersion>
         <FrameworkType>None</FrameworkType>
         <Base>True</Base>
@@ -66,7 +66,7 @@
         <GenPackage>true</GenPackage>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
         <DCC_CBuilderOutput>All</DCC_CBuilderOutput>
-        <SanitizedProjectName>XMLtoJSON</SanitizedProjectName>
+        <SanitizedProjectName>CSVtoJSON</SanitizedProjectName>
         <DCC_DcpOutput>../app</DCC_DcpOutput>
         <DCC_BplOutput>../app</DCC_BplOutput>
         <VerInfo_Locale>1046</VerInfo_Locale>
@@ -104,9 +104,6 @@
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <DCC_DcpOutput>../app</DCC_DcpOutput>
-        <DCC_DcuOutput>../output</DCC_DcuOutput>
-        <DCC_BplOutput>../app</DCC_BplOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -119,8 +116,7 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="rtl.dcp"/>
-        <DCCReference Include="xmlrtl.dcp"/>
-        <DCCReference Include="..\src\XMLtoJSON\U_XML.JSON.pas"/>
+        <DCCReference Include="..\src\CSVtoJSON\U_CSV.JSON.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -139,7 +135,7 @@
         <BorlandProject>
             <Delphi.Personality>
                 <Source>
-                    <Source Name="MainSource">XMLtoJSON.dpk</Source>
+                    <Source Name="MainSource">CSVtoJSON.dpk</Source>
                 </Source>
                 <Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k250.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
@@ -167,9 +163,9 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\app\XMLtoJSON.bpl" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="..\app\CSVtoJSON.bpl" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
-                        <RemoteName>XMLtoJSON.bpl</RemoteName>
+                        <RemoteName>CSVtoJSON.bpl</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

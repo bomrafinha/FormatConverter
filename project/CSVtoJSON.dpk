@@ -1,4 +1,4 @@
-package XMLtoJSON;
+package CSVtoJSON;
 
 {$R *.res}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
@@ -28,10 +28,9 @@ package XMLtoJSON;
 {$IMPLICITBUILD ON}
 
 requires
-  rtl,
-  xmlrtl;
+  rtl;
 
 contains
-  U_XML.JSON in '..\src\XMLtoJSON\U_XML.JSON.pas';
+  U_CSV.JSON in '..\src\CSVtoJSON\U_CSV.JSON.pas';
 
 end.

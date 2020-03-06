@@ -1,7 +1,11 @@
 # Format Converter (Delphi)
 
+>Conversor de formatos (JSON, XML, etc) para Delphi
+
+<br />
+
 ![Maintenance](https://img.shields.io/maintenance/yes/2020)
-![Build](https://img.shields.io/badge/Build-1.0.0.0-brightgreen) 
+![Build](https://img.shields.io/badge/Build-1.0.0.15-brightgreen) 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/bomrafinha/FormatConverter)
 ![GitHub Release Date](https://img.shields.io/github/release-date/bomrafinha/FormatConverter)
 
@@ -9,7 +13,9 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/bomrafinha/FormatConverter)
 
 ![GitHub issues](https://img.shields.io/github/issues/bomrafinha/FormatConverter)
+![GitHub closed issues](https://img.shields.io/github/issues-closed/bomrafinha/FormatConverter)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/bomrafinha/FormatConverter)
+![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/bomrafinha/FormatConverter)
 ![GitHub forks](https://img.shields.io/github/forks/bomrafinha/FormatConverter)
 ![GitHub stars](https://img.shields.io/github/stars/bomrafinha/FormatConverter)
 ![GitHub All Releases](https://img.shields.io/github/downloads/bomrafinha/FormatConverter/total)
@@ -19,8 +25,6 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/bomrafinha/FormatConverter)
 
 ![GitHub](https://img.shields.io/github/license/bomrafinha/FormatConverter)
-
->Conversor de formatos (JSON, XML, etc) para Delphi
 
 <br />
 
@@ -120,18 +124,13 @@ Verificar tipo de licença.
   - LICENCE
   - usage
   - sitemap
-  - workgroup
   - configuração do fonte
   - arquivo padronização de código e documentação
   - forma de versionamento
-  - shields
-  - especificar linguagem padrão
+  - checklist de atualização
 
 + Estrutura básica do código
-  - Criação da forma que ficarão os pacotes
   - Pacotes com recursos visuais (arrastar e soltar)
-  - Criação dos testadores
-  - Configurações de path e versionamento
 
 + Conversor JSON -> XML
   - Entrada JSON    -> Saída XML
