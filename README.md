@@ -1,4 +1,43 @@
-# Format Converter ![](https://img.shields.io/badge/Build-1.0.0.0-brightgreen) ![Maintenance](https://img.shields.io/maintenance/yes/2020)
+# Format Converter 
+
+![](https://img.shields.io/badge/Build-1.0.0.0-brightgreen) 
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/bomrafinha/FormatConverter)
+
+![Maintenance](https://img.shields.io/maintenance/yes/2020)
+
+[![GitHub issues](https://img.shields.io/github/issues/bomrafinha/FormatConverter)](https://github.com/bomrafinha/FormatConverter/issues)
+![GitHub issues](https://img.shields.io/github/issues/bomrafinha/FormatConverter)
+
+![GitHub pull requests](https://img.shields.io/github/issues-pr/bomrafinha/FormatConverter)
+
+[![GitHub forks](https://img.shields.io/github/forks/bomrafinha/FormatConverter)](https://github.com/bomrafinha/FormatConverter/network)
+![GitHub forks](https://img.shields.io/github/forks/bomrafinha/FormatConverter)
+
+[![GitHub stars](https://img.shields.io/github/stars/bomrafinha/FormatConverter)](https://github.com/bomrafinha/FormatConverter/stargazers)
+![GitHub stars](https://img.shields.io/github/stars/bomrafinha/FormatConverter)
+
+[![GitHub license](https://img.shields.io/github/license/bomrafinha/FormatConverter)](https://github.com/bomrafinha/FormatConverter/blob/master/LICENSE)
+![GitHub](https://img.shields.io/github/license/bomrafinha/FormatConverter)
+
+![GitHub language count](https://img.shields.io/github/languages/count/bomrafinha/FormatConverter)
+
+![GitHub top language](https://img.shields.io/github/languages/top/bomrafinha/FormatConverter)
+
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/bomrafinha/FormatConverter)
+
+![GitHub All Releases](https://img.shields.io/github/downloads/bomrafinha/FormatConverter/total)
+
+![GitHub contributors](https://img.shields.io/github/contributors/bomrafinha/FormatConverter)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/bomrafinha/FormatConverter)
+
+![GitHub Release Date](https://img.shields.io/github/release-date/bomrafinha/FormatConverter)
+
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/bomrafinha/FormatConverter)
+
+
+
+
 >Conversor de formatos (JSON, XML, etc)
 
 <br />
