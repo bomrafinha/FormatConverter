@@ -5,18 +5,14 @@
 
 ![Maintenance](https://img.shields.io/maintenance/yes/2020)
 
-[![GitHub issues](https://img.shields.io/github/issues/bomrafinha/FormatConverter)](https://github.com/bomrafinha/FormatConverter/issues)
 ![GitHub issues](https://img.shields.io/github/issues/bomrafinha/FormatConverter)
 
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/bomrafinha/FormatConverter)
 
-[![GitHub forks](https://img.shields.io/github/forks/bomrafinha/FormatConverter)](https://github.com/bomrafinha/FormatConverter/network)
 ![GitHub forks](https://img.shields.io/github/forks/bomrafinha/FormatConverter)
 
-[![GitHub stars](https://img.shields.io/github/stars/bomrafinha/FormatConverter)](https://github.com/bomrafinha/FormatConverter/stargazers)
 ![GitHub stars](https://img.shields.io/github/stars/bomrafinha/FormatConverter)
 
-[![GitHub license](https://img.shields.io/github/license/bomrafinha/FormatConverter)](https://github.com/bomrafinha/FormatConverter/blob/master/LICENSE)
 ![GitHub](https://img.shields.io/github/license/bomrafinha/FormatConverter)
 
 ![GitHub language count](https://img.shields.io/github/languages/count/bomrafinha/FormatConverter)
@@ -34,6 +30,16 @@
 ![GitHub Release Date](https://img.shields.io/github/release-date/bomrafinha/FormatConverter)
 
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/bomrafinha/FormatConverter)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/bomrafinha/FormatConverter)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/w/bomrafinha/FormatConverter)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/Y/bomrafinha/FormatConverter)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/M/bomrafinha/FormatConverter)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/W/bomrafinha/FormatConverter)
+
+![coverage](https://img.shields.io/badge/coverage-80%25-yellowgreen)
+
+![version](https://img.shields.io/badge/version-1.2.3-blue)
+
 
 
 
