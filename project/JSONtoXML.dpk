@@ -1,4 +1,4 @@
-package XMLtoJSON;
+package JSONtoXML;
 
 {$R *.res}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
@@ -31,6 +31,6 @@ requires
   rtl;
 
 contains
-  U_XML.JSON in '..\src\XMLtoJSON\U_XML.JSON.pas';
+  U_JSON.XML in '..\src\JSONtoXML\U_JSON.XML.pas';
 
 end.

@@ -126,8 +126,6 @@ Verificar tipo de licença.
   - configuração do fonte
   - arquivo padronização de código e documentação
   - forma de versionamento
-  - shields
-  - especificar linguagem padrão
 
 + Estrutura básica do código
   - Criação da forma que ficarão os pacotes
