@@ -1,4 +1,4 @@
-package XMLtoJSON;
+package OriginToReturn;
 
 {$R *.res}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
@@ -29,10 +29,9 @@ package XMLtoJSON;
 
 requires
   rtl,
-  xmlrtl,
-  OriginToResult;
+  xmlrtl;
 
 contains
-  U_XML.JSON in '..\src\XMLtoJSON\U_XML.JSON.pas';
+  U_Origin.Return in '..\src\OriginToReturn\U_Origin.Return.pas';
 
 end.

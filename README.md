@@ -1,6 +1,6 @@
 # Format Converter (Delphi)
 
->Conversor de formatos (JSON, XML, etc) para Delphi
+>Conversor de formatos (JSON, XML, etc) para Delphi.
 
 <br />
 
