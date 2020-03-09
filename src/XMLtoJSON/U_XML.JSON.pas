@@ -20,16 +20,15 @@ type
     function originTypeToFile(content : TXMLDocument; filePathResult : String) : Boolean;
     function originTypeToReturnType(content : TXMLDocument) : TJSONObject; //Implementar
 
-    function normalizeOrigin(content : String) : TXMLDocument; Overload; //Implementar
+    function normalizeOrigin(content : String) : TXMLDocument; Overload;
     function normalizeOrigin(content : TXMLDocument) : TStringList; Overload; //Implementar
     function normalizeOrigin(content : TStringList) : String; Overload;
 
     function normalizeReturn(content : String) : TJSONObject; Overload;
-    function normalizeReturn(content : TJSONObject) : TStringList; Overload; //Implementar
-    function normalizeReturn(content : TStringList) : String; Overload; //Implementar
+    function normalizeReturn(content : TJSONObject) : TStringList; Overload;
+    function normalizeReturn(content : TStringList) : String; Overload;
 
-  end;
-
+  end;     
 
 implementation
 
@@ -192,12 +191,28 @@ begin
 
   end;
 
-end;
+end;     
 
 function TXMLtoJSON.normalizeReturn(content: TJSONObject): TStringList;
-begin
+var
+  listReturn : TStringList;
+  arrayJson : TJSONArray;
+  I: Integer;
+  
+begin                      
+  listReturn := TStringList.Create();
+  listReturn.Clear;
+                           
+  arrayJson := TJSONArray(content);
 
-end;
+  for I := 0 to arrayJson.Size - 1 do
+  begin
+    listReturn.Add(arrayJson.Get(I).Value);  
+  end;
+
+  Result := listReturn;  
+
+end;      
 
 function TXMLtoJSON.normalizeReturn(content: TStringList): String;
 var
