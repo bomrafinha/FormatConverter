@@ -61,13 +61,34 @@ begin
     end;                                                               
     
   except
-    Result := False;
+    Result := False;    
+    
   end;
 
 end;
 
 function TXMLtoJSON.fileToReturnType(filePath: String): TJSONObject;
-begin
+var
+  arquivo : TStringList;
+  strContent : String;
+  xmlContent : TXMLDocument;
+  jsonReturn : TJSONObject;
+  
+begin          
+  try     
+    arquivo := TStringList.Create();
+    arquivo.Clear();
+    arquivo.LoadFromFile(filePath);
+    strContent := self.normalizeOrigin(arquivo);
+    xmlContent := self.normalizeOrigin(strContent);
+    jsonReturn := self.originTypeToReturnType(xmlContent);  
+
+    Result := jsonReturn;                          
+    
+  except
+    Result := TJSONObject.Create();
+    
+  end;
 
 end;
 
@@ -92,10 +113,11 @@ begin
     arquivo := self.normalizeReturn(jsonReturn);
     strReturn := self.normalizeReturn(arquivo);
 
-    Result := strReturn                          
+    Result := strReturn;                          
     
   except
     Result := EmptyStr;
+    
   end;
 
 end;
