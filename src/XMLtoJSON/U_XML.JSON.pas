@@ -203,7 +203,29 @@ begin
 end;
 
 function TXMLtoJSON.stringToString(strContent: String): String;
-begin
+var
+  xmlContent : TXMLDocument;
+  jsonReturn : TJSONObject;
+  arquivo : TStringList;
+  strReturn : String;
+  
+begin          
+  try     
+    Result := EmptyStr;
+    arquivo := TStringList.Create();
+    arquivo.Clear();
+    
+    xmlContent := self.normalizeOrigin(strContent);
+    jsonReturn := self.originTypeToReturnType(xmlContent); 
+    arquivo := self.normalizeReturn(jsonReturn);
+    strReturn := self.normalizeReturn(arquivo);
+
+    Result := strReturn;                        
+    
+  except
+    Result := EmptyStr;
+    
+  end;
 
 end;
 
