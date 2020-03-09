@@ -8,15 +8,15 @@ type
   TXMLtoJSON = class(TInterfacedObject, IOriginToReturn<TXMLDocument, TJSONObject>)
   public
     function stringToString(strContent : String) : String;
-    function stringToFile(strContent : String) : Boolean;
+    function stringToFile(strContent, filePathResult : String) : Boolean;
     function stringToReturnType(strContent : String) : TJSONObject;
 
     function fileToString(filePath : String) : String;
-    function fileToFile(filePath : String) : Boolean;
+    function fileToFile(filePath : String; filePathResult : String = '') : Boolean;
     function fileToReturnType(filePath : String) : TJSONObject;
 
     function originTypeToString(content : TXMLDocument) : String;
-    function originTypeToFile(content : TXMLDocument) : Boolean;
+    function originTypeToFile(content : TXMLDocument; filePathResult : String) : Boolean;
     function originTypeToReturnType(content : TXMLDocument) : TJSONObject;
 
     function normalizeOrigin(content : String) : TXMLDocument; Overload;
@@ -34,9 +34,8 @@ implementation
 
 { TXMLtoJSON }
 
-function TXMLtoJSON.fileToFile(filePath: String): Boolean;
+function TXMLtoJSON.fileToFile(filePath: String; filePathResult : String = ''): Boolean;
 var
-  filePathResult : String;
   arquivo : TStringList;
   strContent : String;
   xmlContent : TXMLDocument;
@@ -45,7 +44,10 @@ var
 begin          
   try     
     Result := True;
-    filePathResult := StringReplace(filePath, '.xml', '.json', [rfIgnoreCase]);
+    if filePathResult = EmptyStr then
+    begin
+      filePathResult := StringReplace(filePath, '.xml', '.json', [rfIgnoreCase]);
+    end;
     arquivo := TStringList.Create();
     arquivo.Clear();
     arquivo.LoadFromFile(filePath);
@@ -152,7 +154,7 @@ begin
 
 end;
 
-function TXMLtoJSON.originTypeToFile(content: TXMLDocument): Boolean;
+function TXMLtoJSON.originTypeToFile(content: TXMLDocument; filePathResult : String): Boolean;
 begin
 
 end;
@@ -167,8 +169,31 @@ begin
 
 end;
 
-function TXMLtoJSON.stringToFile(strContent: String): Boolean;
-begin
+function TXMLtoJSON.stringToFile(strContent, filePathResult: String): Boolean;
+var
+  arquivo : TStringList;
+  xmlContent : TXMLDocument;
+  jsonReturn : TJSONObject;
+  
+begin          
+  try     
+    Result := True;
+    arquivo := TStringList.Create();
+    arquivo.Clear();
+    
+    xmlContent := self.normalizeOrigin(strContent);
+    jsonReturn := self.originTypeToReturnType(xmlContent); 
+    arquivo := self.normalizeReturn(jsonReturn);
+    arquivo.SaveToFile(filePathResult);
+    if not FileExists(filePathResult) then
+    begin
+      raise Exception.Create('Arquivo de retorno não foi gerado.');
+    end;                                                               
+    
+  except
+    Result := False;    
+    
+  end;
 
 end;
 
