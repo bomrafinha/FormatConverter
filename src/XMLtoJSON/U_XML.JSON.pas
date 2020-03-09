@@ -42,7 +42,7 @@ var
   jsonReturn : TJSONObject;
   
 begin          
-  try     
+  try try    
     Result := True;
     if filePathResult = EmptyStr then
     begin
@@ -63,9 +63,13 @@ begin
     end;                                                               
     
   except
-    Result := False;    
+    Result := False;  
     
   end;
+  
+  finally
+    arquivo.Free;
+  end;  
 
 end;
 
@@ -77,7 +81,7 @@ var
   jsonReturn : TJSONObject;
   
 begin          
-  try     
+  try try 
     arquivo := TStringList.Create();
     arquivo.Clear();
     arquivo.LoadFromFile(filePath);
@@ -90,7 +94,11 @@ begin
   except
     Result := TJSONObject.Create();
     
-  end;
+  end;    
+  
+  finally
+    arquivo.Free;
+  end;  
 
 end;
 
@@ -103,7 +111,7 @@ var
   strReturn : String;
   
 begin          
-  try     
+  try try   
     Result := EmptyStr;
     arquivo := TStringList.Create();
     arquivo.Clear();
@@ -120,7 +128,11 @@ begin
   except
     Result := EmptyStr;
     
-  end;
+  end;   
+  
+  finally
+    arquivo.Free;
+  end;  
 
 end;
 
@@ -135,7 +147,23 @@ begin
 end;
 
 function TXMLtoJSON.normalizeOrigin(content: TStringList): String;
+var
+  I: Integer;
+  strReturn : String;
+  
 begin
+  try
+    strReturn := EmptyStr;
+    for I := 0 to content.Count - 1 do
+    begin
+      strReturn := strReturn + content.Strings[I];  
+    end;
+    Result := strReturn;
+    
+  except
+    Result := EmptyStr;
+    
+  end;                 
 
 end;
 
@@ -160,7 +188,7 @@ var
   jsonReturn : TJSONObject;
   
 begin          
-  try     
+  try try    
     Result := True;
     arquivo := TStringList.Create();
     arquivo.Clear();
@@ -176,7 +204,11 @@ begin
   except
     Result := False;    
     
-  end;
+  end;     
+  
+  finally
+    arquivo.Free;
+  end;  
 
 end;
 
@@ -192,7 +224,7 @@ var
   strReturn : String;
   
 begin          
-  try     
+  try try    
     Result := EmptyStr;
     arquivo := TStringList.Create();
     arquivo.Clear();
@@ -206,7 +238,11 @@ begin
   except
     Result := EmptyStr;
     
-  end;
+  end;   
+  
+  finally
+    arquivo.Free;
+  end;  
 
 end;
 
@@ -217,7 +253,7 @@ var
   jsonReturn : TJSONObject;
   
 begin          
-  try     
+  try try   
     Result := True;
     arquivo := TStringList.Create();
     arquivo.Clear();
@@ -234,7 +270,11 @@ begin
   except
     Result := False;    
     
-  end;
+  end;          
+  
+  finally
+    arquivo.Free;
+  end;  
 
 end;
 
@@ -246,7 +286,7 @@ var
   strReturn : String;
   
 begin          
-  try         
+  try try       
     xmlContent := self.normalizeOrigin(strContent);
     jsonReturn := self.originTypeToReturnType(xmlContent); 
 
@@ -255,7 +295,11 @@ begin
   except
     Result := TJSONObject.Create();
     
-  end;
+  end;  
+  
+  finally
+    arquivo.Free;
+  end;  
 
 end;
 
@@ -267,7 +311,12 @@ var
   strReturn : String;
   
 begin          
-  try     
+  try := TComponent.Create(Self);
+  try
+    
+  finally
+    try.Free;
+  end;     
     Result := EmptyStr;
     arquivo := TStringList.Create();
     arquivo.Clear();
