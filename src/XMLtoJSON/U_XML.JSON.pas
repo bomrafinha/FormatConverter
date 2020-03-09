@@ -2,7 +2,8 @@ unit U_XML.JSON;
 
 interface
 
-uses Xml.XMLDoc, System.JSON, U_Origin.Return, System.Classes, SysUtils;
+uses Xml.XMLDoc, System.JSON, U_Origin.Return, System.Classes, System.SysUtils,
+  FMX.Forms;
 
 type
   TXMLtoJSON = class(TInterfacedObject, IOriginToReturn<TXMLDocument, TJSONObject>)
@@ -17,15 +18,15 @@ type
 
     function originTypeToString(content : TXMLDocument) : String;
     function originTypeToFile(content : TXMLDocument; filePathResult : String) : Boolean;
-    function originTypeToReturnType(content : TXMLDocument) : TJSONObject;
+    function originTypeToReturnType(content : TXMLDocument) : TJSONObject; //Implementar
 
-    function normalizeOrigin(content : String) : TXMLDocument; Overload;
-    function normalizeOrigin(content : TXMLDocument) : TStringList; Overload;
+    function normalizeOrigin(content : String) : TXMLDocument; Overload; //Implementar
+    function normalizeOrigin(content : TXMLDocument) : TStringList; Overload; //Implementar
     function normalizeOrigin(content : TStringList) : String; Overload;
 
     function normalizeReturn(content : String) : TJSONObject; Overload;
-    function normalizeReturn(content : TJSONObject) : TStringList; Overload;
-    function normalizeReturn(content : TStringList) : String; Overload;
+    function normalizeReturn(content : TJSONObject) : TStringList; Overload; //Implementar
+    function normalizeReturn(content : TStringList) : String; Overload; //Implementar
 
   end;
 
@@ -137,7 +138,18 @@ begin
 end;
 
 function TXMLtoJSON.normalizeOrigin(content: String): TXMLDocument;
-begin
+var
+  xmlReturn : TXMLDocument;
+  
+begin                 
+  try     
+    xmlReturn := TXMLDocument.Create(Application);
+    xmlReturn.LoadFromXML(content);
+    Result := xmlReturn;
+  except                                          
+    Result := TXMLDocument.Create(Application);    
+
+  end;
 
 end;
 
@@ -171,9 +183,14 @@ function TXMLtoJSON.normalizeReturn(content: String): TJSONObject;
 var
   jsonReturn : TJSONObject;
   
-begin  
-  jsonReturn := TJSONObject.ParseJSONValue(TEncoding.ASCII.GetBytes(content), 0) as TJSONObject;
-  Result := jsonReturn;
+begin 
+  try 
+    jsonReturn := TJSONObject.ParseJSONValue(TEncoding.ASCII.GetBytes(content), 0) as TJSONObject;
+    Result := jsonReturn;
+  except
+    Result := TJSONObject.Create();
+
+  end;
 
 end;
 
@@ -308,7 +325,7 @@ var
   strReturn : String;
   
 begin          
-  try try       
+  try try
     xmlContent := self.normalizeOrigin(strContent);
     jsonReturn := self.originTypeToReturnType(xmlContent); 
 
