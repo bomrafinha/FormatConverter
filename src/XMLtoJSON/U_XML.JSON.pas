@@ -21,7 +21,7 @@ type
     function originTypeToReturnType(content : TXMLDocument) : TJSONObject; //Implementar
 
     function normalizeOrigin(content : String) : TXMLDocument; Overload;
-    function normalizeOrigin(content : TXMLDocument) : TStringList; Overload; //Implementar
+    function normalizeOrigin(content : TXMLDocument) : TStringList; Overload;
     function normalizeOrigin(content : TStringList) : String; Overload;
 
     function normalizeReturn(content : String) : TJSONObject; Overload;
@@ -153,7 +153,21 @@ begin
 end;
 
 function TXMLtoJSON.normalizeOrigin(content: TXMLDocument): TStringList;
-begin
+var
+  I: Integer;
+  listReturn : TStringList;
+  
+begin                      
+  listReturn := TStringList.Create();
+  listReturn.Clear;
+  
+  for I := 0 to content.ChildNodes.Count - 1 do
+  begin
+    listReturn.Add(content.ChildNodes[I].Text);
+  
+  end;
+
+  Result := listReturn;
 
 end;
 
@@ -205,9 +219,9 @@ begin
                            
   arrayJson := TJSONArray(content);
 
-  for I := 0 to arrayJson.Size - 1 do
+  for I := 0 to arrayJson.Count - 1 do
   begin
-    listReturn.Add(arrayJson.Get(I).Value);  
+    listReturn.Add(arrayJson.Items[I].Value);  
   end;
 
   Result := listReturn;  
