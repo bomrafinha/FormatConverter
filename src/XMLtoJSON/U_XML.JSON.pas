@@ -155,7 +155,28 @@ begin
 end;
 
 function TXMLtoJSON.originTypeToFile(content: TXMLDocument; filePathResult : String): Boolean;
-begin
+var
+  arquivo : TStringList;
+  jsonReturn : TJSONObject;
+  
+begin          
+  try     
+    Result := True;
+    arquivo := TStringList.Create();
+    arquivo.Clear();
+    
+    jsonReturn := self.originTypeToReturnType(content);   
+    arquivo := self.normalizeReturn(jsonReturn);
+    arquivo.SaveToFile(filePathResult);
+    if not FileExists(filePathResult) then
+    begin
+      raise Exception.Create('Arquivo de retorno não foi gerado.');
+    end;                                                               
+    
+  except
+    Result := False;    
+    
+  end;
 
 end;
 
