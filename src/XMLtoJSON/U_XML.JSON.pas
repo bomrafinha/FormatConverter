@@ -198,7 +198,23 @@ begin
 end;
 
 function TXMLtoJSON.stringToReturnType(strContent: String): TJSONObject;
-begin
+var
+  xmlContent : TXMLDocument;
+  jsonReturn : TJSONObject;
+  arquivo : TStringList;
+  strReturn : String;
+  
+begin          
+  try         
+    xmlContent := self.normalizeOrigin(strContent);
+    jsonReturn := self.originTypeToReturnType(xmlContent); 
+
+    Result := jsonReturn;                        
+    
+  except
+    Result := TJSONObject.Create();
+    
+  end;
 
 end;
 
