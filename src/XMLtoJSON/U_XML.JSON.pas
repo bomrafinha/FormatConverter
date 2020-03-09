@@ -186,7 +186,27 @@ begin
 end;
 
 function TXMLtoJSON.originTypeToString(content: TXMLDocument): String;
-begin
+var
+  jsonReturn : TJSONObject;
+  arquivo : TStringList;
+  strReturn : String;
+  
+begin          
+  try     
+    Result := EmptyStr;
+    arquivo := TStringList.Create();
+    arquivo.Clear();
+    
+    jsonReturn := self.originTypeToReturnType(content); 
+    arquivo := self.normalizeReturn(jsonReturn);
+    strReturn := self.normalizeReturn(arquivo);
+
+    Result := strReturn;                        
+    
+  except
+    Result := EmptyStr;
+    
+  end;
 
 end;
 
