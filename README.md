@@ -60,6 +60,7 @@ Implementar as **[formas de uso](documentation/usage)**.
         - *var02*: Variável 02;
     
 ![Sitemap](documentation/images/sitemap.png)
+[Sitemap no Coggle](https://coggle.it/diagram/XmZ2-WVe0wuFMqlu/t/-)
 
 <br />
 
@@ -142,6 +143,12 @@ Verificar tipo de licença.
   - Entrada arquivo -> Saída XML
   - Entrada arquivo -> Saída string
   - Entrada arquivo -> Saída arquivo
+  - Normalizar origin String      -> JSON
+  - Normalizar origin JSON        -> TStringList
+  - Normalizar origin TStringList -> String
+  - Normalizar return String      -> XML
+  - Normalizar return XML         -> TStringList
+  - Normalizar return TStringList -> String
 
 + Conversor JSON -> CSV
   - Entrada JSON    -> Saída CSV
@@ -153,17 +160,15 @@ Verificar tipo de licença.
   - Entrada arquivo -> Saída CSV
   - Entrada arquivo -> Saída string
   - Entrada arquivo -> Saída arquivo
+  - Normalizar origin String      -> JSON
+  - Normalizar origin JSON        -> TStringList
+  - Normalizar origin TStringList -> String
+  - Normalizar return String      -> CSV
+  - Normalizar return CSV        -> TStringList
+  - Normalizar return TStringList -> String
 
 + Conversor XML -> JSON
   - Entrada XML     -> Saída JSON
-  - Entrada XML     -> Saída string
-  - Entrada XML     -> Saída arquivo
-  - Entrada string  -> Saída JSON
-  - Entrada string  -> Saída string
-  - Entrada string  -> Saída arquivo
-  - Entrada arquivo -> Saída JSON
-  - Entrada arquivo -> Saída string
-  - Entrada arquivo -> Saída arquivo
 
 + Conversor XML -> CSV
   - Entrada XML    -> Saída CSV
@@ -175,6 +180,12 @@ Verificar tipo de licença.
   - Entrada arquivo -> Saída CSV
   - Entrada arquivo -> Saída string
   - Entrada arquivo -> Saída arquivo
+  - Normalizar origin String      -> XML
+  - Normalizar origin XML         -> TStringList
+  - Normalizar origin TStringList -> String
+  - Normalizar return String      -> CSV
+  - Normalizar return CSV        -> TStringList
+  - Normalizar return TStringList -> String
 
 + Conversor CSV -> JSON
   - Entrada CSV     -> Saída JSON
@@ -186,6 +197,12 @@ Verificar tipo de licença.
   - Entrada arquivo -> Saída JSON
   - Entrada arquivo -> Saída string
   - Entrada arquivo -> Saída arquivo
+  - Normalizar origin String      -> CSV
+  - Normalizar origin CSV         -> TStringList
+  - Normalizar origin TStringList -> String
+  - Normalizar return String      -> JSON
+  - Normalizar return JSON        -> TStringList
+  - Normalizar return TStringList -> String
 
 + Conversor CSV -> XML
   - Entrada CSV    -> Saída XML
@@ -197,6 +214,12 @@ Verificar tipo de licença.
   - Entrada arquivo -> Saída XML
   - Entrada arquivo -> Saída string
   - Entrada arquivo -> Saída arquivo
+  - Normalizar origin String      -> CSV
+  - Normalizar origin CSV         -> TStringList
+  - Normalizar origin TStringList -> String
+  - Normalizar return String      -> XML
+  - Normalizar return XML         -> TStringList
+  - Normalizar return TStringList -> String
 
 <br />
 

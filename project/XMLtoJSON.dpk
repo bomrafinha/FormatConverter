@@ -30,7 +30,7 @@ package XMLtoJSON;
 requires
   rtl,
   xmlrtl,
-  OriginToResult;
+  OriginToReturn;
 
 contains
   U_XML.JSON in '..\src\XMLtoJSON\U_XML.JSON.pas';

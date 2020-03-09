@@ -201,13 +201,13 @@ object FormatConverter: TFormatConverter
         TabOrder = 3
         object Layout7: TLayout
           Align = Left
-          Size.Width = 321.000000000000000000
+          Size.Width = 401.000000000000000000
           Size.Height = 65.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
           object textoOrigem: TText
             Align = Contents
-            Size.Width = 321.000000000000000000
+            Size.Width = 401.000000000000000000
             Size.Height = 65.000000000000000000
             Size.PlatformDefault = False
             Text = 'Original'
@@ -225,13 +225,13 @@ object FormatConverter: TFormatConverter
         end
         object Layout8: TLayout
           Align = Client
-          Size.Width = 471.000000000000000000
+          Size.Width = 391.000000000000000000
           Size.Height = 65.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 1
           object textoResultado: TText
             Align = Contents
-            Size.Width = 471.000000000000000000
+            Size.Width = 391.000000000000000000
             Size.Height = 65.000000000000000000
             Size.PlatformDefault = False
             Text = 'Resultado'
@@ -249,7 +249,7 @@ object FormatConverter: TFormatConverter
         end
         object Layout14: TLayout
           Align = Left
-          Position.X = 321.000000000000000000
+          Position.X = 401.000000000000000000
           Size.Width = 10.000000000000000000
           Size.Height = 65.000000000000000000
           Size.PlatformDefault = False
