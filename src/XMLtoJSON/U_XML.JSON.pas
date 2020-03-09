@@ -178,7 +178,24 @@ begin
 end;
 
 function TXMLtoJSON.normalizeReturn(content: TStringList): String;
+var
+  I: Integer;
+  strReturn : String;
+  
 begin
+  try
+    strReturn := EmptyStr;
+    for I := 0 to content.Count - 1 do
+    begin
+      strReturn := strReturn + content.Strings[I];  
+    end;
+    Result := strReturn;
+    
+  except
+    Result := EmptyStr;
+    
+  end;                 
+
 
 end;
 
@@ -311,12 +328,7 @@ var
   strReturn : String;
   
 begin          
-  try := TComponent.Create(Self);
-  try
-    
-  finally
-    try.Free;
-  end;     
+  try try    
     Result := EmptyStr;
     arquivo := TStringList.Create();
     arquivo.Clear();
@@ -331,7 +343,11 @@ begin
   except
     Result := EmptyStr;
     
-  end;
+  end;  
+  
+  finally
+    arquivo.Free;
+  end;  
 
 end;
 
