@@ -2,7 +2,7 @@ unit U_XML.JSON;
 
 interface
 
-uses Xml.XMLDoc, System.JSON, U_Origin.Return;
+uses Xml.XMLDoc, System.JSON, U_Origin.Return, System.Classes, SysUtils;
 
 type
   TXMLtoJSON = class(TInterfacedObject, IOriginToReturn<TXMLDocument, TJSONObject>)
@@ -19,10 +19,13 @@ type
     function originTypeToFile(content : TXMLDocument) : Boolean;
     function originTypeToReturnType(content : TXMLDocument) : TJSONObject;
 
-    function normalize(content : String) : TXMLDocument; Overload;
-    function normalize(content : TXMLDocument) : TXMLDocument; Overload;
-    function normalizeStr(content : String) : String; Overload;
-    function normalizeStr(content : TXMLDocument) : String; Overload;
+    function normalizeOrigin(content : String) : TXMLDocument; Overload;
+    function normalizeOrigin(content : TXMLDocument) : TStringList; Overload;
+    function normalizeOrigin(content : TStringList) : String; Overload;
+
+    function normalizeReturn(content : String) : TJSONObject; Overload;
+    function normalizeReturn(content : TJSONObject) : TStringList; Overload;
+    function normalizeReturn(content : TStringList) : String; Overload;
 
   end;
 
@@ -32,7 +35,33 @@ implementation
 { TXMLtoJSON }
 
 function TXMLtoJSON.fileToFile(filePath: String): Boolean;
-begin
+var
+  filePathResult : String;
+  arquivo : TStringList;
+  strContent : String;
+  xmlContent : TXMLDocument;
+  jsonReturn : TJSONObject;
+  
+begin          
+  try     
+    Result := True;
+    filePathResult := StringReplace(filePath, '.xml', '.json', [rfIgnoreCase]);
+    arquivo := TStringList.Create();
+    arquivo.Clear();
+    arquivo.LoadFromFile(filePath);
+    strContent := self.normalizeOrigin(arquivo);
+    xmlContent := self.normalizeOrigin(strContent);
+    jsonReturn := self.originTypeToReturnType(xmlContent);    
+    arquivo.Clear();
+    arquivo.SaveToFile(filePathResult);
+    if not FileExists(filePathResult) then
+    begin
+      raise Exception.Create('Arquivo de retorno não foi gerado.');
+    end;                                                               
+    
+  except
+    Result := False;
+  end;
 
 end;
 
@@ -46,22 +75,32 @@ begin
 
 end;
 
-function TXMLtoJSON.normalize(content: String): TXMLDocument;
+function TXMLtoJSON.normalizeOrigin(content: String): TXMLDocument;
 begin
 
 end;
 
-function TXMLtoJSON.normalize(content: TXMLDocument): TXMLDocument;
+function TXMLtoJSON.normalizeOrigin(content: TXMLDocument): TStringList;
 begin
 
 end;
 
-function TXMLtoJSON.normalizeStr(content: String): String;
+function TXMLtoJSON.normalizeOrigin(content: TStringList): String;
 begin
 
 end;
 
-function TXMLtoJSON.normalizeStr(content: TXMLDocument): String;
+function TXMLtoJSON.normalizeReturn(content: String): TJSONObject;
+begin
+
+end;
+
+function TXMLtoJSON.normalizeReturn(content: TJSONObject): TStringList;
+begin
+
+end;
+
+function TXMLtoJSON.normalizeReturn(content: TStringList): String;
 begin
 
 end;
