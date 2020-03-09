@@ -168,7 +168,12 @@ begin
 end;
 
 function TXMLtoJSON.normalizeReturn(content: String): TJSONObject;
-begin
+var
+  jsonReturn : TJSONObject;
+  
+begin  
+  jsonReturn := TJSONObject.ParseJSONValue(TEncoding.ASCII.GetBytes(content), 0) as TJSONObject;
+  Result := jsonReturn;
 
 end;
 
