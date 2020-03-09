@@ -60,6 +60,7 @@ Implementar as **[formas de uso](documentation/usage)**.
         - *var02*: Variável 02;
     
 ![Sitemap](documentation/images/sitemap.png)
+[Sitemap no Coggle](https://coggle.it/diagram/XmZ2-WVe0wuFMqlu/t/-)
 
 <br />
 
@@ -168,13 +169,6 @@ Verificar tipo de licença.
 
 + Conversor XML -> JSON
   - Entrada XML     -> Saída JSON
-  - Normalizar origin String      -> XML
-  - Normalizar origin XML         -> TStringList
-  - Normalizar origin TStringList -> String
-  - Normalizar return String      -> JSON
-  - Normalizar return JSON        -> TStringList
-  - Normalizar return TStringList -> String
-
 
 + Conversor XML -> CSV
   - Entrada XML    -> Saída CSV
