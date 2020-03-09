@@ -53,6 +53,7 @@ begin
     xmlContent := self.normalizeOrigin(strContent);
     jsonReturn := self.originTypeToReturnType(xmlContent);    
     arquivo.Clear();
+    arquivo := self.normalizeReturn(jsonReturn);
     arquivo.SaveToFile(filePathResult);
     if not FileExists(filePathResult) then
     begin
@@ -71,7 +72,31 @@ begin
 end;
 
 function TXMLtoJSON.fileToString(filePath: String): String;
-begin
+var
+  arquivo : TStringList;
+  strContent : String;
+  xmlContent : TXMLDocument;
+  jsonReturn : TJSONObject;
+  strReturn : String;
+  
+begin          
+  try     
+    Result := EmptyStr;
+    arquivo := TStringList.Create();
+    arquivo.Clear();
+    arquivo.LoadFromFile(filePath);
+    strContent := self.normalizeOrigin(arquivo);
+    xmlContent := self.normalizeOrigin(strContent);
+    jsonReturn := self.originTypeToReturnType(xmlContent);    
+    arquivo.Clear();
+    arquivo := self.normalizeReturn(jsonReturn);
+    strReturn := self.normalizeReturn(arquivo);
+
+    Result := strReturn                          
+    
+  except
+    Result := EmptyStr;
+  end;
 
 end;
 
