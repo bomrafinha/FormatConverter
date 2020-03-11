@@ -8,9 +8,11 @@ uses Xml.XMLDoc, System.JSON, U_Origin.Return, System.Classes, System.SysUtils,
 type
   TXMLtoJSON = class(TInterfacedObject, IOriginToReturn<TXMLDocument, TJSONObject>)
   private
-    function nodeToStringList(nodo : IXMLNode; nivel : Integer = -1) : TStringList;
+    function nodeToStringList(nodo : IXMLNode; nivel : Integer = -1) : TStringList; Overload;
+    function nodeToStringList(nodo : TJSONArray; nivel : Integer = -1) : TStringList; Overload;
     function tabular(nivel : integer) : String;
     function getAtributosStr(nodos : IXMLNodeList) : string;
+    function isText(json : String) : Boolean;
 
   public
     function stringToString(strContent : String) : String; // Testar
@@ -26,12 +28,12 @@ type
     function originTypeToReturnType(content : TXMLDocument) : TJSONObject; //Implementar
 
     function normalizeOrigin(content : String) : TXMLDocument; Overload;
-    function normalizeOrigin(content : TXMLDocument) : TStringList; Overload; // Testar
+    function normalizeOrigin(content : TXMLDocument) : TStringList; Overload;
     function normalizeOrigin(content : TStringList) : String; Overload;
 
-    function normalizeReturn(content : String) : TJSONObject; Overload; // Testar
+    function normalizeReturn(content : String) : TJSONObject; Overload;
     function normalizeReturn(content : TJSONObject) : TStringList; Overload; // Testar
-    function normalizeReturn(content : TStringList) : String; Overload; // Testar
+    function normalizeReturn(content : TStringList) : String; Overload;
 
   end;     
 
@@ -214,6 +216,37 @@ begin
 
 end;
 
+function TXMLtoJSON.nodeToStringList(nodo: TJSONArray; nivel: Integer): TStringList;
+var
+  listReturn : TStringList;
+  I: Integer;
+  item : TJSONValue;
+  listAux : TStringList;
+  nome : string;
+  valor : string;
+
+begin
+  listAux := TStringList.Create();
+  listReturn := TStringList.Create();
+  listReturn.Clear;
+
+  for item in nodo do
+  begin
+    listAux.Clear();
+    nome := TJSONPair(item).JsonString.ToString;
+    valor := TJSONPair(item).JsonValue.ToString;
+    if not isText(valor) then
+    begin
+
+    end else begin
+      listReturn.Add(nome + ': ' + valor + ',');
+    end;
+  end;
+
+  Result := listReturn;
+
+end;
+
 function TXMLtoJSON.normalizeOrigin(content: TStringList): String;
 var
   I: Integer;
@@ -239,8 +272,8 @@ function TXMLtoJSON.normalizeReturn(content: String): TJSONObject;
 var
   jsonReturn : TJSONObject;
   
-begin 
-  try 
+begin
+  try
     jsonReturn := TJSONObject.ParseJSONValue(TEncoding.ASCII.GetBytes(content), 0) as TJSONObject;
     Result := jsonReturn;
   except
@@ -252,24 +285,13 @@ end;
 
 function TXMLtoJSON.normalizeReturn(content: TJSONObject): TStringList;
 var
-  listReturn : TStringList;
-  arrayJson : TJSONArray;
-  I: Integer;
-  
-begin                      
-  listReturn := TStringList.Create();
-  listReturn.Clear;
-                           
-  arrayJson := TJSONArray(content);
+  nodo : TJSONArray;
 
-  for I := 0 to arrayJson.Count - 1 do
-  begin
-    listReturn.Add(arrayJson.Items[I].Value);  
-  end;
+begin
+  nodo := TJSONArray(content);
+  Result := Self.nodeToStringList(nodo);
 
-  Result := listReturn;  
-
-end;      
+end;
 
 function TXMLtoJSON.normalizeReturn(content: TStringList): String;
 var
@@ -281,7 +303,7 @@ begin
     strReturn := EmptyStr;
     for I := 0 to content.Count - 1 do
     begin
-      strReturn := strReturn + content.Strings[I];  
+      strReturn := strReturn + trim(content.Strings[I]);
     end;
     Result := strReturn;
     
@@ -376,6 +398,26 @@ begin
   end;
 
   Result := strReturn;
+
+end;
+
+function TXMLtoJSON.isText(json: String): Boolean;
+const
+  specialChar : array [0..3] of string = ('{', '}', '[', ']');
+
+var
+  I: Integer;
+
+begin
+  Result := True;
+  for I := 0 to Length(specialChar) do
+  begin
+    if pos(specialChar[I], json) > 0 then
+    begin
+      Result := false;
+    end;
+
+  end;
 
 end;
 
