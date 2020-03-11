@@ -5,7 +5,7 @@
 <br />
 
 ![Maintenance](https://img.shields.io/maintenance/yes/2020)
-![Build](https://img.shields.io/badge/Build-1.1.14.55-brightgreen) 
+![Build](https://img.shields.io/badge/Build-1.1.14.114-brightgreen) 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/bomrafinha/FormatConverter)
 ![GitHub Release Date](https://img.shields.io/github/release-date/bomrafinha/FormatConverter)
 
@@ -108,8 +108,10 @@ Deve-se manter a ordem de compilação do projeto exatamente como na imagem.
 <br />
 
 ## Checklist para Contribuir <a name="checklist"></a>
++ Testar as funcionalidades criadas / alteradas;
 + Marcar com "#" os issues concluídos, nos commits;
 + Readme (caso nescessário)
+  - Número do build;
   - Alterar indice;
   - Alerar / adicionar forma de uso;
   - Incluir pacotes / classes / métodos / parâmetros nas formas de uso;
@@ -125,11 +127,11 @@ Deve-se manter a ordem de compilação do projeto exatamente como na imagem.
   * Labels principais
     - **bug:** Correção de algum problema;
     - **documentation:** Alteração na documentação;
-    - **enhacement:** Alteração de funcionabilidade existente paara melhorá-la;
-    - **feature:** Nova funcionabilidade;
+    - **enhacement:** Alteração de funcionalidade existente para melhorá-la;
+    - **feature:** Nova funcionalidade;
   * Projeto
     - **FormatConverter - Kanban:** Para melhor organizar o projeto;
-    
+
 <br />
 
 ## Créditos <a name="creditos"></a>

@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Layouts,
   FMX.Objects, FMX.Effects, FMX.Controls.Presentation, FMX.ScrollBox, FMX.Memo,
-  FMX.StdCtrls;
+  FMX.StdCtrls, U_XML.JSON, Xml.XMLDoc;
 
 type
   TFormatConverter = class(TForm)
@@ -48,7 +48,10 @@ type
     procedure bJSONtoCSVClick(Sender: TObject);
     procedure bJSONtoXMLClick(Sender: TObject);
     procedure bXMLtoCSVClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
+    var
+      XMLtoJSON : TXMLtoJSON;
     procedure convertTest();
 
   public
@@ -93,14 +96,34 @@ begin
 end;
 
 procedure TFormatConverter.bXMLtoJSONClick(Sender: TObject);
+var
+//  testeStr : String;
+
+  xml : TXMLDocument;
+
+  list : TStringList;
+
 begin
-  convertTest();
+//  testeStr := (
+//    '<root><sub01>Rafinha</sub01><sub02><sub03>Rafael</sub03><sub04>Rossa</sub04></sub02></root>'
+//  );
+  xml := XMLtoJSON.normalizeOrigin(memoOriginal.Text);
+  memoOriginal.Lines.Clear;
+  list := XMLtoJSON.normalizeOrigin(xml);
+  memoOriginal.Lines := list;
+  memoResultado.Text := XMLtoJSON.normalizeOrigin(list);
 
 end;
 
 procedure TFormatConverter.convertTest;
 begin
   memoResultado.Text := memoOriginal.Text;
+
+end;
+
+procedure TFormatConverter.FormCreate(Sender: TObject);
+begin
+  XMLtoJSON := TXMLtoJSON.Create();
 
 end;
 
