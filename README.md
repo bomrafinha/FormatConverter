@@ -5,7 +5,7 @@
 <br />
 
 ![Maintenance](https://img.shields.io/maintenance/yes/2020)
-![Build](https://img.shields.io/badge/Build-1.0.0.15-brightgreen) 
+![Build](https://img.shields.io/badge/Build-1.1.14.55-brightgreen) 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/bomrafinha/FormatConverter)
 ![GitHub Release Date](https://img.shields.io/github/release-date/bomrafinha/FormatConverter)
 
@@ -31,16 +31,18 @@
 *******
 ## Índice
  1. [Uso](#uso)
- 2. [Estrutura](#estrutura)
- 3. [Workgroup](#workgroup)
- 4. [Dependências](#dependencias)
- 5. [Instalação/Configuração](#instalacao)
- 6. [Contribuir](#contribuir)
- 7. [Créditos](#creditos)
- 8. [Licença](#licenca)
- 9. [Documentação](#documentacao)
- 10. [TODO](#todo)
- 11. [Árvore do Projeto](#arvore)
+ 2. [Sitemap](#sitemap)
+ 3. [Estrutura](#estrutura)
+ 4. [Workgroup](#workgroup)
+ 5. [Dependências](#dependencias)
+ 6. [Instalação/Configuração](#instalacao)
+ 7. [Contribuir](#contribuir)
+ 8. [Checklist para Contribuir](#checklist)
+ 9. [Créditos](#creditos)
+ 10. [Licença](#licenca)
+ 11. [Documentação](#documentacao)
+ 12. [TODO](#todo)
+ 13. [Árvore do Projeto](#arvore)
 *******
 
 <br />
@@ -58,9 +60,11 @@ Implementar as **[formas de uso](documentation/usage)**.
       + **Parametrização**
         - *var01*: Variável 01;
         - *var02*: Variável 02;
-    
+
+
+ 
+## [Sitemap](https://coggle.it/diagram/XmZ2-WVe0wuFMqlu/t/-) <a name="sitemap"></a>   
 ![Sitemap](documentation/images/sitemap.png)
-[Sitemap no Coggle](https://coggle.it/diagram/XmZ2-WVe0wuFMqlu/t/-)
 
 <br />
 
@@ -103,6 +107,31 @@ Deve-se manter a ordem de compilação do projeto exatamente como na imagem.
 
 <br />
 
+## Checklist para Contribuir <a name="checklist"></a>
++ Marcar com "#" os issues concluídos, nos commits;
++ Readme (caso nescessário)
+  - Alterar indice;
+  - Alerar / adicionar forma de uso;
+  - Incluir pacotes / classes / métodos / parâmetros nas formas de uso;
+  - Alterar sitemap;
+  - Alterar estrutura da aplicação;
+  - Imagem atualizada do Workgroup;
+  - Adicionar / Remover dependências (pacotes de terceiros);
+  - Atualizar métodos de instalação / configuração do pacote;
+  - Atualizar a documentação do fonte;
+  - Remover / adicionar itens ao TODO;
+  - Atualizar árvore do projeto;
++ Ao adicionar itens ao TODO, não esquecer de criar a "issue" correspondente;
+  * Labels principais
+    - **bug:** Correção de algum problema;
+    - **documentation:** Alteração na documentação;
+    - **enhacement:** Alteração de funcionabilidade existente paara melhorá-la;
+    - **feature:** Nova funcionabilidade;
+  * Projeto
+    - **FormatConverter - Kanban:** Para melhor organizar o projeto;
+    
+<br />
+
 ## Créditos <a name="creditos"></a>
 [@bomrafinha](https://github.com/bomrafinha)
 
@@ -124,7 +153,6 @@ Verificar tipo de licença.
   - README
   - LICENCE
   - usage
-  - sitemap
   - configuração do fonte
   - arquivo padronização de código e documentação
   - forma de versionamento

@@ -121,6 +121,7 @@
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="xmlrtl.dcp"/>
         <DCCReference Include="OriginToReturn.dcp"/>
+        <DCCReference Include="fmx.dcp"/>
         <DCCReference Include="..\src\XMLtoJSON\U_XML.JSON.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
@@ -171,12 +172,6 @@
                 </DeployFile>
                 <DeployFile LocalName="$(BDS)\Redist\osx32\libcgsqlite3.dylib" Class="DependencyModule">
                     <Platform Name="OSX32">
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="..\app\XMLtoJSON.bpl" Configuration="Debug" Class="ProjectOutput">
-                    <Platform Name="Win32">
-                        <RemoteName>XMLtoJSON.bpl</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
