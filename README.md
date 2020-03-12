@@ -185,7 +185,20 @@ Verificar tipo de licença.
 <br />
 
 ## Padronização de Código <a name="source"></a>
-+ **[Implementar documentação](documentation/documentacao.md)**
+### Versionamento
+Para versionar o FormatConverter deve-se usar como base o versionamento para windows 32 bits do Format_Converter.exe, da forma que se segue:
+
+![Workgroup](documentation/images/versionamento.png)
+#### onde:
+1. Versão principal, só muda quando o funcionamento básico do sistema altera de forma considerável;
+2. Quantidade de módulos funcionais do sistema;
+3. Quantidade de funções públicas disponíveis no sistema;
+4. Versão de build do sistema auto-gerado pelo Delphi;
+5. Deve-se manter o build como auto incremento;
+
+Para cada teste compilado com sucesso deve-se dar *build* no .exe para versionar (shift + F9).
+
+Os *releases* do repositório serão feitos a cada vez que um módulo estiver 100% finalizado, ou quando um conserto muito relevante for realizado. 
 
 <br />
 
@@ -193,7 +206,6 @@ Verificar tipo de licença.
 + Documentação
   - configuração do fonte
   - arquivo padronização de código e documentação
-  - forma de versionamento
 
 + Estrutura básica do código
   - Pacotes com recursos visuais (arrastar e soltar)
