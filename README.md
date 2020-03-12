@@ -179,8 +179,6 @@ Deve-se manter a ordem de compilação do projeto como na imagem.
 <br />
 
 ## [Licença](./LICENSE) <a name="licenca"></a>
-Verificar tipo de licença.
-+ Propriedade Intelectual: [@bomrafinha](https://github.com/bomrafinha)
 
 <br />
 
