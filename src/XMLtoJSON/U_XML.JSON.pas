@@ -3,7 +3,7 @@ unit U_XML.JSON;
 interface
 
 uses Xml.XMLDoc, System.JSON, U_Origin.Return, System.Classes, System.SysUtils,
-  FMX.Forms, XMLIntf;
+  System.StrUtils, FMX.Forms, XMLIntf;
 
 type
   TXMLtoJSON = class(TInterfacedObject, IOriginToReturn<TXMLDocument, TJSONObject>)
@@ -12,7 +12,7 @@ type
     function nodeToStringList(nodo : TJSONArray; nivel : Integer = -1) : TStringList; Overload;
     function tabular(nivel : integer) : String;
     function getAtributosStr(nodos : IXMLNodeList) : string;
-    function isText(json : String) : Boolean;
+    function typeText(json : String) : string;
 
   public
     function stringToString(strContent : String) : String; // Testar
@@ -32,7 +32,7 @@ type
     function normalizeOrigin(content : TStringList) : String; Overload;
 
     function normalizeReturn(content : String) : TJSONObject; Overload;
-    function normalizeReturn(content : TJSONObject) : TStringList; Overload; // Testar
+    function normalizeReturn(content : TJSONObject) : TStringList; Overload;
     function normalizeReturn(content : TStringList) : String; Overload;
 
   end;     
@@ -224,6 +224,9 @@ var
   listAux : TStringList;
   nome : string;
   valor : string;
+  abertura : string;
+  fechamento : string;
+  auxiliar : string;
 
 begin
   listAux := TStringList.Create();
@@ -235,13 +238,55 @@ begin
     listAux.Clear();
     nome := TJSONPair(item).JsonString.ToString;
     valor := TJSONPair(item).JsonValue.ToString;
-    if not isText(valor) then
-    begin
+    case ansiIndexStr(typeText(valor), ['text', 'object', 'array']) of
+      0:
+      begin
+        abertura := tabular(nivel) + nome + ': ';
+        fechamento := ',';
+      end;
+      1:
+      begin
+        abertura := tabular(nivel) + nome + ': {';
+        fechamento := '},';
+        listAux := Self.nodeToStringList(TJSONArray(TJSONObject.ParseJSONValue(valor)) , nivel + 1);
+      end;
+      2:
+      begin
+        abertura := tabular(nivel) + nome + ': [';
+        fechamento := '],';
+        listAux.Delimiter := ',';
+        listAux.DelimitedText := valor;
 
+        for I := 0 to listAux.Count - 1 do
+        begin
+          auxiliar := listAux.Strings[I];
+          auxiliar := StringReplace(auxiliar, '[', EmptyStr, [rfReplaceAll]);
+          auxiliar := StringReplace(auxiliar, ']', EmptyStr, [rfReplaceAll]);
+          auxiliar := StringReplace(auxiliar, '"', EmptyStr, [rfReplaceAll]);
+          if auxiliar <> emptyStr then
+          begin
+            listAux.Strings[I] := tabular(nivel + 1) + '"' + auxiliar + '",';
+          end;
+        end;
+        listAux.Delete(listAux.Count - 1);
+        listAux.Strings[listAux.Count - 1] := StringReplace(listAux.Strings[listAux.Count - 1], ',', EmptyStr, [rfReplaceAll]);
+      end;
+
+    end;
+    if listAux.Count <= 0 then
+    begin
+      listReturn.Add(abertura + valor + fechamento);
     end else begin
-      listReturn.Add(nome + ': ' + valor + ',');
+      listReturn.Add(abertura);
+      for I := 0 to listAux.Count -1 do
+      begin
+        listReturn.Add(listAux.Strings[I]);
+      end;
+      listReturn.Add(fechamento);
     end;
   end;
+
+  listReturn.Strings[listReturn.Count - 1] := StringReplace(listReturn.Strings[listReturn.Count - 1], ',', EmptyStr, [rfReplaceAll]);
 
   Result := listReturn;
 
@@ -401,24 +446,19 @@ begin
 
 end;
 
-function TXMLtoJSON.isText(json: String): Boolean;
-const
-  specialChar : array [0..3] of string = ('{', '}', '[', ']');
-
-var
-  I: Integer;
-
+function TXMLtoJSON.typeText(json: String): String;
 begin
-  Result := True;
-  for I := 0 to Length(specialChar) do
+  Result := 'text';
+  if pos('{', json) > 0 then
   begin
-    if pos(specialChar[I], json) > 0 then
-    begin
-      Result := false;
-    end;
-
+    Result := 'object';
+    Exit;
   end;
-
+  if pos('[', json) > 0 then
+  begin
+    Result := 'array';
+    Exit;
+  end;
 end;
 
 function TXMLtoJSON.stringToFile(strContent, filePathResult: String): Boolean;

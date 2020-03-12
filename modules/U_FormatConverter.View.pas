@@ -112,7 +112,7 @@ begin
 //  memoResultado.Text := XMLtoJSON.normalizeOrigin(list);
 
 
-  testeStr := '{"root" : "raiz", "objeto": {"sub01": "nível01"}, "vetor":["rafa", "rossa"], "footer": 1}';
+  testeStr := memoOriginal.Text;
   testeJson := XMLtoJSON.normalizeReturn(testeStr);
   testeList := XMLtoJSON.normalizeReturn(testeJson);
   testeStr := XMLtoJSON.normalizeReturn(testeList);
