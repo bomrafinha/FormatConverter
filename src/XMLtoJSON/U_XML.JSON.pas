@@ -247,13 +247,13 @@ begin
       1:
       begin
         abertura := tabular(nivel) + nome + ': {';
-        fechamento := '},';
+        fechamento := tabular(nivel) + '},';
         listAux := Self.nodeToStringList(TJSONArray(TJSONObject.ParseJSONValue(valor)) , nivel + 1);
       end;
       2:
       begin
         abertura := tabular(nivel) + nome + ': [';
-        fechamento := '],';
+        fechamento := tabular(nivel) + '],';
         listAux.Delimiter := ',';
         listAux.DelimitedText := valor;
 
@@ -331,10 +331,15 @@ end;
 function TXMLtoJSON.normalizeReturn(content: TJSONObject): TStringList;
 var
   nodo : TJSONArray;
+  returnList : TStringList;
 
 begin
   nodo := TJSONArray(content);
-  Result := Self.nodeToStringList(nodo);
+  returnList := Self.nodeToStringList(nodo, 0);
+  returnList.Insert(0, '{');
+  returnList.Add('}');
+
+  Result := returnList;
 
 end;
 
@@ -497,24 +502,19 @@ function TXMLtoJSON.stringToReturnType(strContent: String): TJSONObject;
 var
   xmlContent : TXMLDocument;
   jsonReturn : TJSONObject;
-  arquivo : TStringList;
   strReturn : String;
-  
-begin          
-  try try
-    xmlContent := self.normalizeOrigin(strContent);
-    jsonReturn := self.originTypeToReturnType(xmlContent); 
 
-    Result := jsonReturn;                        
-    
+begin
+  try
+    xmlContent := self.normalizeOrigin(strContent);
+    jsonReturn := self.originTypeToReturnType(xmlContent);
+
+    Result := jsonReturn;
+
   except
     Result := TJSONObject.Create();
-    
-  end;  
-  
-  finally
-    arquivo.Free;
-  end;  
+
+  end;
 
 end;
 
