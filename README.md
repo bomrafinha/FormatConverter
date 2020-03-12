@@ -8,9 +8,12 @@
 ![Build](https://img.shields.io/badge/Build-1.1.14.172-brightgreen) 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/bomrafinha/FormatConverter)
 ![GitHub Release Date](https://img.shields.io/github/release-date/bomrafinha/FormatConverter)
+![Github repo age](https://img.shields.io/github/issues/detail/age/bomrafinha/FormatConverter/1.svg?style=flat-square)
+![Github author](https://img.shields.io/github/issues/detail/u/bomrafinha/FormatConverter/1.svg?style=flat-square)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/bomrafinha/FormatConverter)
 ![GitHub contributors](https://img.shields.io/github/contributors/bomrafinha/FormatConverter)
+![GitHub last commit](https://img.shields.io/github/last-commit/bomrafinha/FormatConverter)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/bomrafinha/FormatConverter.svg?style=flat-square)
 
 ![GitHub issues](https://img.shields.io/github/issues/bomrafinha/FormatConverter)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/bomrafinha/FormatConverter)
