@@ -15,16 +15,16 @@ type
     function typeText(json : String) : string;
 
   public
-    function stringToString(strContent : String) : String; // Testar
-    function stringToFile(strContent, filePathResult : String) : Boolean; // Testar
-    function stringToReturnType(strContent : String) : TJSONObject; // Testar
+    function stringToString(strContent : String) : String;
+    function stringToFile(strContent, filePathResult : String) : Boolean;
+    function stringToReturnType(strContent : String) : TJSONObject;
 
-    function fileToString(filePath : String) : String; // Testar
-    function fileToFile(filePath : String; filePathResult : String = '') : Boolean; // Testar
-    function fileToReturnType(filePath : String) : TJSONObject; // Testar
+    function fileToString(filePath : String) : String;
+    function fileToFile(filePath : String; filePathResult : String = '') : Boolean;
+    function fileToReturnType(filePath : String) : TJSONObject;
 
-    function originTypeToString(content : TXMLDocument) : String; // Testar
-    function originTypeToFile(content : TXMLDocument; filePathResult : String) : Boolean; // Testar
+    function originTypeToString(content : TXMLDocument) : String;
+    function originTypeToFile(content : TXMLDocument; filePathResult : String) : Boolean;
     function originTypeToReturnType(content : TXMLDocument) : TJSONObject; //Implementar
 
     function normalizeOrigin(content : String) : TXMLDocument; Overload;
