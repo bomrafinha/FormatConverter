@@ -5,7 +5,7 @@
 <br />
 
 ![Maintenance](https://img.shields.io/maintenance/yes/2020)
-![Build](https://img.shields.io/badge/Build-1.0.0.15-brightgreen) 
+![Build](https://img.shields.io/badge/Build-1.1.14.172-brightgreen) 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/bomrafinha/FormatConverter)
 ![GitHub Release Date](https://img.shields.io/github/release-date/bomrafinha/FormatConverter)
 
@@ -31,36 +31,78 @@
 *******
 ## Índice
  1. [Uso](#uso)
- 2. [Estrutura](#estrutura)
- 3. [Workgroup](#workgroup)
- 4. [Dependências](#dependencias)
- 5. [Instalação/Configuração](#instalacao)
- 6. [Contribuir](#contribuir)
- 7. [Créditos](#creditos)
- 8. [Licença](#licenca)
- 9. [Documentação](#documentacao)
- 10. [TODO](#todo)
- 11. [Árvore do Projeto](#arvore)
+ 2. [Sitemap](#sitemap)
+ 3. [Estrutura](#estrutura)
+ 4. [Workgroup](#workgroup)
+ 5. [Dependências](#dependencias)
+ 6. [Instalação/Configuração](#instalacao)
+ 7. [Contribuir](#contribuir)
+ 8. [Checklist para Contribuir](#checklist)
+ 9. [Créditos](#creditos)
+ 10. [Licença](#licenca)
+ 11. [Padronização de Código](#source)
+ 12. [TODO](#todo)
+ 13. [Árvore do Projeto](#arvore)
 *******
 
 <br />
 
 ## Uso <a name="uso"></a>
-Implementar as **[formas de uso](documentation/usage)**.
 
-![Uso](documentation/usage/uso.png)
+- **TXMLtoJSON**
+  * **stringToString:** Converte um XML em forma de String em um JSON em forma de string (string);
+    + **Parametrização**
+      - *strContent:* XML à converter (string);
+  * **stringToFile:** Converte um XML em forma de String em um arquivo JSON (boolean);
+    + **Parametrização**
+      - *strContent:* XML à converter (string);
+      - *filePathResult:* Caminho do arquivo JSON à ser salvo (string);
+  * **stringToReturnType:** Converte um XML em forma de String em um JSON em forma de TJSONObject (TJSONObject);
+    + **Parametrização**
+      - *strContent:* XML à converter (string);
+  * **fileToString:** Converte um arquivo XML em um JSON em forma de string (string);    
+    + **Parametrização**
+      - *filePath:* Caminho do arquivo XML à converter (string);
+  * **fileToFile:** Converte um arquivo XML em um arquivo JSON (boolean);
+    + **Parametrização**
+      - *filePath:* Caminho do arquivo XML à converter (string);
+      - *filePathResult:* Caminho do arquivo JSON à ser salvo (string);
+  * **fileToReturnType:** Converte um arquivo XML em um JSON em forma de TJSONObject (TJSONObject);
+    + **Parametrização**
+      - *filePath:* Caminho do arquivo XML à converter (string);
+  * **originTypeToString:** Converte um XML em forma de TXMLDocument em um JSON em forma de string (string);
+    + **Parametrização**
+      - *content:* XML à converter (TXMLDocument);
+  * **originTypeToFile:** Converte um XML em forma de TXMLDocument em um arquivo JSON (boolean);
+    + **Parametrização**
+      - *content:* XML à converter (TXMLDocument);
+      - *filePathResult:* Caminho do arquivo JSON à ser salvo (string);
+  * **originTypeToReturnType:** Converte um XML em forma de TXMLDocument em um JSON em forma de TJSONObject (TJSONObject);
+    + **Parametrização**
+      - *content:* XML à converter (TXMLDocument);
+  * **normalizeOrigin:** Converte um XML em forma de String em um XML em forma de TXMLDocument (TXMLDocument);
+    + **Parametrização**
+      - *content:* XML à normalizar (string);
+  * **normalizeOrigin:** Converte um XML em forma de TXMLDocument em um XML em forma de TStringList (TStringList);
+    + **Parametrização**
+      - *content:* XML à normalizar (TXMLDocument);
+  * **normalizeOrigin:** Converte um XML em forma de TStringList em um XML em forma de String (string);
+    + **Parametrização**
+      - *content:* XML à normalizar (TStringList);
+  * **normalizeReturn:** Converte um JSON em forma de String em um JSON em forma de TJSONObject (TJSONObject);
+    + **Parametrização**
+      - *content:* JSON à normalizar (string);
+  * **normalizeReturn:** Converte um JSON em forma de TJSONObject em um JSON em forma de TStringList (TStringList);
+    + **Parametrização**
+      - *content:* JSON à normalizar (TJSONObject);
+  * **normalizeReturn:** Converte um JSON em forma de TStringList em um JSON em forma de String (string);
+    + **Parametrização**
+      - *content:* JSON à normalizar (TStringList);
 
 <br />
-
-+ **PACKAGE**
-  - **CLASS**
-    * **METHOD:** Descrição do Método
-      + **Parametrização**
-        - *var01*: Variável 01;
-        - *var02*: Variável 02;
-    
+ 
+## [Sitemap](https://coggle.it/diagram/XmZ2-WVe0wuFMqlu/t/-) <a name="sitemap"></a>   
 ![Sitemap](documentation/images/sitemap.png)
-[Sitemap no Coggle](https://coggle.it/diagram/XmZ2-WVe0wuFMqlu/t/-)
 
 <br />
 
@@ -69,29 +111,30 @@ Implementar as **[formas de uso](documentation/usage)**.
 + **documentation:** Contém a documentação do(s) pacote(s);
 + **images:** Contém as imagens usadas no(s) pacote(s);
 + **modules:** Módulos não essenciais, como testadores, etc;
-  - **testador tal:** Implementar;
-+ **output:** Contém os arquivos précompilados usados pelo Delphi (.dcu);
+  - **Format_Converter:** Testa as converções de formato (também usado para pegar o número de build);
++ **output:** Contém os arquivos pré compilados usados pelo Delphi (.dcu);
 + **project:** Diretório com os projetos de cada pacote e testador;
 + **src:** Contém o fonte essencial para o funcionamento do(s) pacote(s);
-  - **pacote tal:** Pacote centralizador do sistema, quando o executável faz a chamada da função solicitada é essa parte da aplicação que localiza as rotinas nos pacotes;
+  - **OriginToReturn:** Contém a interface de que comanda a implementação dos pacotes;
+  - **XMLtoJSON:** Contém o pacote usado para conversão de XML para JSON;
 + **vendor:** Contém os pacotes de terceiros;
  
 <br />
 
 ## Workgroup <a name="workgroup"></a>
-Deve-se manter a ordem de compilação do projeto exatamente como na imagem.
+Deve-se manter a ordem de compilação do projeto como na imagem.
 
 ![Workgroup](documentation/images/workgroup.png)
 
 <br />
 
 ## Dependências <a name="dependencias"></a>
-+ **Dependência01:** Dependência;
++ **Sem dependências aé o momento.**
 
 <br />
 
 ## Instalação/Configuração <a name="instalacao"></a>
-+ **[Configuração](documentation/configuracaoFonte.md)**
++ **[Configuração](documentation/instalacao.md)**
 
 <br />
 
@@ -100,6 +143,33 @@ Deve-se manter a ordem de compilação do projeto exatamente como na imagem.
 2. Faça "commit" de suas alterações (Caso estiver resolvento alguma "issue" não esqueça de na mensagem escrever "Fixed #numeroIssue");
 3. Faça "push" de seus commits;
 4. Solicite um "pull request" para o master do repositório principal.
+
+<br />
+
+## Checklist para Contribuir <a name="checklist"></a>
++ Testar as funcionalidades criadas / alteradas;
++ Marcar com "#" os issues concluídos, nos commits;
++ Readme (caso nescessário)
+  - Número do build;
+  - Alterar indice;
+  - Alerar / adicionar forma de uso;
+  - Incluir pacotes / classes / métodos / parâmetros nas formas de uso;
+  - Alterar sitemap;
+  - Alterar estrutura da aplicação;
+  - Imagem atualizada do Workgroup;
+  - Adicionar / Remover dependências (pacotes de terceiros);
+  - Atualizar métodos de instalação / configuração do pacote;
+  - Atualizar a documentação do fonte;
+  - Remover / adicionar itens ao TODO;
+  - Atualizar árvore do projeto;
++ Ao adicionar itens ao TODO, não esquecer de criar a "issue" correspondente;
+  * Labels principais
+    - **bug:** Correção de algum problema;
+    - **documentation:** Alteração na documentação;
+    - **enhacement:** Alteração de funcionalidade existente para melhorá-la;
+    - **feature:** Nova funcionalidade;
+  * Projeto
+    - **FormatConverter - Kanban:** Para melhor organizar o projeto;
 
 <br />
 
@@ -114,21 +184,16 @@ Verificar tipo de licença.
 
 <br />
 
-## Documentação <a name="documentacao"></a>
+## Padronização de Código <a name="source"></a>
 + **[Implementar documentação](documentation/documentacao.md)**
 
 <br />
 
 ## TODO <a name="todo"></a>
 + Documentação
-  - README
-  - LICENCE
-  - usage
-  - sitemap
   - configuração do fonte
   - arquivo padronização de código e documentação
   - forma de versionamento
-  - checklist de atualização
 
 + Estrutura básica do código
   - Pacotes com recursos visuais (arrastar e soltar)
@@ -225,34 +290,61 @@ Verificar tipo de licença.
 
 ## Árvore do Projeto <a name="arvore"></a>
 ```
-FormatConversor
+FormatConverter
 ├── app
 │   └── .gitkeep
 ├── documentation
 │   ├── images
-│   │   ├── sitemap - Copia (2).png
 │   │   ├── sitemap.png
 │   │   └── workgroup.png
-│   ├── usage
-│   │   └── uso.png
-│   ├── configuracaoFonte.md
-│   └── documentacao.md
+│   ├── documentacao.md
+│   └── instalacao.md
 ├── images
-│   └── .gitkeep
+│   └── icone
+│       ├── icon 150x150.png
+│       ├── icon 44x44.png
+│       ├── icon.ico
+│       ├── icon.png
+│       └── icon.psd
 ├── modules
-│   ├── U_Testador.View.fmx
-│   └── U_Testador.View.pas
+│   └── Format_Converter
+│       ├── U_FormatConverter.View.fmx
+│       └── U_FormatConverter.View.pas
 ├── output
 │   └── .gitkeep
 ├── project
-│   ├── Delphi XMLtoJSON.groupproj
-│   ├── Testador.dpr
-│   ├── Testador.dproj
+│   ├── CSVtoJSON.dpk
+│   ├── CSVtoJSON.dproj
+│   ├── CSVtoXML.dpk
+│   ├── CSVtoXML.dproj
+│   ├── Format_Converter.dpr
+│   ├── Format_Converter.dproj
+│   ├── FormatConverter.groupproj
+│   ├── JSONtoCSV.dpk
+│   ├── JSONtoCSV.dproj
+│   ├── JSONtoXML.dpk
+│   ├── JSONtoXML.dproj
+│   ├── OriginToReturn.dpk
+│   ├── OriginToReturn.dproj
+│   ├── XMLtoCSV.dpk
+│   ├── XMLtoCSV.dproj
 │   ├── XMLtoJSON.dpk
 │   └── XMLtoJSON.dproj
 ├── src
+│   ├── CSVtoJSON
+│   │   └── U_CSV.JSON.pas
+│   ├── CSVtoXML
+│   │   └── U_CSV.XML.pas
+│   ├── JSONtoCSV
+│   │   └── U_JSON.CSV.pas
+│   ├── JSONtoXML
+│   │   └── U_JSON.XML.pas
+│   ├── OriginToReturn
+│   │   └── U_Origin.Return.pas
+│   ├── XMLtoCSV
+│   │   └── U_XML.CSV.pas
 │   └── XMLtoJSON
-│       └── U_XMLtoJSON.pas
+│       └── U_XML.JSON.pas
 ├── vendor
 │   └── .gitkeep
 ├── .gitattributes
