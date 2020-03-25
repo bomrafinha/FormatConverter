@@ -298,8 +298,8 @@
         <VerInfo_Locale>1046</VerInfo_Locale>
         <VerInfo_Debug>true</VerInfo_Debug>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
-        <VerInfo_Keys>CompanyName=Bomrafinha;FileDescription=$(MSBuildProjectName);FileVersion=1.1.14.171;InternalName=FormatConverter;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
-        <VerInfo_Build>171</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=Bomrafinha;FileDescription=$(MSBuildProjectName);FileVersion=1.1.14.174;InternalName=FormatConverter;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>174</VerInfo_Build>
         <VerInfo_MinorVer>1</VerInfo_MinorVer>
         <VerInfo_Release>14</VerInfo_Release>
         <DCC_UnitSearchPath>../app;../output;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
@@ -331,7 +331,7 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="..\modules\U_FormatConverter.View.pas">
+        <DCCReference Include="..\modules\Format_Converter\U_FormatConverter.View.pas">
             <Form>FormatConverter</Form>
             <FormType>fmx</FormType>
         </DCCReference>

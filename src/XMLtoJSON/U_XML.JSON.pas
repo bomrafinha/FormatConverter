@@ -3,13 +3,15 @@ unit U_XML.JSON;
 interface
 
 uses Xml.XMLDoc, System.JSON, U_Origin.Return, System.Classes, System.SysUtils,
-  System.StrUtils, FMX.Forms, XMLIntf;
+  System.StrUtils, FMX.Forms, XMLIntf, System.Generics.Collections;
 
 type
   TXMLtoJSON = class(TInterfacedObject, IOriginToReturn<TXMLDocument, TJSONObject>)
   private
     function nodeToStringList(nodo : IXMLNode; nivel : Integer = -1) : TStringList; Overload;
     function nodeToStringList(nodo : TJSONArray; nivel : Integer = -1) : TStringList; Overload;
+    function nodeToStringJson(nodo : IXMLNode; atr : String = '') : TStringList;
+    function attributeToStringList(atributos : String) : TStringList;
     function tabular(nivel : integer) : String;
     function getAtributosStr(nodos : IXMLNodeList) : string;
     function typeText(json : String) : string;
@@ -41,6 +43,39 @@ implementation
 
 { TXMLtoJSON }
 
+function TXMLtoJSON.attributeToStringList(atributos: String): TStringList;
+var
+  listAux01 : TStringList;
+  listAux02 : TStringList;
+  listreturn : TStringList;
+  I: Integer;
+
+begin
+  listAux01 := TStringList.Create();
+  listAux02 := TStringList.Create();
+  listReturn := TStringList.Create();
+
+  listAux01.Clear;
+  listreturn.Clear;
+
+  listAux01.Delimiter := ' ';
+  listAux01.DelimitedText := atributos;
+
+  for I := 0 to listAux01.Count - 1 do
+  begin
+    listAux02.Clear;
+    listAux02.Delimiter := '=';
+    listAux02.DelimitedText := listAux01.Strings[I];
+    listreturn.Add('"-' + listAux02[0] + '":"' + listAux02[1] + '",');
+  end;
+
+  listAux01.Free;
+  listAux02.Free;
+
+  Result := listreturn;
+
+end;
+
 function TXMLtoJSON.fileToFile(filePath: String; filePathResult : String = ''): Boolean;
 var
   arquivo : TStringList;
@@ -49,7 +84,7 @@ var
   jsonReturn : TJSONObject;
   
 begin    
-  arquivo := TStringList.Create();      
+  arquivo := TStringList.Create();
   try try    
     Result := True;
     if filePathResult = EmptyStr then
@@ -216,6 +251,83 @@ begin
 
 end;
 
+function TXMLtoJSON.nodeToStringJson(nodo: IXMLNode; atr : String): TStringList;
+var
+  nome : String;
+  atributos : TStringList;
+  abertura : string;
+  fechamento : string;
+  I : Integer;
+  J : Integer;
+  retorno : TStringList;
+  listaAux : TStringList;
+
+begin
+  retorno := TStringList.Create();
+  listaAux := TStringList.Create();
+  retorno.Clear;
+
+  for I := 0 to nodo.ChildNodes.Count - 1 do
+  begin
+    listaAux.Clear;
+    nome := nodo.ChildNodes[I].NodeName;
+    atributos := attributeToStringList(
+      getAtributosStr(
+        nodo.ChildNodes[I].AttributeNodes
+      )
+    );
+    abertura := '"' + nome + '":';
+    fechamento := ',';
+
+    if not nodo.IsTextElement then
+    begin
+      listaAux := Self.nodeToStringJson(
+        nodo.ChildNodes[I]);
+    end;
+
+    case listaAux.Count of
+      0: retorno.Add('"' + Trim(nodo.ChildNodes[I].NodeValue) + '"');
+      1:
+      begin
+        if (pos(':', listaAux.Strings[0]) > 0) or (atributos.Count > 0) then
+        begin
+          abertura := abertura + '{';
+          fechamento := '}' + fechamento;
+          retorno.Add(abertura);
+          for J := 0 to atributos.Count - 1 do
+          begin
+            retorno.Add(atributos.Strings[J]);
+          end;
+          if pos(':', listaAux.Strings[0]) <= 0 then
+          begin
+            retorno.Add('"#text":' + listaAux.Strings[0]);
+          end;
+          retorno.Add(fechamento);
+        end else begin
+          retorno.Add(abertura + listaAux.Strings[0] + fechamento);
+        end;
+      end
+    else
+      abertura := abertura + '{';
+      fechamento := '}' + fechamento;
+      retorno.Add(abertura);
+      for J := 0 to atributos.Count - 1 do
+      begin
+        retorno.Add(atributos.Strings[J]);
+      end;
+      for J := 0 to listaAux.Count - 1 do
+      begin
+        retorno.Add(listaAux.Strings[J]);
+      end;
+      retorno.Add(fechamento);
+    end;
+
+  end;
+
+  result := retorno;
+
+end;
+
 function TXMLtoJSON.nodeToStringList(nodo: TJSONArray; nivel: Integer): TStringList;
 var
   listReturn : TStringList;
@@ -355,6 +467,7 @@ begin
     begin
       strReturn := strReturn + trim(content.Strings[I]);
     end;
+    strReturn := StringReplace(strReturn, ',}', '}', [rfReplaceAll]);
     Result := strReturn;
     
   except
@@ -396,7 +509,23 @@ begin
 end;
 
 function TXMLtoJSON.originTypeToReturnType(content: TXMLDocument): TJSONObject;
+var
+  nodo : IXMLNode;
+  str : String;
+  json : TJSONObject;
+
 begin
+  nodo := content.Node;
+
+  str := '{' + Self.normalizeReturn(
+    Self.nodeToStringJson(nodo)
+  ) + '}';
+
+  str := StringReplace(str, ',}', '}', [rfReplaceAll]);
+
+  json := Self.normalizeReturn(str);
+
+  Result := json;
 
 end;
 
