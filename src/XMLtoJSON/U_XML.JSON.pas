@@ -301,6 +301,8 @@ begin
           if pos(':', listaAux.Strings[0]) <= 0 then
           begin
             retorno.Add('"#text":' + listaAux.Strings[0]);
+          end else begin
+            retorno.Add(listaAux.Strings[0]);
           end;
           retorno.Add(fechamento);
         end else begin
