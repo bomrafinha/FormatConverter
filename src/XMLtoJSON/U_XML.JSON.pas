@@ -261,11 +261,28 @@ var
   J : Integer;
   retorno : TStringList;
   listaAux : TStringList;
+  comparador : String;
+  arrays : TStringList;
+  flag_01 : boolean;
+  flag_02 : boolean;
 
 begin
   retorno := TStringList.Create();
   listaAux := TStringList.Create();
-  retorno.Clear;
+  arrays := TStringList.Create();
+  arrays.Clear;
+  comparador := EmptyStr;
+  flag_01 := True;
+  flag_02 := True;
+
+  for I := 0 to nodo.ChildNodes.Count - 1 do
+  begin
+    if ((comparador = nodo.ChildNodes[I].NodeName) and (arrays.IndexOf(comparador) = -1)) then
+    begin
+      arrays.Add(comparador);
+    end;
+    comparador := nodo.ChildNodes[I].NodeName;
+  end;
 
   for I := 0 to nodo.ChildNodes.Count - 1 do
   begin
@@ -282,14 +299,31 @@ begin
     if not nodo.IsTextElement then
     begin
       listaAux := Self.nodeToStringJson(
-        nodo.ChildNodes[I]);
+        nodo.ChildNodes[I]
+      );
+    end;
+
+    if arrays.IndexOf(nodo.ChildNodes[I].NodeName) <> -1 then
+    begin
+      if flag_01 then
+      begin
+        retorno.Add('"' + nodo.ChildNodes[I].NodeName + '": [' );
+        flag_01 := False;
+      end;
+      abertura := EmptyStr;
+    end else begin
+      if not flag_01 then
+      begin
+        retorno.Add('],');
+        flag_01 := True;
+      end;
     end;
 
     case listaAux.Count of
       0: retorno.Add('"' + Trim(nodo.ChildNodes[I].NodeValue) + '"');
       1:
       begin
-        if (pos(':', listaAux.Strings[0]) > 0) or (atributos.Count > 0) then
+        if (pos('":', listaAux.Strings[0]) > 0) or (atributos.Count > 0) then
         begin
           abertura := abertura + '{';
           fechamento := '}' + fechamento;
@@ -324,6 +358,10 @@ begin
       retorno.Add(fechamento);
     end;
 
+    if (I = nodo.ChildNodes.Count - 1) and not flag_01 then
+    begin
+      retorno.add('],');
+    end;
   end;
 
   result := retorno;
@@ -470,6 +508,7 @@ begin
       strReturn := strReturn + trim(content.Strings[I]);
     end;
     strReturn := StringReplace(strReturn, ',}', '}', [rfReplaceAll]);
+    strReturn := StringReplace(strReturn, ',]', ']', [rfReplaceAll]);
     Result := strReturn;
     
   except
@@ -524,6 +563,7 @@ begin
   ) + '}';
 
   str := StringReplace(str, ',}', '}', [rfReplaceAll]);
+  str := StringReplace(str, ',]', ']', [rfReplaceAll]);
 
   json := Self.normalizeReturn(str);
 

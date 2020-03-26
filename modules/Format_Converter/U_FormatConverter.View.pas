@@ -108,6 +108,9 @@ begin
   memoOriginal.Lines := list;
 
   json := XMLtoJSON.originTypeToReturnType(xml);
+
+  memoResultado.Text := json.ToString;
+
   list := XMLtoJSON.normalizeReturn(json);
   memoResultado.lines := list;
 
@@ -130,9 +133,6 @@ var
   ScreenSize: TSize;
   blocosConteudoWitdth : Integer;
   blocosBotoesWitdth : Integer;
-
-  blocosBotoesWHeight : Integer;
-  blocosConteudoHeight : Integer;
 
 begin
   ScreenSize := Screen.Size;
