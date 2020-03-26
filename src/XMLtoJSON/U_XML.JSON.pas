@@ -389,8 +389,12 @@ begin
   begin
     listAux.Clear();
     nome := TJSONPair(item).JsonString.ToString;
-    valor := TJSONPair(item).JsonValue.ToString;
-    case ansiIndexStr(typeText(valor), ['text', 'object', 'array']) of
+    try
+      valor := TJSONPair(item).JsonValue.ToString;
+    except
+      valor := 'node';
+    end;
+    case ansiIndexStr(typeText(valor), ['text', 'object', 'array', 'node']) of
       0:
       begin
         abertura := tabular(nivel) + nome + ': ';
@@ -422,6 +426,12 @@ begin
         end;
         listAux.Delete(listAux.Count - 1);
         listAux.Strings[listAux.Count - 1] := StringReplace(listAux.Strings[listAux.Count - 1], ',', EmptyStr, [rfReplaceAll]);
+      end;
+      3:
+      begin
+        abertura := tabular(nivel) + '{';
+        fechamento := tabular(nivel) + '},';
+        listAux := Self.nodeToStringList(TJSONArray(item) , nivel + 1);
       end;
 
     end;
@@ -624,13 +634,22 @@ end;
 
 function TXMLtoJSON.typeText(json: String): String;
 begin
+  if pos('"dup"', json) > 0 then
+  begin
+    Result := 'rafa';
+  end;
   Result := 'text';
+  if json = 'node' then
+  begin
+    Result := json;
+    Exit;
+  end;
   if pos('{', json) > 0 then
   begin
     Result := 'object';
     Exit;
   end;
-  if pos('[', json) > 0 then
+  if pos('[', json) = 1 then
   begin
     Result := 'array';
     Exit;
