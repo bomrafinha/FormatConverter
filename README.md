@@ -5,7 +5,7 @@
 <br />
 
 ![Maintenance](https://img.shields.io/maintenance/yes/2020)
-![Build](https://img.shields.io/badge/Build-1.1.14.172-brightgreen) 
+![Build](https://img.shields.io/badge/Build-1.1.15.271-brightgreen) 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/bomrafinha/FormatConverter)
 ![GitHub Release Date](https://img.shields.io/github/release-date/bomrafinha/FormatConverter)
 ![Github repo age](https://img.shields.io/github/issues/detail/age/bomrafinha/FormatConverter/1.svg?style=flat-square)
@@ -165,7 +165,7 @@ Para criar uma *issue* atente para o seguinte:
 + Readme (caso nescessário)
   - Número do build;
   - Alterar indice;
-  - Alerar / adicionar forma de uso;
+  - Alterar / adicionar forma de uso;
   - Incluir pacotes / classes / métodos / parâmetros nas formas de uso;
   - Alterar sitemap;
   - Alterar estrutura da aplicação;
@@ -213,10 +213,83 @@ Os *releases* do repositório serão feitos a cada vez que um módulo estiver 10
 
 <br />
 
+### Padrões adotados no projeto
+Para um melhor entendimento do projeto foi-se adotado alguns padrões que facilitam a identificação de cada estrutura usada. São, basicamente, o uso de *camelcase*, com variações nas iniciais;
+
+#### Variáveis de método
+Variáveis locais devem ser *camelcase* iniciando em minúsculo.
+
+Observar o espaçamento entre a declaração de variáveis e o inicio do método.
+
+![Variáveis de método](documentation/images/padrao_variaveis_locais.png)
+
+#### Variáveis privadas
+A declaração de váriaveis privadas deve ocorrer sempre dentro dos modificadores de acesso. 
+
+Devem começar sempre com "f" minúsculo, seguido por seu nome em *camelcase* com a inicial em maiúsculo.
+
+![Variáveis privadas](documentation/images/padrao_variaveis_privadas.png)
+
+#### Propriedades
+Propriedades devem usar *camelcase* começando sempre com a inicial em maiúsculo.
+
+Devem ter exatamente o nome de sua variável privada e/ou metodo de acesso, eliminando apenas o prefixo (f, get, set).
+
+![Propriedades](documentation/images/padrao_propriedades.png)
+
+#### Métodos
+A declaração de métodos deve ocorrer sempre dentro dos modificadores de acesso. 
+
+Métodos devem ser *camelcase* iniciando em minúsculo.
+
+Os parâmetros do método devem ser *camelcase* iniciando em minúsculo.
+
+Procurar, quando possível, usar prefixos *get*, *set*, *eh*, etc de acordo com a função do método e/ou seu retorno.
+
+![Métodos](documentation/images/padrao_metodos.png)
+
+#### Interfaces
+Interfaces devem começar sempre com a letra "I" (maiúsculo), seguido por seu nome em *camelcase* com a inicial em maiúsculo também.
+
+![Interfaces](documentation/images/padrao_interfaces.png)
+
+#### Classes
+Classes devem começar sempre com a letra "T" (maiúsculo), seguido por seu nome em *camelcase* com a inicial em maiúsculo também.
+
+Classes que não extendem nenhuma outra classes em específico devem extender *TInterfacedObject*.
+
+![Classes](documentation/images/padrao_classes.png)
+
+#### Chamada de métodos em múltiplas linhas
+Métodos com chamadas muito extensas devem ser chamados usando padrão de identação JSON.
+
+![Chamada de métodos em múltiplas linhas 01](documentation/images/padrao_chamadas_01.png)
+![Chamada de métodos em múltiplas linhas 02](documentation/images/padrao_chamadas_02.png)
+
+#### Uso de blocos *begin end*
+Estruturas que não se utilizam do bloco de abertura e fechamento de código, como *ifs* de uma linha, em um código muito extenso geralmente atrapalham na leitura do código para posteriores modificações. Por esse motivo **todas** as estruturas devem possuir o bloco de abertura e fechamento (*begin .. end*)
+
+![Uso de blocos *begin end* 01](documentation/images/padrao_blocos_01.png)
+![Uso de blocos *begin end* 02](documentation/images/padrao_blocos_02.png)
+
+#### Identação
+Modificadores de acesso devem ser declarados de forma a ficarem alinhados à declaração da classe.
+
+Declaração de métodos, propriedades, construtores/destrutores, bem como o *var* da declaração de variáveis, devem estar alinhados.
+
+Agrupar *procedures* e *functions* sem alterná-los.
+
+Separar declações de variáveis, métodos, construtores, destrutores e propriedades com uma linha em branco, bem como deixar uma linha em branco antes da declaração de modificador de acesso, ou fim do bloco, exceto no primeiro modificador após a declaração da classes.
+
+![Identação](documentation/images/padrao_identacao_01.png)
+
+#### Um código bem padronizado é muito mais fácil de ler, mesmo por programadores que utilizam outras linguagens.
+
+<br />
+
 ## TODO <a name="todo"></a>
 + Documentação
   - configuração do fonte
-  - arquivo padronização de código e documentação
 
 + Estrutura básica do código
   - Pacotes com recursos visuais (arrastar e soltar)
