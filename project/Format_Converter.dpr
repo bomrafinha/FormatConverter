@@ -3,7 +3,7 @@ program Format_Converter;
 uses
   System.StartUpCopy,
   FMX.Forms,
-  U_FormatConverter.View in '..\modules\U_FormatConverter.View.pas' {FormatConverter};
+  U_FormatConverter.View in '..\modules\Format_Converter\U_FormatConverter.View.pas' {FormatConverter};
 
 {$R *.res}
 

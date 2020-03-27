@@ -99,26 +99,20 @@ procedure TFormatConverter.bXMLtoJSONClick(Sender: TObject);
 var
   xml : TXMLDocument;
   list : TStringList;
-
-  testeStr : String;
-  testeJson : TJSONObject;
-  testeList : TStringList;
+  json : TJSONObject;
 
 begin
-//  xml := XMLtoJSON.normalizeOrigin(memoOriginal.Text);
-//  memoOriginal.Lines.Clear;
-//  list := XMLtoJSON.normalizeOrigin(xml);
-//  memoOriginal.Lines := list;
-//  memoResultado.Text := XMLtoJSON.normalizeOrigin(list);
+  xml := XMLtoJSON.normalizeOrigin(memoOriginal.Text);
+  memoOriginal.Lines.Clear;
+  list := XMLtoJSON.normalizeOrigin(xml);
+  memoOriginal.Lines := list;
 
+  json := XMLtoJSON.originTypeToReturnType(xml);
 
-  testeStr := memoOriginal.Text;
-  testeJson := XMLtoJSON.normalizeReturn(testeStr);
-  testeList := XMLtoJSON.normalizeReturn(testeJson);
-  testeStr := XMLtoJSON.normalizeReturn(testeList);
+  memoResultado.Text := json.ToString;
 
-  memoOriginal.Lines := testeList;
-  memoResultado.Text := testeStr;
+  list := XMLtoJSON.normalizeReturn(json);
+  memoResultado.lines := list;
 
 end;
 
@@ -139,9 +133,6 @@ var
   ScreenSize: TSize;
   blocosConteudoWitdth : Integer;
   blocosBotoesWitdth : Integer;
-
-  blocosBotoesWHeight : Integer;
-  blocosConteudoHeight : Integer;
 
 begin
   ScreenSize := Screen.Size;
