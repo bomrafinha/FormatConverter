@@ -388,9 +388,22 @@ FormatConverter
 │   └── .gitkeep
 ├── documentation
 │   ├── images
+│   │   ├── label_issue.png
+│   │   ├── padrao_blocos_01.png
+│   │   ├── padrao_blocos_02.png
+│   │   ├── padrao_chamadas_01.png
+│   │   ├── padrao_chamadas_02.png
+│   │   ├── padrao_classes.png
+│   │   ├── padrao_identacao_01.png
+│   │   ├── padrao_interfaces.png
+│   │   ├── padrao_metodos.png
+│   │   ├── padrao_propriedades.png
+│   │   ├── padrao_variaveis_locais.png
+│   │   ├── padrao_variaveis_privadas.png
+│   │   ├── project_issue.png
 │   │   ├── sitemap.png
+│   │   ├── versionamento.png
 │   │   └── workgroup.png
-│   ├── documentacao.md
 │   └── instalacao.md
 ├── images
 │   └── icone
