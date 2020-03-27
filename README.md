@@ -132,7 +132,7 @@ Deve-se manter a ordem de compilação do projeto como na imagem.
 <br />
 
 ## Dependências <a name="dependencias"></a>
-+ **Sem dependências aé o momento.**
++ **Sem dependências até o momento.**
 
 <br />
 
@@ -146,6 +146,16 @@ Deve-se manter a ordem de compilação do projeto como na imagem.
 2. Faça "commit" de suas alterações (Caso estiver resolvento alguma "issue" não esqueça de na mensagem escrever "Fixed #numeroIssue");
 3. Faça "push" de seus commits;
 4. Solicite um "pull request" para o master do repositório principal.
+
+### Criando uma *Issue*
+Para criar uma *issue* atente para o seguinte:
++ Selecionar o *label* adequado para a *issue* (esse *label* poderá vir a ser alterado, mas a não designação faz com que a *issue* fique perdida).
+
+![Label Issue](documentation/images/label_issue.png)
+
++ Selecionar o projeto *FormatConverter - Kanban*, isso organizará o que está sendo feito e o que deverá ser feito.
+
+![Projeto Issue](documentation/images/project_issue.png)
 
 <br />
 
@@ -244,9 +254,6 @@ Os *releases* do repositório serão feitos a cada vez que um módulo estiver 10
   - Normalizar return String      -> CSV
   - Normalizar return CSV        -> TStringList
   - Normalizar return TStringList -> String
-
-+ Conversor XML -> JSON
-  - Entrada XML     -> Saída JSON
 
 + Conversor XML -> CSV
   - Entrada XML    -> Saída CSV
