@@ -27,7 +27,7 @@ type
 
     function originTypeToString(content : TXMLDocument) : String;
     function originTypeToFile(content : TXMLDocument; filePathResult : String) : Boolean;
-    function originTypeToReturnType(content : TXMLDocument) : TJSONObject; //Implementar
+    function originTypeToReturnType(content : TXMLDocument) : TJSONObject;
 
     function normalizeOrigin(content : String) : TXMLDocument; Overload;
     function normalizeOrigin(content : TXMLDocument) : TStringList; Overload;
@@ -402,8 +402,14 @@ begin
       end;
       1:
       begin
-        abertura := tabular(nivel) + nome + ': {';
-        fechamento := tabular(nivel) + '},';
+        if pos('[', valor) = 1 then
+        begin
+          abertura := tabular(nivel) + nome + ': [';
+          fechamento := tabular(nivel) + '],';
+        end else begin
+          abertura := tabular(nivel) + nome + ': {';
+          fechamento := tabular(nivel) + '},';
+        end;
         listAux := Self.nodeToStringList(TJSONArray(TJSONObject.ParseJSONValue(valor)) , nivel + 1);
       end;
       2:
@@ -634,26 +640,22 @@ end;
 
 function TXMLtoJSON.typeText(json: String): String;
 begin
-  if pos('"dup"', json) > 0 then
-  begin
-    Result := 'rafa';
-  end;
-  Result := 'text';
   if json = 'node' then
   begin
     Result := json;
-    Exit;
-  end;
-  if pos('{', json) > 0 then
+  end else if pos('[{', json) = 1 then
   begin
     Result := 'object';
-    Exit;
-  end;
-  if pos('[', json) = 1 then
+  end else if pos('[', json) = 1 then
   begin
     Result := 'array';
-    Exit;
+  end else if pos('{', json) > 0 then
+  begin
+    Result := 'object';
+  end else begin
+    Result := 'text';
   end;
+
 end;
 
 function TXMLtoJSON.stringToFile(strContent, filePathResult: String): Boolean;
