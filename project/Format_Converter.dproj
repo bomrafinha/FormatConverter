@@ -298,10 +298,10 @@
         <VerInfo_Locale>1046</VerInfo_Locale>
         <VerInfo_Debug>true</VerInfo_Debug>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
-        <VerInfo_Keys>CompanyName=Bomrafinha;FileDescription=$(MSBuildProjectName);FileVersion=1.2.24.290;InternalName=FormatConverter;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
-        <VerInfo_Build>290</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=Bomrafinha;FileDescription=$(MSBuildProjectName);FileVersion=1.2.27.300;InternalName=FormatConverter;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>300</VerInfo_Build>
         <VerInfo_MinorVer>2</VerInfo_MinorVer>
-        <VerInfo_Release>24</VerInfo_Release>
+        <VerInfo_Release>27</VerInfo_Release>
         <DCC_UnitSearchPath>../app;../output;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <Icon_MainIcon>..\images\icone\icon.ico</Icon_MainIcon>
         <UWP_DelphiLogo44>..\images\icone\icon 44x44.png</UWP_DelphiLogo44>

@@ -25,8 +25,8 @@ type
     function fileToFile(filePath : String; filePathResult : String = '') : Boolean;
     function fileToReturnType(filePath : String) : TXMLDocument;
 
-    function originTypeToString(content : TJSONObject) : String; //Implementar
-    function originTypeToFile(content : TJSONObject; filePathResult : String) : Boolean; //Implementar
+    function originTypeToString(content : TJSONObject) : String;
+    function originTypeToFile(content : TJSONObject; filePathResult : String) : Boolean;
     function originTypeToReturnType(content : TJSONObject) : TXMLDocument; //Implementar
 
     function normalizeOrigin(content : String) : TJSONObject; Overload;
@@ -408,9 +408,33 @@ begin
 
 end;
 
-function TJSONtoXML.originTypeToFile(content: TJSONObject;
-  filePathResult: String): Boolean;
+function TJSONtoXML.originTypeToFile(content: TJSONObject; filePathResult: String): Boolean;
+var
+  arquivo : TStringList;
+  xmlReturn : TXMLDocument;
+
 begin
+  try try
+    Result := True;
+    arquivo := TStringList.Create();
+    arquivo.Clear();
+
+    xmlReturn := self.originTypeToReturnType(content);
+    arquivo := self.normalizeReturn(xmlReturn);
+    arquivo.SaveToFile(filePathResult);
+    if not FileExists(filePathResult) then
+    begin
+      raise Exception.Create('Arquivo de retorno não foi gerado.');
+    end;
+
+  except
+    Result := False;
+
+  end;
+
+  finally
+    arquivo.Free;
+  end;
 
 end;
 
@@ -442,7 +466,31 @@ begin
 end;
 
 function TJSONtoXML.originTypeToString(content: TJSONObject): String;
+var
+  xmlReturn : TXMLDocument;
+  arquivo : TStringList;
+  strReturn : String;
+
 begin
+  try try
+    Result := EmptyStr;
+    arquivo := TStringList.Create();
+    arquivo.Clear();
+
+    xmlReturn := self.originTypeToReturnType(content);
+    arquivo := self.normalizeReturn(xmlReturn);
+    strReturn := self.normalizeReturn(arquivo);
+
+    Result := strReturn;
+
+  except
+    Result := EmptyStr;
+
+  end;
+
+  finally
+    arquivo.Free;
+  end;
 
 end;
 

@@ -114,20 +114,21 @@ var
   strJSON : String;
 
 begin
-//  strJSON := '{"root" : "raiz", "objeto": {"sub01": "nível01"}, "vetor":["rafa", "rossa"], "footer": 1}';
+  strJSON := '{"root" : "raiz", "objeto": {"sub01": "nível01"}, "vetor":["rafa", "rossa"], "footer": 1}';
+  json := JSONtoXML.normalizeOrigin(strJSON);
 
-//  strXML := JSONtoXML.fileToString('D:\Users\Bomrafinha\Desktop\teste_02.json');
-//  JSONtoXML.fileToFile('D:\Users\Bomrafinha\Desktop\teste_02.json', 'D:\Users\Bomrafinha\Desktop\teste_02.xml');
-
-
-  xml := JSONtoXML.fileToReturnType('D:\Users\Bomrafinha\Desktop\teste_02.json');
-  list := JSONtoXML.normalizeReturn(xml);
-
-  memoResultado.Lines.Clear;
-  memoResultado.lines := list;
+//  strXML := JSONtoXML.originTypeToString(json);
+  JSONtoXML.originTypeToFile(json, 'D:\Users\Bomrafinha\Desktop\teste_02.xml');
 
 
-//  convertTest();
+//  xml := JSONtoXML.fileToReturnType('D:\Users\Bomrafinha\Desktop\teste_02.json');
+//  list := JSONtoXML.normalizeReturn(xml);
+//
+//  memoResultado.Lines.Clear;
+//  memoResultado.lines := list;
+
+
+  convertTest();
 
 end;
 
