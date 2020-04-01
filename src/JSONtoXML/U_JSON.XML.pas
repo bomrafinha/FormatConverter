@@ -8,26 +8,26 @@ uses Xml.XMLDoc, System.JSON, U_Origin.Return, System.Classes, System.SysUtils,
 type
   TJSONtoXML = class(TInterfacedObject, IOriginToReturn<TJSONObject, TXMLDocument>)
   private
-//    function nodeToStringList(nodo : IXMLNode; nivel : Integer = -1) : TStringList; Overload;
+    function nodeToStringList(nodo : IXMLNode; nivel : Integer = -1) : TStringList; Overload;
     function nodeToStringList(nodo : TJSONArray; nivel : Integer = -1) : TStringList; Overload;
 //    function nodeToStringJson(nodo : IXMLNode; atr : String = '') : TStringList;
 //    function attributeToStringList(atributos : String) : TStringList;
     function tabular(nivel : integer) : String;
-//    function getAtributosStr(nodos : IXMLNodeList) : string;
+    function getAtributosStr(nodos : IXMLNodeList) : string;
     function typeText(json : String) : string;
 
   public
-    function stringToString(strContent : String) : String;
-    function stringToFile(strContent, filePathResult : String) : Boolean;
-    function stringToReturnType(strContent : String) : TXMLDocument;
+    function stringToString(strContent : String) : String; //Implementar
+    function stringToFile(strContent, filePathResult : String) : Boolean; //Implementar
+    function stringToReturnType(strContent : String) : TXMLDocument; //Implementar
 
-    function fileToString(filePath : String) : String;
-    function fileToFile(filePath : String; filePathResult : String = '') : Boolean;
-    function fileToReturnType(filePath : String) : TXMLDocument;
+    function fileToString(filePath : String) : String; //Implementar
+    function fileToFile(filePath : String; filePathResult : String = '') : Boolean; //Implementar
+    function fileToReturnType(filePath : String) : TXMLDocument; //Implementar
 
-    function originTypeToString(content : TJSONObject) : String;
-    function originTypeToFile(content : TJSONObject; filePathResult : String) : Boolean;
-    function originTypeToReturnType(content : TJSONObject) : TXMLDocument;
+    function originTypeToString(content : TJSONObject) : String; //Implementar
+    function originTypeToFile(content : TJSONObject; filePathResult : String) : Boolean; //Implementar
+    function originTypeToReturnType(content : TJSONObject) : TXMLDocument; //Implementar
 
     function normalizeOrigin(content : String) : TJSONObject; Overload;
     function normalizeOrigin(content : TJSONObject) : TStringList; Overload;
@@ -55,6 +55,28 @@ end;
 
 function TJSONtoXML.fileToString(filePath: String): String;
 begin
+
+end;
+
+function TJSONtoXML.getAtributosStr(nodos: IXMLNodeList): string;
+var
+  I: Integer;
+  strReturn: string;
+
+begin
+  strReturn := EmptyStr;
+
+  for I := 0 to nodos.Count - 1 do
+  begin
+    strReturn := strReturn + nodos[I].XML + #32;
+  end;
+
+  if strReturn <> EmptyStr then
+  begin
+    strReturn := #32 + Trim(strReturn);
+  end;
+
+  Result := strReturn;
 
 end;
 
@@ -150,6 +172,53 @@ begin
 
 end;
 
+function TJSONtoXML.nodeToStringList(nodo: IXMLNode; nivel: Integer): TStringList;
+var
+  nome : String;
+  atributos : string;
+  abertura : string;
+  fechamento : string;
+  I : Integer;
+  J : Integer;
+  retorno : TStringList;
+  listaAux : TStringList;
+
+begin
+  retorno := TStringList.Create();
+  listaAux := TStringList.Create();
+  retorno.Clear;
+
+  for I := 0 to nodo.ChildNodes.Count - 1 do
+  begin
+    listaAux.Clear;
+    nome := nodo.ChildNodes[I].NodeName;
+    atributos := getAtributosStr(nodo.ChildNodes[I].AttributeNodes);
+    abertura := tabular(nivel) + '<' + nome + atributos + '>';
+    fechamento := tabular(nivel) + '</' + nome + '>';
+
+    if not nodo.IsTextElement then
+    begin
+      listaAux := Self.nodeToStringList(nodo.ChildNodes[I], nivel + 1);
+    end;
+
+    case listaAux.Count of
+      0: retorno.Add(Trim(nodo.ChildNodes[I].NodeValue));
+      1: retorno.Add(abertura + listaAux.Strings[0] + Trim(fechamento));
+
+    else
+      retorno.Add(abertura);
+      for J := 0 to listaAux.Count - 1 do
+      begin
+        retorno.Add(listaAux.Strings[J]);
+      end;
+      retorno.Add(fechamento);
+    end;
+  end;
+
+  result := retorno;
+
+end;
+
 function TJSONtoXML.normalizeOrigin(content: TStringList): String;
 var
   I: Integer;
@@ -204,17 +273,51 @@ begin
 end;
 
 function TJSONtoXML.normalizeReturn(content: String): TXMLDocument;
+var
+  xmlReturn : TXMLDocument;
+
 begin
+  try
+    xmlReturn := TXMLDocument.Create(Application);
+    xmlReturn.LoadFromXML(content);
+    Result := xmlReturn;
+  except
+    Result := TXMLDocument.Create(Application);
+
+  end;
 
 end;
 
 function TJSONtoXML.normalizeReturn(content: TXMLDocument): TStringList;
+var
+  nodo : IXMLNode;
+
 begin
+  nodo := content.Node;
+  Result := Self.nodeToStringList(nodo);
 
 end;
 
 function TJSONtoXML.normalizeReturn(content: TStringList): String;
+var
+  I: Integer;
+  strReturn : String;
+
 begin
+  try
+    strReturn := EmptyStr;
+    for I := 0 to content.Count - 1 do
+    begin
+      strReturn := strReturn + trim(content.Strings[I]);
+    end;
+    strReturn := StringReplace(strReturn, ',}', '}', [rfReplaceAll]);
+    strReturn := StringReplace(strReturn, ',]', ']', [rfReplaceAll]);
+    Result := strReturn;
+
+  except
+    Result := EmptyStr;
+
+  end;
 
 end;
 

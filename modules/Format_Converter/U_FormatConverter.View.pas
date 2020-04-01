@@ -91,8 +91,27 @@ var
   json : TJSONObject;
 
 begin
-  json := JSONtoXML.normalizeOrigin(memoOriginal.Text);
-  list := JSONtoXML.normalizeOrigin(json);
+//  json := JSONtoXML.normalizeOrigin(memoOriginal.Text);
+//  list := JSONtoXML.normalizeOrigin(json);
+//
+//  memoOriginal.Lines.Clear;
+//  memoOriginal.Lines := list;
+//
+////  json := JSONtoXML.originTypeToReturnType(xml);
+////
+////  list := JSONtoXML.normalizeReturn(json);
+////
+//  memoResultado.Lines.Clear;
+////  memoResultado.lines := list;
+//
+//  memoResultado.Text := JSONtoXML.normalizeOrigin(list);
+
+
+
+
+
+  xml := JSONtoXML.normalizeReturn(memoOriginal.Text);
+  list := JSONtoXML.normalizeReturn(xml);
 
   memoOriginal.Lines.Clear;
   memoOriginal.Lines := list;
@@ -104,7 +123,7 @@ begin
   memoResultado.Lines.Clear;
 //  memoResultado.lines := list;
 
-  memoResultado.Text := JSONtoXML.normalizeOrigin(list);
+  memoResultado.Text := JSONtoXML.normalizeReturn(list);
 
 end;
 
