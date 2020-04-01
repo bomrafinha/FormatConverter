@@ -530,8 +530,7 @@ begin
   except
     Result := EmptyStr;
     
-  end;                 
-
+  end;
 
 end;
 

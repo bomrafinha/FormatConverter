@@ -28,7 +28,9 @@ package JSONtoXML;
 {$IMPLICITBUILD ON}
 
 requires
-  rtl;
+  rtl,
+  OriginToReturn,
+  fmx;
 
 contains
   U_JSON.XML in '..\src\JSONtoXML\U_JSON.XML.pas';
