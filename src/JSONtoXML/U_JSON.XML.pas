@@ -17,9 +17,9 @@ type
     function typeText(json : String) : string;
 
   public
-    function stringToString(strContent : String) : String; //Implementar
-    function stringToFile(strContent, filePathResult : String) : Boolean; //Implementar
-    function stringToReturnType(strContent : String) : TXMLDocument; //Implementar
+    function stringToString(strContent : String) : String;
+    function stringToFile(strContent, filePathResult : String) : Boolean;
+    function stringToReturnType(strContent : String) : TXMLDocument;
 
     function fileToString(filePath : String) : String; //Implementar
     function fileToFile(filePath : String; filePathResult : String = '') : Boolean; //Implementar
@@ -328,7 +328,29 @@ begin
 end;
 
 function TJSONtoXML.originTypeToReturnType(content: TJSONObject): TXMLDocument;
+var
+  xmlReturn : TXMLDocument;
+
+  strXML : String;
+  strJSON : String;
+
 begin
+  try
+    strJSON := content.ToString;
+    strXML := '<xml id="root_1" nome="rafael" serie="10"><sub01>Rafinha</sub01><sub02 id="sub_02">' +
+      '<sub03>Rafael</sub03><sub04>Rossa</sub04></sub02><sub05><sub06 id="sub_06">Rafofuxo</sub06></sub05>' +
+      '<det nItem="1"><prod><cProd>ESN094 S</cProd><xProd>0001</xProd></prod></det><det nItem="2"><prod>' +
+      '<cProd>ESN094 R</cProd></prod></det><det nItem="3"><prod><cProd>ESN094 T</cProd></prod></det>' +
+      '<sub07 id="sub_07">Deradeiro Teste</sub07></xml>';
+
+    xmlReturn := TXMLDocument.Create(Application);
+    xmlReturn.LoadFromXML(strXML);
+    Result := xmlReturn;
+
+  except
+    Result := TXMLDocument.Create(Application);
+
+  end;
 
 end;
 
@@ -338,17 +360,84 @@ begin
 end;
 
 function TJSONtoXML.stringToFile(strContent, filePathResult: String): Boolean;
+var
+  arquivo : TStringList;
+  jsonContent : TJSONObject;
+  xmlReturn : TXMLDocument;
+
 begin
+  try try
+    Result := True;
+    arquivo := TStringList.Create();
+    arquivo.Clear();
+
+    jsonContent := self.normalizeOrigin(strContent);
+    xmlReturn := self.originTypeToReturnType(jsonContent);
+    arquivo := self.normalizeReturn(xmlReturn);
+    arquivo.SaveToFile(filePathResult);
+    if not FileExists(filePathResult) then
+    begin
+      raise Exception.Create('Arquivo de retorno não foi gerado.');
+    end;
+
+  except
+    Result := False;
+
+  end;
+
+  finally
+    arquivo.Free;
+  end;
 
 end;
 
 function TJSONtoXML.stringToReturnType(strContent: String): TXMLDocument;
+var
+  jsonContent : TJSONObject;
+  xmlReturn : TXMLDocument;
+  strReturn : String;
+
 begin
+  try
+    jsonContent := self.normalizeOrigin(strContent);
+    xmlReturn := self.originTypeToReturnType(jsonContent);
+
+    Result := xmlReturn;
+
+  except
+    Result := TXMLDocument.Create(nil);
+  end;
 
 end;
 
 function TJSONtoXML.stringToString(strContent: String): String;
+var
+  xmlReturn : TXMLDocument;
+  jsonContent : TJSONObject;
+  arquivo : TStringList;
+  strReturn : String;
+
 begin
+  try try
+    Result := EmptyStr;
+    arquivo := TStringList.Create();
+    arquivo.Clear();
+
+    jsonContent := self.normalizeOrigin(strContent);
+    xmlReturn := self.originTypeToReturnType(jsonContent);
+    arquivo := self.normalizeReturn(xmlReturn);
+    strReturn := self.normalizeReturn(arquivo);
+
+    Result := strReturn;
+
+  except
+    Result := EmptyStr;
+
+  end;
+
+  finally
+    arquivo.Free;
+  end;
 
 end;
 

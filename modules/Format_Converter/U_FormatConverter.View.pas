@@ -91,45 +91,44 @@ var
   json : TJSONObject;
 
 begin
-//  json := JSONtoXML.normalizeOrigin(memoOriginal.Text);
-//  list := JSONtoXML.normalizeOrigin(json);
-//
-//  memoOriginal.Lines.Clear;
-//  memoOriginal.Lines := list;
-//
-////  json := JSONtoXML.originTypeToReturnType(xml);
-////
-////  list := JSONtoXML.normalizeReturn(json);
-////
-//  memoResultado.Lines.Clear;
-////  memoResultado.lines := list;
-//
-//  memoResultado.Text := JSONtoXML.normalizeOrigin(list);
-
-
-
-
-
-  xml := JSONtoXML.normalizeReturn(memoOriginal.Text);
-  list := JSONtoXML.normalizeReturn(xml);
-
+  json := JSONtoXML.normalizeOrigin(memoOriginal.Text);
+  list := JSONtoXML.normalizeOrigin(json);
   memoOriginal.Lines.Clear;
   memoOriginal.Lines := list;
 
-//  json := JSONtoXML.originTypeToReturnType(xml);
-//
-//  list := JSONtoXML.normalizeReturn(json);
-//
-  memoResultado.Lines.Clear;
-//  memoResultado.lines := list;
+  xml := JSONtoXML.originTypeToReturnType(json);
 
-  memoResultado.Text := JSONtoXML.normalizeReturn(list);
+  list := JSONtoXML.normalizeReturn(xml);
+
+  memoResultado.Lines.Clear;
+  memoResultado.lines := list;
 
 end;
 
 procedure TFormatConverter.bXMLtoCSVClick(Sender: TObject);
+var
+  xml : TXMLDocument;
+  list : TStringList;
+  json : TJSONObject;
+  strXML : String;
+  strJSON : String;
+
 begin
-  convertTest();
+
+  strJSON := '{"root" : "raiz", "objeto": {"sub01": "nível01"}, "vetor":["rafa", "rossa"], "footer": 1}';
+
+//  strXML := JSONtoXML.stringToString(strJSON);
+//  JSONtoXML.stringToFile(strJSON, 'D:\Users\Bomrafinha\Desktop\teste_02.xml');
+
+
+  xml := JSONtoXML.stringToReturnType(strJSON);
+  list := JSONtoXML.normalizeReturn(xml);
+
+  memoResultado.Lines.Clear;
+  memoResultado.lines := list;
+
+
+//  convertTest();
 
 end;
 
