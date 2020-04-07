@@ -154,7 +154,7 @@
 
 <br />
  
-## [Sitemap]https://coggle.it/diagram/XmZ2-WVe0wuFMqlu/t/formatconverter/8eab1c100cdfab7da57fd7b188f16250b46cd1b54f3256000d57bb42499f2147) <a name="sitemap"></a>   
+## [Sitemap](https://coggle.it/diagram/XmZ2-WVe0wuFMqlu/t/formatconverter/8eab1c100cdfab7da57fd7b188f16250b46cd1b54f3256000d57bb42499f2147) <a name="sitemap"></a>   
 ![Sitemap](documentation/images/sitemap.png)
 
 <br />
@@ -265,10 +265,10 @@ Os *releases* do repositório serão feitos a cada vez que um módulo estiver 10
 <br />
 
 ### Padrões adotados no projeto
-Para um melhor entendimento do projeto foi-se adotado alguns padrões que facilitam a identificação de cada estrutura usada. São, basicamente, o uso de *camelcase*, com variações nas iniciais;
+Para um melhor entendimento do projeto foi-se adotado alguns padrões que facilitam a identificação de cada estrutura usada. São, basicamente, o uso de *camelCase*, e *PascalCase*;
 
 #### Variáveis de método
-Variáveis locais devem ser *camelcase* iniciando em minúsculo.
+Variáveis locais devem ser *camelCase*.
 
 Observar o espaçamento entre a declaração de variáveis e o inicio do método.
 
@@ -277,12 +277,12 @@ Observar o espaçamento entre a declaração de variáveis e o inicio do método
 #### Variáveis privadas
 A declaração de váriaveis privadas deve ocorrer sempre dentro dos modificadores de acesso. 
 
-Devem começar sempre com "f" minúsculo, seguido por seu nome em *camelcase* com a inicial em maiúsculo.
+Devem ser *camelCase* começando sempre com "f" seguido por seu nome.
 
 ![Variáveis privadas](documentation/images/padrao_variaveis_privadas.png)
 
 #### Propriedades
-Propriedades devem usar *camelcase* começando sempre com a inicial em maiúsculo.
+Propriedades devem usar *PascalCase*.
 
 Devem ter exatamente o nome de sua variável privada e/ou metodo de acesso, eliminando apenas o prefixo (f, get, set).
 
@@ -291,21 +291,23 @@ Devem ter exatamente o nome de sua variável privada e/ou metodo de acesso, elim
 #### Métodos
 A declaração de métodos deve ocorrer sempre dentro dos modificadores de acesso. 
 
-Métodos devem ser *camelcase* iniciando em minúsculo.
+Métodos devem ser *camelCase*.
 
-Os parâmetros do método devem ser *camelcase* iniciando em minúsculo.
+Os parâmetros do método devem ser *camelCase*.
 
 Procurar, quando possível, usar prefixos *get*, *set*, *eh*, etc de acordo com a função do método e/ou seu retorno.
+
+Ao serem chamados usar sempre parentesis em sua chamada, mesmo quando sem parâmetros. Ex: meuMetodo();
 
 ![Métodos](documentation/images/padrao_metodos.png)
 
 #### Interfaces
-Interfaces devem começar sempre com a letra "I" (maiúsculo), seguido por seu nome em *camelcase* com a inicial em maiúsculo também.
+Interfaces devem começar sempre com a letra "I" (maiúsculo), seguido por seu nome em *PascalCase*.
 
 ![Interfaces](documentation/images/padrao_interfaces.png)
 
 #### Classes
-Classes devem começar sempre com a letra "T" (maiúsculo), seguido por seu nome em *camelcase* com a inicial em maiúsculo também.
+Classes devem começar sempre com a letra "T" (maiúsculo), seguido por seu nome em *PascalCase*.
 
 Classes que não extendem nenhuma outra classes em específico devem extender *TInterfacedObject*.
 
@@ -333,6 +335,9 @@ Agrupar *procedures* e *functions* sem alterná-los.
 Separar declações de variáveis, métodos, construtores, destrutores e propriedades com uma linha em branco, bem como deixar uma linha em branco antes da declaração de modificador de acesso, ou fim do bloco, exceto no primeiro modificador após a declaração da classes.
 
 ![Identação](documentation/images/padrao_identacao_01.png)
+
+#### Palavras Reservadas
+Dá-se preferência ao uso de iniciais minúsculas para palavras reservadas. Porém isso não é uma regra para o projeto tendo em vista que por serem reservadas a IDE às sinaliza, não atrapalhando, assim, a leitura do código.
 
 #### Um código bem padronizado é muito mais fácil de ler, mesmo por programadores que utilizam outras linguagens.
 
