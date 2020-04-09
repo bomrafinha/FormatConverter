@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Layouts,
   FMX.Objects, FMX.Effects, FMX.Controls.Presentation, FMX.ScrollBox, FMX.Memo,
-  FMX.StdCtrls, U_XML.JSON, Xml.XMLDoc, System.JSON;
+  FMX.StdCtrls, U_XML.JSON, Xml.XMLDoc, System.JSON, U_JSON.XML;
 
 type
   TFormatConverter = class(TForm)
@@ -52,6 +52,7 @@ type
   private
     var
       XMLtoJSON : TXMLtoJSON;
+      JSONtoXML : TJSONtoXML;
     procedure convertTest();
 
   public
@@ -84,13 +85,49 @@ begin
 end;
 
 procedure TFormatConverter.bJSONtoXMLClick(Sender: TObject);
+var
+  xml : TXMLDocument;
+  list : TStringList;
+  json : TJSONObject;
+
 begin
-  convertTest();
+  json := JSONtoXML.normalizeOrigin(memoOriginal.Text);
+  list := JSONtoXML.normalizeOrigin(json);
+  memoOriginal.Lines.Clear;
+  memoOriginal.Lines := list;
+
+  xml := JSONtoXML.originTypeToReturnType(json);
+
+  list := JSONtoXML.normalizeReturn(xml);
+
+  memoResultado.Lines.Clear;
+  memoResultado.lines := list;
 
 end;
 
 procedure TFormatConverter.bXMLtoCSVClick(Sender: TObject);
+var
+  xml : TXMLDocument;
+  list : TStringList;
+  json : TJSONObject;
+  strXML : String;
+  strJSON : String;
+
 begin
+  strJSON := '{"root" : "raiz", "objeto": {"sub01": "nível01"}, "vetor":["rafa", "rossa"], "footer": 1}';
+  json := JSONtoXML.normalizeOrigin(strJSON);
+
+//  strXML := JSONtoXML.originTypeToString(json);
+  JSONtoXML.originTypeToFile(json, 'D:\Users\Bomrafinha\Desktop\teste_02.xml');
+
+
+//  xml := JSONtoXML.fileToReturnType('D:\Users\Bomrafinha\Desktop\teste_02.json');
+//  list := JSONtoXML.normalizeReturn(xml);
+//
+//  memoResultado.Lines.Clear;
+//  memoResultado.lines := list;
+
+
   convertTest();
 
 end;
@@ -103,15 +140,14 @@ var
 
 begin
   xml := XMLtoJSON.normalizeOrigin(memoOriginal.Text);
-  memoOriginal.Lines.Clear;
   list := XMLtoJSON.normalizeOrigin(xml);
+  memoOriginal.Lines.Clear;
   memoOriginal.Lines := list;
 
   json := XMLtoJSON.originTypeToReturnType(xml);
 
-  memoResultado.Text := json.ToString;
-
   list := XMLtoJSON.normalizeReturn(json);
+  memoResultado.Lines.Clear;
   memoResultado.lines := list;
 
 end;

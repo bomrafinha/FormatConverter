@@ -3,10 +3,14 @@ unit U_XML.JSON;
 interface
 
 uses Xml.XMLDoc, System.JSON, U_Origin.Return, System.Classes, System.SysUtils,
-  System.StrUtils, FMX.Forms, XMLIntf, System.Generics.Collections;
+  System.StrUtils, FMX.Forms, XMLIntf, System.Generics.Collections, U_Normalize;
 
 type
-  TXMLtoJSON = class(TInterfacedObject, IOriginToReturn<TXMLDocument, TJSONObject>)
+  TXMLtoJSON = class(
+    TInterfacedObject,
+    IOriginToReturn<TXMLDocument, TJSONObject>,
+    INormalize<TXMLDocument, TJSONObject>
+  )
   private
     function nodeToStringList(nodo : IXMLNode; nivel : Integer = -1) : TStringList; Overload;
     function nodeToStringList(nodo : TJSONArray; nivel : Integer = -1) : TStringList; Overload;
@@ -530,8 +534,7 @@ begin
   except
     Result := EmptyStr;
     
-  end;                 
-
+  end;
 
 end;
 

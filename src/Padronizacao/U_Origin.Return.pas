@@ -20,14 +20,6 @@ type
     function originTypeToFile(content : origin; filePathResult : String) : Boolean;
     function originTypeToReturnType(content : origin) : return;
 
-    function normalizeOrigin(content : String) : origin; Overload;
-    function normalizeOrigin(content : origin) : TStringList; Overload;
-    function normalizeOrigin(content : TStringList) : String; Overload;
-
-    function normalizeReturn(content : String) : return; Overload;
-    function normalizeReturn(content : return) : TStringList; Overload;
-    function normalizeReturn(content : TStringList) : String; Overload;
-
   end;
 
 implementation

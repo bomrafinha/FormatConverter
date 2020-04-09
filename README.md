@@ -1,11 +1,13 @@
 # Format Converter (Delphi)
 
 >Conversor de formatos (JSON, XML, etc) para Delphi.
+>
+>Format converter (JSON, XML, etc.) for Delphi.
 
 <br />
 
 ![Maintenance](https://img.shields.io/maintenance/yes/2020)
-![Build](https://img.shields.io/badge/Build-1.1.15.271-brightgreen) 
+![Build](https://img.shields.io/badge/Build-1.2.29.300-brightgreen) 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/bomrafinha/FormatConverter)
 ![GitHub Release Date](https://img.shields.io/github/release-date/bomrafinha/FormatConverter)
 ![Github repo age](https://img.shields.io/github/issues/detail/age/bomrafinha/FormatConverter/1.svg?style=flat-square)
@@ -52,6 +54,56 @@
 
 ## Uso <a name="uso"></a>
 
+- **TJSONtoXML**
+  * **stringToString:** Converte um JSON em forma de String em um XML em forma de string (string);
+    + **Parametrização**
+      - *strContent:* JSON à converter (string);
+  * **stringToFile:** Converte um JSON em forma de String em um arquivo XML (boolean);
+    + **Parametrização**
+      - *strContent:* JSON à converter (string);
+      - *filePathResult:* Caminho do arquivo XML à ser salvo (string);
+  * **stringToReturnType:** Converte um JSON em forma de String em um XML em forma de TXMLDocument (TXMLDocument);
+    + **Parametrização**
+      - *strContent:* JSON à converter (string);
+  * **fileToString:** Converte um arquivo JSON em um XML em forma de string (string);    
+    + **Parametrização**
+      - *filePath:* Caminho do arquivo JSON à converter (string);
+  * **fileToFile:** Converte um arquivo JSON em um arquivo XML (boolean);
+    + **Parametrização**
+      - *filePath:* Caminho do arquivo JSON à converter (string);
+      - *filePathResult:* Caminho do arquivo XML à ser salvo (string);
+  * **fileToReturnType:** Converte um arquivo JSON em um XML em forma de TXMLDocument (TXMLDocument);
+    + **Parametrização**
+      - *filePath:* Caminho do arquivo JSON à converter (string);
+  * **originTypeToString:** Converte um JSON em forma de TJSONObject em um XML em forma de string (string);
+    + **Parametrização**
+      - *content:* JSON à converter (TJSONObject);
+  * **originTypeToFile:** Converte um JSON em forma de TJSONObject em um arquivo XML (boolean);
+    + **Parametrização**
+      - *content:* JSON à converter (TJSONObject);
+      - *filePathResult:* Caminho do arquivo XML à ser salvo (string);
+  * **originTypeToReturnType:** Converte um JSON em forma de TJSONObject em um XML em forma de TXMLDocument (TXMLDocument);
+    + **Parametrização**
+      - *content:* JSON à converter (TJSONObject);
+  * **normalizeOrigin:** Converte um JSON em forma de String em um JSON em forma de TJSONObject (TJSONObject);
+    + **Parametrização**
+      - *content:* JSON à normalizar (string);
+  * **normalizeOrigin:** Converte um JSON em forma de TJSONObject em um JSON em forma de TStringList (TStringList);
+    + **Parametrização**
+      - *content:* JSON à normalizar (TJSONObject);
+  * **normalizeOrigin:** Converte um JSON em forma de TStringList em um JSON em forma de String (string);
+    + **Parametrização**
+      - *content:* JSON à normalizar (TStringList);
+  * **normalizeReturn:** Converte um XML em forma de String em um XML em forma de TXMLDocument (TXMLDocument);
+    + **Parametrização**
+      - *content:* XML à normalizar (string);
+  * **normalizeReturn:** Converte um XML em forma de TXMLDocument em um XML em forma de TStringList (TStringList);
+    + **Parametrização**
+      - *content:* XML à normalizar (TXMLDocument);
+  * **normalizeReturn:** Converte um XML em forma de TStringList em um XML em forma de String (string);
+    + **Parametrização**
+      - *content:* XML à normalizar (TStringList);
+      
 - **TXMLtoJSON**
   * **stringToString:** Converte um XML em forma de String em um JSON em forma de string (string);
     + **Parametrização**
@@ -104,7 +156,7 @@
 
 <br />
  
-## [Sitemap](https://coggle.it/diagram/XmZ2-WVe0wuFMqlu/t/-) <a name="sitemap"></a>   
+## [Sitemap](https://coggle.it/diagram/XmZ2-WVe0wuFMqlu/t/formatconverter/8eab1c100cdfab7da57fd7b188f16250b46cd1b54f3256000d57bb42499f2147) <a name="sitemap"></a>   
 ![Sitemap](documentation/images/sitemap.png)
 
 <br />
@@ -119,7 +171,8 @@
 + **project:** Diretório com os projetos de cada pacote e testador;
 + **src:** Contém o fonte essencial para o funcionamento do(s) pacote(s);
   - **OriginToReturn:** Contém a interface de que comanda a implementação dos pacotes;
-  - **XMLtoJSON:** Contém o pacote usado para conversão de XML para JSON;
+  - **JSONtoXML:** Contém o pacote usado para conversão de XML para JSON;
+  - **XMLtoJSON:** Contém o pacote usado para conversão de JSON para XML;
 + **vendor:** Contém os pacotes de terceiros;
  
 <br />
@@ -143,7 +196,7 @@ Deve-se manter a ordem de compilação do projeto como na imagem.
 
 ## Contribuir <a name="contribuir"></a>
 1. Faça um "fork" com base no master;
-2. Faça "commit" de suas alterações (Caso estiver resolvento alguma "issue" não esqueça de na mensagem escrever "Fixed #numeroIssue");
+2. Faça "commit" de suas alterações (Caso estiver resolvendo alguma "issue" não esqueça de na mensagem escrever "Fixed #numeroIssue");
 3. Faça "push" de seus commits;
 4. Solicite um "pull request" para o master do repositório principal.
 
@@ -214,10 +267,10 @@ Os *releases* do repositório serão feitos a cada vez que um módulo estiver 10
 <br />
 
 ### Padrões adotados no projeto
-Para um melhor entendimento do projeto foi-se adotado alguns padrões que facilitam a identificação de cada estrutura usada. São, basicamente, o uso de *camelcase*, com variações nas iniciais;
+Para um melhor entendimento do projeto foi-se adotado alguns padrões que facilitam a identificação de cada estrutura usada. São, basicamente, o uso de *camelCase*, e *PascalCase*;
 
 #### Variáveis de método
-Variáveis locais devem ser *camelcase* iniciando em minúsculo.
+Variáveis locais devem ser *camelCase*.
 
 Observar o espaçamento entre a declaração de variáveis e o inicio do método.
 
@@ -226,12 +279,12 @@ Observar o espaçamento entre a declaração de variáveis e o inicio do método
 #### Variáveis privadas
 A declaração de váriaveis privadas deve ocorrer sempre dentro dos modificadores de acesso. 
 
-Devem começar sempre com "f" minúsculo, seguido por seu nome em *camelcase* com a inicial em maiúsculo.
+Devem ser *camelCase* começando sempre com "f" seguido por seu nome.
 
 ![Variáveis privadas](documentation/images/padrao_variaveis_privadas.png)
 
 #### Propriedades
-Propriedades devem usar *camelcase* começando sempre com a inicial em maiúsculo.
+Propriedades devem usar *PascalCase*.
 
 Devem ter exatamente o nome de sua variável privada e/ou metodo de acesso, eliminando apenas o prefixo (f, get, set).
 
@@ -240,21 +293,23 @@ Devem ter exatamente o nome de sua variável privada e/ou metodo de acesso, elim
 #### Métodos
 A declaração de métodos deve ocorrer sempre dentro dos modificadores de acesso. 
 
-Métodos devem ser *camelcase* iniciando em minúsculo.
+Métodos devem ser *camelCase*.
 
-Os parâmetros do método devem ser *camelcase* iniciando em minúsculo.
+Os parâmetros do método devem ser *camelCase* iniciando com "a".
 
 Procurar, quando possível, usar prefixos *get*, *set*, *eh*, etc de acordo com a função do método e/ou seu retorno.
+
+Ao serem chamados usar sempre parentesis em sua chamada, mesmo quando sem parâmetros. Ex: meuMetodo();
 
 ![Métodos](documentation/images/padrao_metodos.png)
 
 #### Interfaces
-Interfaces devem começar sempre com a letra "I" (maiúsculo), seguido por seu nome em *camelcase* com a inicial em maiúsculo também.
+Interfaces devem começar sempre com a letra "I" (maiúsculo), seguido por seu nome em *PascalCase*.
 
 ![Interfaces](documentation/images/padrao_interfaces.png)
 
 #### Classes
-Classes devem começar sempre com a letra "T" (maiúsculo), seguido por seu nome em *camelcase* com a inicial em maiúsculo também.
+Classes devem começar sempre com a letra "T" (maiúsculo), seguido por seu nome em *PascalCase*.
 
 Classes que não extendem nenhuma outra classes em específico devem extender *TInterfacedObject*.
 
@@ -283,6 +338,15 @@ Separar declações de variáveis, métodos, construtores, destrutores e proprie
 
 ![Identação](documentation/images/padrao_identacao_01.png)
 
+#### Chamada de métodos e variaveis internas da classe
+
+Devem ser precedidas da palavra reservada *Self*, para facilitar a leitura do código.
+
+![Self](documentation/images/padrao_self_01.png)
+
+#### Palavras Reservadas
+Dá-se preferência ao uso de iniciais minúsculas para palavras reservadas. Porém isso não é uma regra para o projeto tendo em vista que por serem reservadas a IDE às sinaliza, não atrapalhando, assim, a leitura do código.
+
 #### Um código bem padronizado é muito mais fácil de ler, mesmo por programadores que utilizam outras linguagens.
 
 <br />
@@ -293,23 +357,10 @@ Separar declações de variáveis, métodos, construtores, destrutores e proprie
 
 + Estrutura básica do código
   - Pacotes com recursos visuais (arrastar e soltar)
+  - Remover métodos de normalização da interface *OriginToReturn* e adicioná-los à uma nova Inteface
 
 + Conversor JSON -> XML
-  - Entrada JSON    -> Saída XML
-  - Entrada JSON    -> Saída string
-  - Entrada JSON    -> Saída arquivo
-  - Entrada string  -> Saída XML
-  - Entrada string  -> Saída string
-  - Entrada string  -> Saída arquivo
-  - Entrada arquivo -> Saída XML
-  - Entrada arquivo -> Saída string
-  - Entrada arquivo -> Saída arquivo
-  - Normalizar origin String      -> JSON
-  - Normalizar origin JSON        -> TStringList
-  - Normalizar origin TStringList -> String
-  - Normalizar return String      -> XML
-  - Normalizar return XML         -> TStringList
-  - Normalizar return TStringList -> String
+  - Entrada JSON -> Saída XML
 
 + Conversor JSON -> CSV
   - Entrada JSON    -> Saída CSV

@@ -120,8 +120,8 @@
         </DelphiCompile>
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="xmlrtl.dcp"/>
-        <DCCReference Include="OriginToReturn.dcp"/>
         <DCCReference Include="fmx.dcp"/>
+        <DCCReference Include="Padronizacao.dcp"/>
         <DCCReference Include="..\src\XMLtoJSON\U_XML.JSON.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
