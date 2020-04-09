@@ -29,8 +29,8 @@ package JSONtoXML;
 
 requires
   rtl,
-  OriginToReturn,
-  fmx;
+  fmx,
+  Padronizacao;
 
 contains
   U_JSON.XML in '..\src\JSONtoXML\U_JSON.XML.pas';

@@ -3,10 +3,14 @@ unit U_JSON.XML;
 interface
 
 uses Xml.XMLDoc, System.JSON, U_Origin.Return, System.Classes, System.SysUtils,
-  System.StrUtils, FMX.Forms, XMLIntf, System.Generics.Collections;
+  System.StrUtils, FMX.Forms, XMLIntf, System.Generics.Collections, U_Normalize;
 
 type
-  TJSONtoXML = class(TInterfacedObject, IOriginToReturn<TJSONObject, TXMLDocument>)
+  TJSONtoXML = class(
+    TInterfacedObject,
+    IOriginToReturn<TJSONObject, TXMLDocument>,
+    INormalize<TJSONObject, TXMLDocument>
+  )
   private
     function nodeToStringList(nodo : IXMLNode; nivel : Integer = -1) : TStringList; Overload;
     function nodeToStringList(nodo : TJSONArray; nivel : Integer = -1) : TStringList; Overload;

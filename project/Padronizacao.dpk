@@ -1,4 +1,4 @@
-package OriginToReturn;
+package Padronizacao;
 
 {$R *.res}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
@@ -32,6 +32,7 @@ requires
   xmlrtl;
 
 contains
-  U_Origin.Return in '..\src\OriginToReturn\U_Origin.Return.pas';
+  U_Origin.Return in '..\src\Padronizacao\U_Origin.Return.pas',
+  U_Normalize in '..\src\Padronizacao\U_Normalize.pas';
 
 end.

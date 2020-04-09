@@ -1,6 +1,8 @@
 # Format Converter (Delphi)
 
 >Conversor de formatos (JSON, XML, etc) para Delphi.
+>
+>Format converter (JSON, XML, etc.) for Delphi.
 
 <br />
 
@@ -293,7 +295,7 @@ A declaração de métodos deve ocorrer sempre dentro dos modificadores de acess
 
 Métodos devem ser *camelCase*.
 
-Os parâmetros do método devem ser *camelCase*.
+Os parâmetros do método devem ser *camelCase* iniciando com "a".
 
 Procurar, quando possível, usar prefixos *get*, *set*, *eh*, etc de acordo com a função do método e/ou seu retorno.
 
@@ -335,6 +337,12 @@ Agrupar *procedures* e *functions* sem alterná-los.
 Separar declações de variáveis, métodos, construtores, destrutores e propriedades com uma linha em branco, bem como deixar uma linha em branco antes da declaração de modificador de acesso, ou fim do bloco, exceto no primeiro modificador após a declaração da classes.
 
 ![Identação](documentation/images/padrao_identacao_01.png)
+
+#### Chamada de métodos e variaveis internas da classe
+
+Devem ser precedidas da palavra reservada *Self*, para facilitar a leitura do código.
+
+![Self](documentation/images/padrao_self_01.png)
 
 #### Palavras Reservadas
 Dá-se preferência ao uso de iniciais minúsculas para palavras reservadas. Porém isso não é uma regra para o projeto tendo em vista que por serem reservadas a IDE às sinaliza, não atrapalhando, assim, a leitura do código.

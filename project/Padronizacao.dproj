@@ -1,7 +1,7 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{2A17FF56-1E8A-48F5-9959-F8A17871B425}</ProjectGuid>
-        <MainSource>OriginToReturn.dpk</MainSource>
+        <MainSource>Padronizacao.dpk</MainSource>
         <ProjectVersion>18.4</ProjectVersion>
         <FrameworkType>None</FrameworkType>
         <Base>True</Base>
@@ -66,7 +66,7 @@
         <GenPackage>true</GenPackage>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
         <DCC_CBuilderOutput>All</DCC_CBuilderOutput>
-        <SanitizedProjectName>OriginToReturn</SanitizedProjectName>
+        <SanitizedProjectName>Padronizacao</SanitizedProjectName>
         <DCC_DcpOutput>../app</DCC_DcpOutput>
         <DCC_BplOutput>../app</DCC_BplOutput>
         <VerInfo_Locale>1046</VerInfo_Locale>
@@ -117,7 +117,8 @@
         </DelphiCompile>
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="xmlrtl.dcp"/>
-        <DCCReference Include="..\src\OriginToReturn\U_Origin.Return.pas"/>
+        <DCCReference Include="..\src\Padronizacao\U_Origin.Return.pas"/>
+        <DCCReference Include="..\src\Padronizacao\U_Normalize.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -136,7 +137,7 @@
         <BorlandProject>
             <Delphi.Personality>
                 <Source>
-                    <Source Name="MainSource">OriginToReturn.dpk</Source>
+                    <Source Name="MainSource">Padronizacao.dpk</Source>
                 </Source>
                 <Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k250.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
@@ -164,9 +165,9 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\app\OriginToReturn.bpl" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="..\app\Padronizacao.bpl" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
-                        <RemoteName>OriginToReturn.bpl</RemoteName>
+                        <RemoteName>Padronizacao.bpl</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

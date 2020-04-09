@@ -306,6 +306,7 @@
         <Icon_MainIcon>..\images\icone\icon.ico</Icon_MainIcon>
         <UWP_DelphiLogo44>..\images\icone\icon 44x44.png</UWP_DelphiLogo44>
         <UWP_DelphiLogo150>..\images\icone\icon 150x150.png</UWP_DelphiLogo150>
+        <DCC_DebugInfoInExe>false</DCC_DebugInfoInExe>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
