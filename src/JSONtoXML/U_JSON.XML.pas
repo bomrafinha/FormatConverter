@@ -14,7 +14,7 @@ type
   private
     function nodeToStringList(nodo : IXMLNode; nivel : Integer = -1) : TStringList; Overload;
     function nodeToStringList(nodo : TJSONArray; nivel : Integer = -1) : TStringList; Overload;
-//    function nodeToStringJson(nodo : IXMLNode; atr : String = '') : TStringList;
+    function nodeToXML(json : TJSONArray; XMLDocument1 : TXMLDocument; atr : String = '') : IXMLNode;
 //    function attributeToStringList(atributos : String) : TStringList;
     function tabular(nivel : integer) : String;
     function getAtributosStr(nodos : IXMLNodeList) : string;
@@ -263,6 +263,76 @@ begin
 
 end;
 
+function TJSONtoXML.nodeToXML(json: TJSONArray; XMLDocument1 : TXMLDocument; atr: String): IXMLNode;
+var
+  content : IXMLNode;
+  aux : IXMLNode;
+  item : TJSONValue;
+  nome : string;
+  valor : string;
+  indice : Integer;
+
+begin
+  indice := 0;
+
+  for item in json do
+  begin
+    nome := TJSONPair(item).JsonString.ToString;
+    try
+      valor := TJSONPair(item).JsonValue.ToString;
+    except
+      valor := 'node';
+    end;
+    nome := StringReplace(nome, '"', EmptyStr, [rfReplaceAll]);
+
+    case ansiIndexStr(typeText(valor), ['text', 'object', 'array', 'node']) of
+      0:
+      begin
+        if indice <= 0 then
+        begin
+          content := XMLDocument1.CreateNode(nome, ntElement);
+        end;
+
+
+
+
+        content.Text := StringReplace(valor, '"', EmptyStr, [rfReplaceAll]);;
+
+
+
+
+//        Mae := XMLDocument1.CreateNode('MAE', ntElement);
+//        Nome := XMLDocument1.CreateNode('NOME', ntElement);
+//        Nome.Text := 'Fulaninha de Tal da Silva';
+//        SobreNome := XMLDocument1.CreateNode('SOBRENOME', ntElement);
+//        SobreNome.Text := 'Fulaninha de Tal da Silva';
+//        Mae.ChildNodes.Add(Nome);
+//        Mae.ChildNodes.Add(SobreNome);
+
+
+
+      end;
+      1:
+      begin
+        content := XMLDocument1.CreateNode(nome, ntElement);
+
+        content.ChildNodes.Add(
+          Self.nodeToXML(
+            TJSONArray(TJSONObject.ParseJSONValue(valor)),
+            XMLDocument1
+          )
+        );
+      end;
+
+    end;
+    inc(indice, 1);
+
+  end;
+
+  Result := content;
+
+end;
+
 function TJSONtoXML.nodeToStringList(nodo: IXMLNode; nivel: Integer): TStringList;
 var
   nome : String;
@@ -444,28 +514,41 @@ end;
 
 function TJSONtoXML.originTypeToReturnType(content: TJSONObject): TXMLDocument;
 var
-  xmlReturn : TXMLDocument;
+  XMLDocument1 : TXMLDocument;
+  nodo : IXMLNode;
 
-  strXML : String;
-  strJSON : String;
+  xmlStr : String;
 
 begin
-  try
-    strJSON := content.ToString;
-    strXML := '<xml id="root_1" nome="rafael" serie="10"><sub01>Rafinha</sub01><sub02 id="sub_02">' +
-      '<sub03>Rafael</sub03><sub04>Rossa</sub04></sub02><sub05><sub06 id="sub_06">Rafofuxo</sub06></sub05>' +
-      '<det nItem="1"><prod><cProd>ESN094 S</cProd><xProd>0001</xProd></prod></det><det nItem="2"><prod>' +
-      '<cProd>ESN094 R</cProd></prod></det><det nItem="3"><prod><cProd>ESN094 T</cProd></prod></det>' +
-      '<sub07 id="sub_07">Deradeiro Teste</sub07></xml>';
+  XMLDocument1 := TXMLDocument.Create(Application);
+  XMLDocument1.Active := False;
+  XMLDocument1.XML.Clear;
+  XMLDocument1.Active := True;
 
-    xmlReturn := TXMLDocument.Create(Application);
-    xmlReturn.LoadFromXML(strXML);
-    Result := xmlReturn;
+  nodo := XMLDocument1.AddChild('xml');
 
-  except
-    Result := TXMLDocument.Create(Application);
+  nodo.ChildNodes.Add(
+    Self.nodeToXML(
+      TJSONArray(content),
+      XMLDocument1
+    )
+  );
 
-  end;
+  xmlStr := Trim(XMLDocument1.XML.Text);
+  xmlStr := StringReplace(xmlStr, '<xml>', EmptyStr, [rfIgnoreCase]);
+  xmlStr := StringReplace(xmlStr, '</xml>', EmptyStr, [rfIgnoreCase]);
+
+  XMLDocument1.Free;
+
+  XMLDocument1 := TXMLDocument.Create(Application);
+  XMLDocument1.Active := False;
+  XMLDocument1.XML.Clear;
+  XMLDocument1.LoadFromXML(xmlStr);
+  XMLDocument1.Active := True;
+  XMLDocument1.Version := '1.0';
+  XMLDocument1.Encoding := 'UTF-8';
+
+  Result := XMLDocument1;
 
 end;
 

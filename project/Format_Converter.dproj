@@ -298,8 +298,8 @@
         <VerInfo_Locale>1046</VerInfo_Locale>
         <VerInfo_Debug>true</VerInfo_Debug>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
-        <VerInfo_Keys>CompanyName=Bomrafinha;FileDescription=$(MSBuildProjectName);FileVersion=1.2.29.300;InternalName=FormatConverter;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
-        <VerInfo_Build>300</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=Bomrafinha;FileDescription=$(MSBuildProjectName);FileVersion=1.2.29.356;InternalName=FormatConverter;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>356</VerInfo_Build>
         <VerInfo_MinorVer>2</VerInfo_MinorVer>
         <VerInfo_Release>29</VerInfo_Release>
         <DCC_UnitSearchPath>../app;../output;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
