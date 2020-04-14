@@ -239,7 +239,17 @@ begin
 
     case listaAux.Count of
       0: retorno.Add(Trim(nodo.ChildNodes[I].NodeValue));
-      1: retorno.Add(abertura + listaAux.Strings[0] + Trim(fechamento));
+      1:
+      begin
+        if Pos('<', listaAux.Strings[0]) > 1 then
+        begin
+          retorno.Add(abertura);
+          retorno.Add(listaAux.Strings[0]);
+          retorno.Add(fechamento);
+        end else begin
+          retorno.Add(abertura + listaAux.Strings[0] + Trim(fechamento));
+        end;
+      end
 
     else
       retorno.Add(abertura);

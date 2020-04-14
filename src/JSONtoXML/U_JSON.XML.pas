@@ -14,7 +14,7 @@ type
   private
     function nodeToStringList(nodo : IXMLNode; nivel : Integer = -1) : TStringList; Overload;
     function nodeToStringList(nodo : TJSONArray; nivel : Integer = -1) : TStringList; Overload;
-    function nodeToXML(json : TJSONArray; XMLDocument1 : TXMLDocument; atr : String = '') : IXMLNode;
+    function nodeToXMLStr(json : TJSONArray; var attr : String) : String;
 //    function attributeToStringList(atributos : String) : TStringList;
     function tabular(nivel : integer) : String;
     function getAtributosStr(nodos : IXMLNodeList) : string;
@@ -263,73 +263,117 @@ begin
 
 end;
 
-function TJSONtoXML.nodeToXML(json: TJSONArray; XMLDocument1 : TXMLDocument; atr: String): IXMLNode;
+function TJSONtoXML.nodeToXMLStr(json: TJSONArray; var attr : String): String;
 var
-  content : IXMLNode;
-  aux : IXMLNode;
   item : TJSONValue;
   nome : string;
   valor : string;
-  indice : Integer;
+  abertura : string;
+  fechamento : string;
+  content : string;
+  aux : String;
+  attrib : String;
+  listStr : TStringList;
+  listAux : TStringList;
+  I: Integer;
 
 begin
-  indice := 0;
+  try
+    listStr := TStringList.Create();
+    listAux := TStringList.Create();
+    listStr.Clear;
 
-  for item in json do
-  begin
-    nome := TJSONPair(item).JsonString.ToString;
-    try
-      valor := TJSONPair(item).JsonValue.ToString;
-    except
-      valor := 'node';
-    end;
-    nome := StringReplace(nome, '"', EmptyStr, [rfReplaceAll]);
+    content := EmptyStr;
+    attrib := EmptyStr;
 
-    case ansiIndexStr(typeText(valor), ['text', 'object', 'array', 'node']) of
-      0:
-      begin
-        if indice <= 0 then
+    for item in json do
+    begin
+      nome := TJSONPair(item).JsonString.ToString;
+      try
+        valor := TJSONPair(item).JsonValue.ToString;
+      except
+        valor := 'node';
+      end;
+      nome := StringReplace(nome, '"', EmptyStr, [rfReplaceAll]);
+      abertura := '<' + nome + '>';
+      fechamento := '</' + nome + '>';
+
+      case ansiIndexStr(typeText(valor), ['text', 'object', 'array', 'node']) of
+        0:
         begin
-          content := XMLDocument1.CreateNode(nome, ntElement);
+          if pos('-', nome) > 0 then
+          begin
+            nome := StringReplace(nome, '-', EmptyStr, [rfReplaceAll]);
+            attr := Trim(attr + ' ' + nome + '=' + valor);
+          end else begin
+            valor := StringReplace(valor, '"', EmptyStr, [rfReplaceAll]);
+            listStr.Add(abertura);
+            listStr.Add(valor);
+            listStr.Add(fechamento);
+          end;
+        end;
+        1:
+        begin
+          aux := Self.nodeToXMLStr(TJSONArray(TJSONObject.ParseJSONValue(valor)), attrib);
+          if attrib <> EmptyStr then
+          begin
+            abertura := '<' + nome + ' ' + attrib + '>';
+          end;
+          listStr.Add(abertura);
+          listStr.Add(aux);
+          listStr.Add(fechamento);
+
+  //        if pos('[', valor) = 1 then
+  //        begin
+  //          abertura := tabular(nivel) + nome + ': [';
+  //          fechamento := tabular(nivel) + '],';
+  //        end else begin
+  //          abertura := tabular(nivel) + nome + ': {';
+  //          fechamento := tabular(nivel) + '},';
+  //        end;
+  //        content := Self.nodeToXMLStr(TJSONArray(TJSONObject.ParseJSONValue(valor)));
+        end;
+        2:
+        begin
+          listAux.Clear;
+          listAux.Delimiter := ',';
+          listAux.DelimitedText := valor;
+
+          for I := 0 to listAux.Count - 1 do
+          begin
+            aux := listAux.Strings[I];
+            aux := StringReplace(aux, '[', EmptyStr, [rfReplaceAll]);
+            aux := StringReplace(aux, ']', EmptyStr, [rfReplaceAll]);
+            aux := StringReplace(aux, '"', EmptyStr, [rfReplaceAll]);
+            if aux <> emptyStr then
+            begin
+              listStr.Add(abertura);
+              listStr.Add(aux);
+              listStr.Add(fechamento);
+            end;
+          end;
+        end;
+        3:
+        begin
+  //        abertura := tabular(nivel) + '{';
+  //        fechamento := tabular(nivel) + '},';
+  //        listAux := Self.nodeToStringList(TJSONArray(item) , nivel + 1);
         end;
 
-
-
-
-        content.Text := StringReplace(valor, '"', EmptyStr, [rfReplaceAll]);;
-
-
-
-
-//        Mae := XMLDocument1.CreateNode('MAE', ntElement);
-//        Nome := XMLDocument1.CreateNode('NOME', ntElement);
-//        Nome.Text := 'Fulaninha de Tal da Silva';
-//        SobreNome := XMLDocument1.CreateNode('SOBRENOME', ntElement);
-//        SobreNome.Text := 'Fulaninha de Tal da Silva';
-//        Mae.ChildNodes.Add(Nome);
-//        Mae.ChildNodes.Add(SobreNome);
-
-
-
       end;
-      1:
-      begin
-        content := XMLDocument1.CreateNode(nome, ntElement);
-
-        content.ChildNodes.Add(
-          Self.nodeToXML(
-            TJSONArray(TJSONObject.ParseJSONValue(valor)),
-            XMLDocument1
-          )
-        );
-      end;
-
     end;
-    inc(indice, 1);
 
+
+    for I := 0 to listStr.Count - 1 do
+    begin
+      content := content + listStr.Strings[I];
+    end;
+
+    Result := content;
+
+  finally
+    listStr.Free;
   end;
-
-  Result := content;
 
 end;
 
@@ -364,7 +408,17 @@ begin
 
     case listaAux.Count of
       0: retorno.Add(Trim(nodo.ChildNodes[I].NodeValue));
-      1: retorno.Add(abertura + listaAux.Strings[0] + Trim(fechamento));
+      1:
+      begin
+        if Pos('<', listaAux.Strings[0]) > 1 then
+        begin
+          retorno.Add(abertura);
+          retorno.Add(listaAux.Strings[0]);
+          retorno.Add(fechamento);
+        end else begin
+          retorno.Add(abertura + listaAux.Strings[0] + Trim(fechamento));
+        end;
+      end
 
     else
       retorno.Add(abertura);
@@ -515,30 +569,16 @@ end;
 function TJSONtoXML.originTypeToReturnType(content: TJSONObject): TXMLDocument;
 var
   XMLDocument1 : TXMLDocument;
-  nodo : IXMLNode;
-
   xmlStr : String;
+  aux : String;
 
 begin
-  XMLDocument1 := TXMLDocument.Create(Application);
-  XMLDocument1.Active := False;
-  XMLDocument1.XML.Clear;
-  XMLDocument1.Active := True;
-
-  nodo := XMLDocument1.AddChild('xml');
-
-  nodo.ChildNodes.Add(
-    Self.nodeToXML(
+  xmlStr := Trim(
+    Self.nodeToXMLStr(
       TJSONArray(content),
-      XMLDocument1
+      aux
     )
   );
-
-  xmlStr := Trim(XMLDocument1.XML.Text);
-  xmlStr := StringReplace(xmlStr, '<xml>', EmptyStr, [rfIgnoreCase]);
-  xmlStr := StringReplace(xmlStr, '</xml>', EmptyStr, [rfIgnoreCase]);
-
-  XMLDocument1.Free;
 
   XMLDocument1 := TXMLDocument.Create(Application);
   XMLDocument1.Active := False;
