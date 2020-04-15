@@ -14,8 +14,7 @@ type
   private
     function nodeToStringList(nodo : IXMLNode; nivel : Integer = -1) : TStringList; Overload;
     function nodeToStringList(nodo : TJSONArray; nivel : Integer = -1) : TStringList; Overload;
-    function nodeToXMLStr(json : TJSONArray; var attr : String) : String;
-//    function attributeToStringList(atributos : String) : TStringList;
+    function nodeToXMLStr(json : TJSONArray; var attr : String; const tagName : String = '') : String;
     function tabular(nivel : integer) : String;
     function getAtributosStr(nodos : IXMLNodeList) : string;
     function typeText(json : String) : string;
@@ -31,7 +30,7 @@ type
 
     function originTypeToString(content : TJSONObject) : String;
     function originTypeToFile(content : TJSONObject; filePathResult : String) : Boolean;
-    function originTypeToReturnType(content : TJSONObject) : TXMLDocument; //Implementar
+    function originTypeToReturnType(content : TJSONObject) : TXMLDocument;
 
     function normalizeOrigin(content : String) : TJSONObject; Overload;
     function normalizeOrigin(content : TJSONObject) : TStringList; Overload;
@@ -263,7 +262,7 @@ begin
 
 end;
 
-function TJSONtoXML.nodeToXMLStr(json: TJSONArray; var attr : String): String;
+function TJSONtoXML.nodeToXMLStr(json: TJSONArray; var attr : String; const tagName : String = ''): String;
 var
   item : TJSONValue;
   nome : string;
@@ -314,24 +313,23 @@ begin
         end;
         1:
         begin
-          aux := Self.nodeToXMLStr(TJSONArray(TJSONObject.ParseJSONValue(valor)), attrib);
-          if attrib <> EmptyStr then
+          if pos('[', valor) = 1 then
           begin
-            abertura := '<' + nome + ' ' + attrib + '>';
+            abertura := EmptyStr;
+            fechamento := EmptyStr;
+            aux := Self.nodeToXMLStr(TJSONArray(TJSONObject.ParseJSONValue(valor)), attrib, nome);
+          end else begin
+            aux := Self.nodeToXMLStr(TJSONArray(TJSONObject.ParseJSONValue(valor)), attrib);
+            if attrib <> EmptyStr then
+            begin
+              abertura := '<' + nome + ' ' + attrib + '>';
+            end;
           end;
+
           listStr.Add(abertura);
           listStr.Add(aux);
           listStr.Add(fechamento);
-
-  //        if pos('[', valor) = 1 then
-  //        begin
-  //          abertura := tabular(nivel) + nome + ': [';
-  //          fechamento := tabular(nivel) + '],';
-  //        end else begin
-  //          abertura := tabular(nivel) + nome + ': {';
-  //          fechamento := tabular(nivel) + '},';
-  //        end;
-  //        content := Self.nodeToXMLStr(TJSONArray(TJSONObject.ParseJSONValue(valor)));
+          attrib := EmptyStr;
         end;
         2:
         begin
@@ -352,17 +350,38 @@ begin
               listStr.Add(fechamento);
             end;
           end;
+          listAux.Clear;
         end;
         3:
         begin
-  //        abertura := tabular(nivel) + '{';
-  //        fechamento := tabular(nivel) + '},';
-  //        listAux := Self.nodeToStringList(TJSONArray(item) , nivel + 1);
-        end;
+          listAux := Self.nodeToStringList(TJSONArray(item), 0);
+          listAux.Insert(0, '{');
+          listAux.Add('}');
 
+          aux := EmptyStr;
+          attrib := EmptyStr;
+
+          for I := 0 to listAux.Count -1 do
+          begin
+            aux := aux + listAux.Strings[I];
+          end;
+
+          aux := Self.nodeToXMLStr(TJSONArray(TJSONObject.ParseJSONValue(aux)), attrib);
+          if attrib <> EmptyStr then
+          begin
+            abertura := '<' + tagName + ' ' + attrib + '>';
+          end else begin
+            abertura := '<' + tagName + '>';
+          end;
+          fechamento := '</' + tagName + '>';
+
+          listStr.Add(abertura);
+          listStr.Add(aux);
+          listStr.Add(fechamento);
+          attrib := EmptyStr;
+        end;
       end;
     end;
-
 
     for I := 0 to listStr.Count - 1 do
     begin
@@ -585,8 +604,8 @@ begin
   XMLDocument1.XML.Clear;
   XMLDocument1.LoadFromXML(xmlStr);
   XMLDocument1.Active := True;
-  XMLDocument1.Version := '1.0';
-  XMLDocument1.Encoding := 'UTF-8';
+//  XMLDocument1.Version := '1.0';
+//  XMLDocument1.Encoding := 'UTF-8';
 
   Result := XMLDocument1;
 
