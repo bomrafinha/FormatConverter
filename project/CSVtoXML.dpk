@@ -31,6 +31,6 @@ requires
   rtl;
 
 contains
-  U_CSV.XML in '..\src\CSVtoXML\U_CSV.XML.pas';
+  U_CSV.XML in '..\modules\CSVtoXML\U_CSV.XML.pas';
 
 end.

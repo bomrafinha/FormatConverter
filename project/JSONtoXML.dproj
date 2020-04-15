@@ -3,7 +3,7 @@
         <ProjectGuid>{B8928B45-DFD6-4561-9A06-7276CB8457EF}</ProjectGuid>
         <MainSource>JSONtoXML.dpk</MainSource>
         <ProjectVersion>18.4</ProjectVersion>
-        <FrameworkType>None</FrameworkType>
+        <FrameworkType>FMX</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
@@ -121,7 +121,7 @@
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="fmx.dcp"/>
         <DCCReference Include="Padronizacao.dcp"/>
-        <DCCReference Include="..\src\JSONtoXML\U_JSON.XML.pas"/>
+        <DCCReference Include="..\modules\JSONtoXML\U_JSON.XML.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

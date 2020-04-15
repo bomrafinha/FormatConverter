@@ -34,6 +34,6 @@ requires
   Padronizacao;
 
 contains
-  U_XML.JSON in '..\src\XMLtoJSON\U_XML.JSON.pas';
+  U_XML.JSON in '..\modules\XMLtoJSON\U_XML.JSON.pas';
 
 end.
