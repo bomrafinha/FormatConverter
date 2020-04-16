@@ -24,6 +24,9 @@
         <Projects Include="XMLtoJSON.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="FormatConverter.dproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="FormatConverterTester.dproj">
             <Dependencies/>
         </Projects>
@@ -98,6 +101,15 @@
     <Target Name="XMLtoJSON:Make">
         <MSBuild Projects="XMLtoJSON.dproj" Targets="Make"/>
     </Target>
+    <Target Name="FormatConverter">
+        <MSBuild Projects="FormatConverter.dproj"/>
+    </Target>
+    <Target Name="FormatConverter:Clean">
+        <MSBuild Projects="FormatConverter.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FormatConverter:Make">
+        <MSBuild Projects="FormatConverter.dproj" Targets="Make"/>
+    </Target>
     <Target Name="FormatConverterTester">
         <MSBuild Projects="FormatConverterTester.dproj"/>
     </Target>
@@ -108,13 +120,13 @@
         <MSBuild Projects="FormatConverterTester.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="Padronizacao;CSVtoJSON;CSVtoXML;JSONtoCSV;JSONtoXML;XMLtoCSV;XMLtoJSON;FormatConverterTester"/>
+        <CallTarget Targets="Padronizacao;CSVtoJSON;CSVtoXML;JSONtoCSV;JSONtoXML;XMLtoCSV;XMLtoJSON;FormatConverter;FormatConverterTester"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Padronizacao:Clean;CSVtoJSON:Clean;CSVtoXML:Clean;JSONtoCSV:Clean;JSONtoXML:Clean;XMLtoCSV:Clean;XMLtoJSON:Clean;FormatConverterTester:Clean"/>
+        <CallTarget Targets="Padronizacao:Clean;CSVtoJSON:Clean;CSVtoXML:Clean;JSONtoCSV:Clean;JSONtoXML:Clean;XMLtoCSV:Clean;XMLtoJSON:Clean;FormatConverter:Clean;FormatConverterTester:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Padronizacao:Make;CSVtoJSON:Make;CSVtoXML:Make;JSONtoCSV:Make;JSONtoXML:Make;XMLtoCSV:Make;XMLtoJSON:Make;FormatConverterTester:Make"/>
+        <CallTarget Targets="Padronizacao:Make;CSVtoJSON:Make;CSVtoXML:Make;JSONtoCSV:Make;JSONtoXML:Make;XMLtoCSV:Make;XMLtoJSON:Make;FormatConverter:Make;FormatConverterTester:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

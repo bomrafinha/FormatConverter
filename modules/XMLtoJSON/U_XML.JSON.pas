@@ -278,7 +278,6 @@ var
   comparador : String;
   arrays : TStringList;
   flag_01 : boolean;
-  flag_02 : boolean;
 
 begin
   retorno := TStringList.Create();
@@ -287,7 +286,6 @@ begin
   arrays.Clear;
   comparador := EmptyStr;
   flag_01 := True;
-  flag_02 := True;
 
   for I := 0 to nodo.ChildNodes.Count - 1 do
   begin
@@ -707,7 +705,6 @@ function TXMLtoJSON.stringToReturnType(strContent: String): TJSONObject;
 var
   xmlContent : TXMLDocument;
   jsonReturn : TJSONObject;
-  strReturn : String;
 
 begin
   try
