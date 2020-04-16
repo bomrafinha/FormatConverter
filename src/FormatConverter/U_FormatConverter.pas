@@ -3,7 +3,7 @@ unit U_FormatConverter;
 interface
 
 uses
-  System.Classes, DesignIntf, DesignEditors,
+  System.SysUtils, System.Classes,
   U_JSON.XML, U_XML.JSON;
 
 type
@@ -11,13 +11,18 @@ type
   private
     fJSONtoXML : TJSONtoXML;
     fXMLtoJSON : TXMLtoJSON;
+
+  protected
+    { Protected declarations }
+
   public
     constructor Create(AOwner: TComponent); override;
+
+  published
     property JSONtoXML : TJSONtoXML read fJSONtoXML write fJSONtoXML;
     property XMLtoJSON : TXMLtoJSON read fXMLtoJSON write fXMLtoJSON;
 
   end;
-
 
 procedure Register;
 
@@ -26,7 +31,6 @@ implementation
 procedure Register;
 begin
   RegisterComponents('Ridge Dynamics', [TFormatConverter]);
-
 end;
 
 { TFormatConverter }

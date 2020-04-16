@@ -115,8 +115,7 @@
         <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
-        <VerInfo_Locale>1033</VerInfo_Locale>
-        <DCC_UsePackage>rtl;JSONtoXML;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>rtl;JSONtoXML;XMLtoJSON;Padronizacao;$(DCC_UsePackage)</DCC_UsePackage>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <DCC_UsePackage>rtl;$(DCC_UsePackage)</DCC_UsePackage>
@@ -131,14 +130,13 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
-        <DCC_AdditionalSwitches>-LUDesignIDE</DCC_AdditionalSwitches>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=Ridge Dynamics;FileDescription=$(MSBuildProjectName);FileVersion=1.2.30.458;InternalName=Format Convert;LegalCopyright=;LegalTrademarks=;OriginalFilename=FormatConvert;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
-        <VerInfo_Build>458</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=Ridge Dynamics;FileDescription=$(MSBuildProjectName);FileVersion=1.2.30.475;InternalName=Format Convert;LegalCopyright=;LegalTrademarks=;OriginalFilename=FormatConvert;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>475</VerInfo_Build>
         <VerInfo_MinorVer>2</VerInfo_MinorVer>
-        <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <VerInfo_Release>30</VerInfo_Release>
+        <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
+        <DCC_Optimize>true</DCC_Optimize>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -151,10 +149,14 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="rtl.dcp"/>
+        <DCCReference Include="designide.dcp"/>
         <DCCReference Include="JSONtoXML.dcp"/>
-        <DCCReference Include="Padronizacao.dcp"/>
         <DCCReference Include="XMLtoJSON.dcp"/>
         <DCCReference Include="..\src\FormatConverter\U_FormatConverter.pas"/>
+        <RcItem Include="..\images\icone\FormatConverter.bmp">
+            <ResourceType>BITMAP</ResourceType>
+            <ResourceId>TFormatConverter</ResourceId>
+        </RcItem>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

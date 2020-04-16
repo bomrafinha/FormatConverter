@@ -1,6 +1,7 @@
 package FormatConverter;
 
 {$R *.res}
+{$R *.dres}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
 {$ALIGN 8}
 {$ASSERTIONS ON}
@@ -12,7 +13,7 @@ package FormatConverter;
 {$LOCALSYMBOLS ON}
 {$LONGSTRINGS ON}
 {$OPENSTRINGS ON}
-{$OPTIMIZATION OFF}
+{$OPTIMIZATION ON}
 {$OVERFLOWCHECKS OFF}
 {$RANGECHECKS OFF}
 {$REFERENCEINFO ON}
@@ -29,8 +30,8 @@ package FormatConverter;
 
 requires
   rtl,
+  designide,
   JSONtoXML,
-  Padronizacao,
   XMLtoJSON;
 
 contains
