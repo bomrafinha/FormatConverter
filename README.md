@@ -7,7 +7,7 @@
 <br />
 
 ![Maintenance](https://img.shields.io/maintenance/yes/2020)
-![Build](https://img.shields.io/badge/Build-1.2.29.300-brightgreen) 
+![Build](https://img.shields.io/badge/Build-1.2.30.477-brightgreen) 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/bomrafinha/FormatConverter)
 ![GitHub Release Date](https://img.shields.io/github/release-date/bomrafinha/FormatConverter)
 ![Github repo age](https://img.shields.io/github/issues/detail/age/bomrafinha/FormatConverter/1.svg?style=flat-square)
@@ -73,7 +73,7 @@
 
 ### Recursos
 
-- **TJSONtoXML**
+- **JSONtoXML**
   * **stringToString:** Converte um JSON em forma de String em um XML em forma de string (string);
     + **Parametrização**
       - *strContent:* JSON à converter (string);
@@ -123,7 +123,7 @@
     + **Parametrização**
       - *content:* XML à normalizar (TStringList);
       
-- **TXMLtoJSON**
+- **XMLtoJSON**
   * **stringToString:** Converte um XML em forma de String em um JSON em forma de string (string);
     + **Parametrização**
       - *strContent:* XML à converter (string);
@@ -360,6 +360,13 @@ Devem ser precedidas da palavra reservada *Self*, para facilitar a leitura do c�
 
 #### Palavras Reservadas
 Dá-se preferência ao uso de iniciais minúsculas para palavras reservadas. Porém isso não é uma regra para o projeto tendo em vista que por serem reservadas a IDE às sinaliza, não atrapalhando, assim, a leitura do código.
+
+#### Nomenclatura dos Arquivos
+Deve-se nomear os arquivos começando-se com *U_*.
+
+Para uma melhor localização dos arquivos no gerenciador de arquivos, e das unidades dentro do Delphi, devemos montar o nome dos arquivos compondo-os de seus módulos, submódulos, e função final, todos separados por ponto. Como segue na imagem a seguir:
+
+![Nomenclatura Arquivos](documentation/images/nomenclatura.png)
 
 #### Um código bem padronizado é muito mais fácil de ler, mesmo por programadores que utilizam outras linguagens.
 
