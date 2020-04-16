@@ -35,12 +35,12 @@
 
 *******
 ## Índice
- 1. [Uso](#uso)
- 2. [Sitemap](#sitemap)
- 3. [Estrutura](#estrutura)
- 4. [Workgroup](#workgroup)
- 5. [Dependências](#dependencias)
- 6. [Instalação/Configuração](#instalacao)
+ 1. [Instalação/Configuração](#instalacao)
+ 2. [Uso](#uso)
+ 3. [Sitemap](#sitemap)
+ 4. [Estrutura](#estrutura)
+ 5. [Workgroup](#workgroup)
+ 6. [Dependências](#dependencias)
  7. [Contribuir](#contribuir)
  8. [Checklist para Contribuir](#checklist)
  9. [Créditos](#creditos)
@@ -52,7 +52,26 @@
 
 <br />
 
+## Instalação/Configuração <a name="instalacao"></a>
+[![Clique na Imagem para visualizar o vídeo](documentation/images/install_config.png)](http://www.youtube.com/watch?v=V6iuXUkt1rQ "Clique na Imagem para visualizar o vídeo")
+
+**Clique na Imagem para visualizar o vídeo*
+
+<br />
+
 ## Uso <a name="uso"></a>
+
+### Como Usar
+[![Clique na Imagem para visualizar o vídeo](documentation/images/uso.png)](http://www.youtube.com/watch?v=DzkltvhSIzM "Clique na Imagem para visualizar o vídeo")
+
+**Clique na Imagem para visualizar o vídeo*
+
+### Exemplo de Uso
+[![Clique na Imagem para visualizar o vídeo](documentation/images/exemplo.png)](http://www.youtube.com/watch?v=YZBCXZxL2aw "Clique na Imagem para visualizar o vídeo")
+
+**Clique na Imagem para visualizar o vídeo*
+
+### Recursos
 
 - **TJSONtoXML**
   * **stringToString:** Converte um JSON em forma de String em um XML em forma de string (string);
@@ -186,11 +205,6 @@ Deve-se manter a ordem de compilação do projeto como na imagem.
 
 ## Dependências <a name="dependencias"></a>
 + **Sem dependências até o momento.**
-
-<br />
-
-## Instalação/Configuração <a name="instalacao"></a>
-+ **[Configuração](documentation/instalacao.md)**
 
 <br />
 
@@ -352,16 +366,6 @@ Dá-se preferência ao uso de iniciais minúsculas para palavras reservadas. Por
 <br />
 
 ## TODO <a name="todo"></a>
-+ Documentação
-  - configuração do fonte
-
-+ Estrutura básica do código
-  - Pacotes com recursos visuais (arrastar e soltar)
-  - Remover métodos de normalização da interface *OriginToReturn* e adicioná-los à uma nova Inteface
-
-+ Conversor JSON -> XML
-  - Entrada JSON -> Saída XML
-
 + Conversor JSON -> CSV
   - Entrada JSON    -> Saída CSV
   - Entrada JSON    -> Saída string

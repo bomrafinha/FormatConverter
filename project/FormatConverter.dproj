@@ -131,8 +131,8 @@
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Keys>CompanyName=Ridge Dynamics;FileDescription=$(MSBuildProjectName);FileVersion=1.2.30.475;InternalName=Format Convert;LegalCopyright=;LegalTrademarks=;OriginalFilename=FormatConvert;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
-        <VerInfo_Build>475</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=Ridge Dynamics;FileDescription=$(MSBuildProjectName);FileVersion=1.2.30.477;InternalName=Format Convert;LegalCopyright=;LegalTrademarks=;OriginalFilename=FormatConvert;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>477</VerInfo_Build>
         <VerInfo_MinorVer>2</VerInfo_MinorVer>
         <VerInfo_Release>30</VerInfo_Release>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
