@@ -137,6 +137,7 @@
         <VerInfo_Release>30</VerInfo_Release>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <DCC_Optimize>true</DCC_Optimize>
+        <DCC_DcuOutput>../output</DCC_DcuOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
