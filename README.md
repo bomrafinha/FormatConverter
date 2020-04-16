@@ -7,7 +7,7 @@
 <br />
 
 ![Maintenance](https://img.shields.io/maintenance/yes/2020)
-![Build](https://img.shields.io/badge/Build-1.2.29.300-brightgreen) 
+![Build](https://img.shields.io/badge/Build-1.2.30.477-brightgreen) 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/bomrafinha/FormatConverter)
 ![GitHub Release Date](https://img.shields.io/github/release-date/bomrafinha/FormatConverter)
 ![Github repo age](https://img.shields.io/github/issues/detail/age/bomrafinha/FormatConverter/1.svg?style=flat-square)
@@ -35,12 +35,12 @@
 
 *******
 ## Índice
- 1. [Uso](#uso)
- 2. [Sitemap](#sitemap)
- 3. [Estrutura](#estrutura)
- 4. [Workgroup](#workgroup)
- 5. [Dependências](#dependencias)
- 6. [Instalação/Configuração](#instalacao)
+ 1. [Instalação/Configuração](#instalacao)
+ 2. [Uso](#uso)
+ 3. [Sitemap](#sitemap)
+ 4. [Estrutura](#estrutura)
+ 5. [Workgroup](#workgroup)
+ 6. [Dependências](#dependencias)
  7. [Contribuir](#contribuir)
  8. [Checklist para Contribuir](#checklist)
  9. [Créditos](#creditos)
@@ -52,9 +52,28 @@
 
 <br />
 
+## Instalação/Configuração <a name="instalacao"></a>
+[![Clique na Imagem para visualizar o vídeo](documentation/images/install_config.png)](http://www.youtube.com/watch?v=V6iuXUkt1rQ "Clique na Imagem para visualizar o vídeo")
+
+**Clique na Imagem para visualizar o vídeo*
+
+<br />
+
 ## Uso <a name="uso"></a>
 
-- **TJSONtoXML**
+### Como Usar
+[![Clique na Imagem para visualizar o vídeo](documentation/images/uso.png)](http://www.youtube.com/watch?v=DzkltvhSIzM "Clique na Imagem para visualizar o vídeo")
+
+**Clique na Imagem para visualizar o vídeo*
+
+### Exemplo de Uso
+[![Clique na Imagem para visualizar o vídeo](documentation/images/exemplo.png)](http://www.youtube.com/watch?v=YZBCXZxL2aw "Clique na Imagem para visualizar o vídeo")
+
+**Clique na Imagem para visualizar o vídeo*
+
+### Recursos
+
+- **JSONtoXML**
   * **stringToString:** Converte um JSON em forma de String em um XML em forma de string (string);
     + **Parametrização**
       - *strContent:* JSON à converter (string);
@@ -104,7 +123,7 @@
     + **Parametrização**
       - *content:* XML à normalizar (TStringList);
       
-- **TXMLtoJSON**
+- **XMLtoJSON**
   * **stringToString:** Converte um XML em forma de String em um JSON em forma de string (string);
     + **Parametrização**
       - *strContent:* XML à converter (string);
@@ -165,14 +184,15 @@
 + **app:** Contém a compilação do(s) pacote(s) e testador(es);
 + **documentation:** Contém a documentação do(s) pacote(s);
 + **images:** Contém as imagens usadas no(s) pacote(s);
-+ **modules:** Módulos não essenciais, como testadores, etc;
-  - **Format_Converter:** Testa as converções de formato (também usado para pegar o número de build);
++ **modules:** Módulos que executam cada conversão disponível no sistema;
+  - **JSONtoXML:** Contém o pacote usado para conversão de XML para JSON;
+  - **XMLtoJSON:** Contém o pacote usado para conversão de JSON para XML;
 + **output:** Contém os arquivos pré compilados usados pelo Delphi (.dcu);
 + **project:** Diretório com os projetos de cada pacote e testador;
 + **src:** Contém o fonte essencial para o funcionamento do(s) pacote(s);
-  - **OriginToReturn:** Contém a interface de que comanda a implementação dos pacotes;
-  - **JSONtoXML:** Contém o pacote usado para conversão de XML para JSON;
-  - **XMLtoJSON:** Contém o pacote usado para conversão de JSON para XML;
+  - **Padronizacao:** Contém as interfaces que padronizao os pacoes;
+  - **FormatConverter:** Contém o pacote com o registro desse componente (também usado para pegar o número de build);
+  - **FormatConverterTester:** Contém o executável de este do Componente;
 + **vendor:** Contém os pacotes de terceiros;
  
 <br />
@@ -186,11 +206,6 @@ Deve-se manter a ordem de compilação do projeto como na imagem.
 
 ## Dependências <a name="dependencias"></a>
 + **Sem dependências até o momento.**
-
-<br />
-
-## Instalação/Configuração <a name="instalacao"></a>
-+ **[Configuração](documentation/instalacao.md)**
 
 <br />
 
@@ -250,7 +265,7 @@ Para criar uma *issue* atente para o seguinte:
 
 ## Padronização de Código <a name="source"></a>
 ### Versionamento
-Para versionar o FormatConverter deve-se usar como base o versionamento para windows 32 bits do Format_Converter.exe, da forma que se segue:
+Para versionar o FormatConverter deve-se usar como base, o versionamento do pacote FormatConverter.bpl para windows 32 bits, da forma que se segue:
 
 ![Workgroup](documentation/images/versionamento.png)
 #### onde:
@@ -260,7 +275,7 @@ Para versionar o FormatConverter deve-se usar como base o versionamento para win
 4. Versão de build do sistema auto-gerado pelo Delphi;
 5. Deve-se manter o build como auto incremento;
 
-Para cada teste compilado com sucesso deve-se dar *build* no .exe para versionar (shift + F9).
+Para cada teste compilado com sucesso deve-se dar *build* no FormatConverter.bpl para versionar (shift + F9).
 
 Os *releases* do repositório serão feitos a cada vez que um módulo estiver 100% finalizado, ou quando um conserto muito relevante for realizado. 
 
@@ -347,21 +362,18 @@ Devem ser precedidas da palavra reservada *Self*, para facilitar a leitura do c�
 #### Palavras Reservadas
 Dá-se preferência ao uso de iniciais minúsculas para palavras reservadas. Porém isso não é uma regra para o projeto tendo em vista que por serem reservadas a IDE às sinaliza, não atrapalhando, assim, a leitura do código.
 
+#### Nomenclatura dos Arquivos
+Deve-se nomear os arquivos começando-se com *U_*.
+
+Para uma melhor localização dos arquivos no gerenciador de arquivos, e das unidades dentro do Delphi, devemos montar o nome dos arquivos compondo-os de seus módulos, submódulos, e função final, todos separados por ponto. Como segue na imagem a seguir:
+
+![Nomenclatura Arquivos](documentation/images/nomenclatura.png)
+
 #### Um código bem padronizado é muito mais fácil de ler, mesmo por programadores que utilizam outras linguagens.
 
 <br />
 
 ## TODO <a name="todo"></a>
-+ Documentação
-  - configuração do fonte
-
-+ Estrutura básica do código
-  - Pacotes com recursos visuais (arrastar e soltar)
-  - Remover métodos de normalização da interface *OriginToReturn* e adicioná-los à uma nova Inteface
-
-+ Conversor JSON -> XML
-  - Entrada JSON -> Saída XML
-
 + Conversor JSON -> CSV
   - Entrada JSON    -> Saída CSV
   - Entrada JSON    -> Saída string
@@ -438,56 +450,37 @@ FormatConverter
 ├── app
 │   └── .gitkeep
 ├── documentation
-│   ├── images
-│   │   ├── label_issue.png
-│   │   ├── padrao_blocos_01.png
-│   │   ├── padrao_blocos_02.png
-│   │   ├── padrao_chamadas_01.png
-│   │   ├── padrao_chamadas_02.png
-│   │   ├── padrao_classes.png
-│   │   ├── padrao_identacao_01.png
-│   │   ├── padrao_interfaces.png
-│   │   ├── padrao_metodos.png
-│   │   ├── padrao_propriedades.png
-│   │   ├── padrao_variaveis_locais.png
-│   │   ├── padrao_variaveis_privadas.png
-│   │   ├── project_issue.png
-│   │   ├── sitemap.png
-│   │   ├── versionamento.png
-│   │   └── workgroup.png
-│   └── instalacao.md
+│   └── images
+│       ├── exemplo.png
+│       ├── install_config.png
+│       ├── label_issue.png
+│       ├── nomenclatura.png
+│       ├── padrao_blocos_01.png
+│       ├── padrao_blocos_02.png
+│       ├── padrao_chamadas_01.png
+│       ├── padrao_chamadas_02.png
+│       ├── padrao_classes.png
+│       ├── padrao_identacao_01.png
+│       ├── padrao_interfaces.png
+│       ├── padrao_metodos.png
+│       ├── padrao_propriedades.png
+│       ├── padrao_self_01.png
+│       ├── padrao_variaveis_locais.png
+│       ├── padrao_variaveis_privadas.png
+│       ├── project_issue.png
+│       ├── sitemap.png
+│       ├── uso.png
+│       ├── versionamento.png
+│       └── workgroup.png
 ├── images
 │   └── icone
+│       ├── FormatConverter.bmp
 │       ├── icon 150x150.png
 │       ├── icon 44x44.png
 │       ├── icon.ico
 │       ├── icon.png
 │       └── icon.psd
 ├── modules
-│   └── Format_Converter
-│       ├── U_FormatConverter.View.fmx
-│       └── U_FormatConverter.View.pas
-├── output
-│   └── .gitkeep
-├── project
-│   ├── CSVtoJSON.dpk
-│   ├── CSVtoJSON.dproj
-│   ├── CSVtoXML.dpk
-│   ├── CSVtoXML.dproj
-│   ├── Format_Converter.dpr
-│   ├── Format_Converter.dproj
-│   ├── FormatConverter.groupproj
-│   ├── JSONtoCSV.dpk
-│   ├── JSONtoCSV.dproj
-│   ├── JSONtoXML.dpk
-│   ├── JSONtoXML.dproj
-│   ├── OriginToReturn.dpk
-│   ├── OriginToReturn.dproj
-│   ├── XMLtoCSV.dpk
-│   ├── XMLtoCSV.dproj
-│   ├── XMLtoJSON.dpk
-│   └── XMLtoJSON.dproj
-├── src
 │   ├── CSVtoJSON
 │   │   └── U_CSV.JSON.pas
 │   ├── CSVtoXML
@@ -496,12 +489,41 @@ FormatConverter
 │   │   └── U_JSON.CSV.pas
 │   ├── JSONtoXML
 │   │   └── U_JSON.XML.pas
-│   ├── OriginToReturn
-│   │   └── U_Origin.Return.pas
 │   ├── XMLtoCSV
 │   │   └── U_XML.CSV.pas
 │   └── XMLtoJSON
 │       └── U_XML.JSON.pas
+├── output
+│   └── .gitkeep
+├── project
+│   ├── CSVtoJSON.dpk
+│   ├── CSVtoJSON.dproj
+│   ├── CSVtoXML.dpk
+│   ├── CSVtoXML.dproj
+│   ├── Format_Converter.groupproj
+│   ├── FormatConverter.dpk
+│   ├── FormatConverter.dproj
+│   ├── FormatConverterTester.dpr
+│   ├── FormatConverterTester.dproj
+│   ├── JSONtoCSV.dpk
+│   ├── JSONtoCSV.dproj
+│   ├── JSONtoXML.dpk
+│   ├── JSONtoXML.dproj
+│   ├── Padronizacao.dpk
+│   ├── Padronizacao.dproj
+│   ├── XMLtoCSV.dpk
+│   ├── XMLtoCSV.dproj
+│   ├── XMLtoJSON.dpk
+│   └── XMLtoJSON.dproj
+├── src
+│   ├── FormatConverter
+│   │   └── U_FormatConverter.pas
+│   ├── FormatConverterTester
+│   │   ├── U_FormatConverterTester.View.fmx
+│   │   └── U_FormatConverterTester.View.pas
+│   └── Padronizacao
+│       ├── U_Normalize.pas
+│       └── U_Origin.Return.pas
 ├── vendor
 │   └── .gitkeep
 ├── .gitattributes

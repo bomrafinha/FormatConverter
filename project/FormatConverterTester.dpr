@@ -1,9 +1,9 @@
-program Format_Converter;
+program FormatConverterTester;
 
 uses
   System.StartUpCopy,
   FMX.Forms,
-  U_FormatConverter.View in '..\modules\Format_Converter\U_FormatConverter.View.pas' {FormatConverter};
+  U_FormatConverterTester.View in '..\src\FormatConverterTester\U_FormatConverterTester.View.pas' {FormatConverter};
 
 {$R *.res}
 

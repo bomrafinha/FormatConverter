@@ -31,6 +31,6 @@ requires
   rtl;
 
 contains
-  U_CSV.JSON in '..\src\CSVtoJSON\U_CSV.JSON.pas';
+  U_CSV.JSON in '..\modules\CSVtoJSON\U_CSV.JSON.pas';
 
 end.

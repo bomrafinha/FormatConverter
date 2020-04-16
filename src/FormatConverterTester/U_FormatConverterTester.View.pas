@@ -1,4 +1,4 @@
-unit U_FormatConverter.View;
+unit U_FormatConverterTester.View;
 
 interface
 
@@ -6,7 +6,8 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Layouts,
   FMX.Objects, FMX.Effects, FMX.Controls.Presentation, FMX.ScrollBox, FMX.Memo,
-  FMX.StdCtrls, U_XML.JSON, Xml.XMLDoc, System.JSON, U_JSON.XML;
+  FMX.StdCtrls, U_XML.JSON, Xml.XMLDoc, System.JSON, U_JSON.XML, Xml.xmldom,
+  Xml.XmlTransform, Xml.XMLIntf;
 
 type
   TFormatConverter = class(TForm)
@@ -106,28 +107,7 @@ begin
 end;
 
 procedure TFormatConverter.bXMLtoCSVClick(Sender: TObject);
-var
-  xml : TXMLDocument;
-  list : TStringList;
-  json : TJSONObject;
-  strXML : String;
-  strJSON : String;
-
 begin
-  strJSON := '{"root" : "raiz", "objeto": {"sub01": "nível01"}, "vetor":["rafa", "rossa"], "footer": 1}';
-  json := JSONtoXML.normalizeOrigin(strJSON);
-
-//  strXML := JSONtoXML.originTypeToString(json);
-  JSONtoXML.originTypeToFile(json, 'D:\Users\Bomrafinha\Desktop\teste_02.xml');
-
-
-//  xml := JSONtoXML.fileToReturnType('D:\Users\Bomrafinha\Desktop\teste_02.json');
-//  list := JSONtoXML.normalizeReturn(xml);
-//
-//  memoResultado.Lines.Clear;
-//  memoResultado.lines := list;
-
-
   convertTest();
 
 end;

@@ -1,6 +1,7 @@
-package CSVtoXML;
+package FormatConverter;
 
 {$R *.res}
+{$R *.dres}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
 {$ALIGN 8}
 {$ASSERTIONS ON}
@@ -12,7 +13,7 @@ package CSVtoXML;
 {$LOCALSYMBOLS ON}
 {$LONGSTRINGS ON}
 {$OPENSTRINGS ON}
-{$OPTIMIZATION OFF}
+{$OPTIMIZATION ON}
 {$OVERFLOWCHECKS OFF}
 {$RANGECHECKS OFF}
 {$REFERENCEINFO ON}
@@ -28,9 +29,12 @@ package CSVtoXML;
 {$IMPLICITBUILD ON}
 
 requires
-  rtl;
+  rtl,
+  designide,
+  JSONtoXML,
+  XMLtoJSON;
 
 contains
-  U_CSV.XML in '..\modules\CSVtoXML\U_CSV.XML.pas';
+  U_FormatConverter in '..\src\FormatConverter\U_FormatConverter.pas';
 
 end.

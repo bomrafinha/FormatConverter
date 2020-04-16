@@ -33,6 +33,6 @@ requires
   Padronizacao;
 
 contains
-  U_JSON.XML in '..\src\JSONtoXML\U_JSON.XML.pas';
+  U_JSON.XML in '..\modules\JSONtoXML\U_JSON.XML.pas';
 
 end.

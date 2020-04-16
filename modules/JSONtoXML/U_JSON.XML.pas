@@ -14,8 +14,7 @@ type
   private
     function nodeToStringList(nodo : IXMLNode; nivel : Integer = -1) : TStringList; Overload;
     function nodeToStringList(nodo : TJSONArray; nivel : Integer = -1) : TStringList; Overload;
-//    function nodeToStringJson(nodo : IXMLNode; atr : String = '') : TStringList;
-//    function attributeToStringList(atributos : String) : TStringList;
+    function nodeToXMLStr(json : TJSONArray; var attr : String; const tagName : String = '') : String;
     function tabular(nivel : integer) : String;
     function getAtributosStr(nodos : IXMLNodeList) : string;
     function typeText(json : String) : string;
@@ -31,7 +30,7 @@ type
 
     function originTypeToString(content : TJSONObject) : String;
     function originTypeToFile(content : TJSONObject; filePathResult : String) : Boolean;
-    function originTypeToReturnType(content : TJSONObject) : TXMLDocument; //Implementar
+    function originTypeToReturnType(content : TJSONObject) : TXMLDocument;
 
     function normalizeOrigin(content : String) : TJSONObject; Overload;
     function normalizeOrigin(content : TJSONObject) : TStringList; Overload;
@@ -263,6 +262,140 @@ begin
 
 end;
 
+function TJSONtoXML.nodeToXMLStr(json: TJSONArray; var attr : String; const tagName : String = ''): String;
+var
+  item : TJSONValue;
+  nome : string;
+  valor : string;
+  abertura : string;
+  fechamento : string;
+  content : string;
+  aux : String;
+  attrib : String;
+  listStr : TStringList;
+  listAux : TStringList;
+  I: Integer;
+
+begin
+  try
+    listStr := TStringList.Create();
+    listAux := TStringList.Create();
+    listStr.Clear;
+
+    content := EmptyStr;
+    attrib := EmptyStr;
+
+    for item in json do
+    begin
+      nome := TJSONPair(item).JsonString.ToString;
+      try
+        valor := TJSONPair(item).JsonValue.ToString;
+      except
+        valor := 'node';
+      end;
+      nome := StringReplace(nome, '"', EmptyStr, [rfReplaceAll]);
+      abertura := '<' + nome + '>';
+      fechamento := '</' + nome + '>';
+
+      case ansiIndexStr(typeText(valor), ['text', 'object', 'array', 'node']) of
+        0:
+        begin
+          if pos('-', nome) > 0 then
+          begin
+            nome := StringReplace(nome, '-', EmptyStr, [rfReplaceAll]);
+            attr := Trim(attr + ' ' + nome + '=' + valor);
+          end else begin
+            valor := StringReplace(valor, '"', EmptyStr, [rfReplaceAll]);
+            listStr.Add(abertura);
+            listStr.Add(valor);
+            listStr.Add(fechamento);
+          end;
+        end;
+        1:
+        begin
+          if pos('[', valor) = 1 then
+          begin
+            abertura := EmptyStr;
+            fechamento := EmptyStr;
+            aux := Self.nodeToXMLStr(TJSONArray(TJSONObject.ParseJSONValue(valor)), attrib, nome);
+          end else begin
+            aux := Self.nodeToXMLStr(TJSONArray(TJSONObject.ParseJSONValue(valor)), attrib);
+            if attrib <> EmptyStr then
+            begin
+              abertura := '<' + nome + ' ' + attrib + '>';
+            end;
+          end;
+
+          listStr.Add(abertura);
+          listStr.Add(aux);
+          listStr.Add(fechamento);
+          attrib := EmptyStr;
+        end;
+        2:
+        begin
+          listAux.Clear;
+          listAux.Delimiter := ',';
+          listAux.DelimitedText := valor;
+
+          for I := 0 to listAux.Count - 1 do
+          begin
+            aux := listAux.Strings[I];
+            aux := StringReplace(aux, '[', EmptyStr, [rfReplaceAll]);
+            aux := StringReplace(aux, ']', EmptyStr, [rfReplaceAll]);
+            aux := StringReplace(aux, '"', EmptyStr, [rfReplaceAll]);
+            if aux <> emptyStr then
+            begin
+              listStr.Add(abertura);
+              listStr.Add(aux);
+              listStr.Add(fechamento);
+            end;
+          end;
+          listAux.Clear;
+        end;
+        3:
+        begin
+          listAux := Self.nodeToStringList(TJSONArray(item), 0);
+          listAux.Insert(0, '{');
+          listAux.Add('}');
+
+          aux := EmptyStr;
+          attrib := EmptyStr;
+
+          for I := 0 to listAux.Count -1 do
+          begin
+            aux := aux + listAux.Strings[I];
+          end;
+
+          aux := Self.nodeToXMLStr(TJSONArray(TJSONObject.ParseJSONValue(aux)), attrib);
+          if attrib <> EmptyStr then
+          begin
+            abertura := '<' + tagName + ' ' + attrib + '>';
+          end else begin
+            abertura := '<' + tagName + '>';
+          end;
+          fechamento := '</' + tagName + '>';
+
+          listStr.Add(abertura);
+          listStr.Add(aux);
+          listStr.Add(fechamento);
+          attrib := EmptyStr;
+        end;
+      end;
+    end;
+
+    for I := 0 to listStr.Count - 1 do
+    begin
+      content := content + listStr.Strings[I];
+    end;
+
+    Result := content;
+
+  finally
+    listStr.Free;
+  end;
+
+end;
+
 function TJSONtoXML.nodeToStringList(nodo: IXMLNode; nivel: Integer): TStringList;
 var
   nome : String;
@@ -294,7 +427,17 @@ begin
 
     case listaAux.Count of
       0: retorno.Add(Trim(nodo.ChildNodes[I].NodeValue));
-      1: retorno.Add(abertura + listaAux.Strings[0] + Trim(fechamento));
+      1:
+      begin
+        if Pos('<', listaAux.Strings[0]) > 1 then
+        begin
+          retorno.Add(abertura);
+          retorno.Add(listaAux.Strings[0]);
+          retorno.Add(fechamento);
+        end else begin
+          retorno.Add(abertura + listaAux.Strings[0] + Trim(fechamento));
+        end;
+      end
 
     else
       retorno.Add(abertura);
@@ -444,28 +587,27 @@ end;
 
 function TJSONtoXML.originTypeToReturnType(content: TJSONObject): TXMLDocument;
 var
-  xmlReturn : TXMLDocument;
-
-  strXML : String;
-  strJSON : String;
+  XMLDocument1 : TXMLDocument;
+  xmlStr : String;
+  aux : String;
 
 begin
-  try
-    strJSON := content.ToString;
-    strXML := '<xml id="root_1" nome="rafael" serie="10"><sub01>Rafinha</sub01><sub02 id="sub_02">' +
-      '<sub03>Rafael</sub03><sub04>Rossa</sub04></sub02><sub05><sub06 id="sub_06">Rafofuxo</sub06></sub05>' +
-      '<det nItem="1"><prod><cProd>ESN094 S</cProd><xProd>0001</xProd></prod></det><det nItem="2"><prod>' +
-      '<cProd>ESN094 R</cProd></prod></det><det nItem="3"><prod><cProd>ESN094 T</cProd></prod></det>' +
-      '<sub07 id="sub_07">Deradeiro Teste</sub07></xml>';
+  xmlStr := Trim(
+    Self.nodeToXMLStr(
+      TJSONArray(content),
+      aux
+    )
+  );
 
-    xmlReturn := TXMLDocument.Create(Application);
-    xmlReturn.LoadFromXML(strXML);
-    Result := xmlReturn;
+  XMLDocument1 := TXMLDocument.Create(Application);
+  XMLDocument1.Active := False;
+  XMLDocument1.XML.Clear;
+  XMLDocument1.LoadFromXML(xmlStr);
+  XMLDocument1.Active := True;
+//  XMLDocument1.Version := '1.0';
+//  XMLDocument1.Encoding := 'UTF-8';
 
-  except
-    Result := TXMLDocument.Create(Application);
-
-  end;
+  Result := XMLDocument1;
 
 end;
 
