@@ -57,6 +57,8 @@
 
 **Clique na Imagem para visualizar o vídeo*
 
+**Correção:** Substituir "$(variavel_criada)\dcu" por "$(variavel_criada)\output" no *library path*
+
 <br />
 
 ## Uso <a name="uso"></a>
