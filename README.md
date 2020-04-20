@@ -27,6 +27,8 @@
 
 ![GitHub top language](https://img.shields.io/github/languages/top/bomrafinha/FormatConverter)
 ![GitHub language count](https://img.shields.io/github/languages/count/bomrafinha/FormatConverter)
+![Delphi Supported Versions](https://img.shields.io/badge/Delphi%20Supported%20Versions-XE2..10.3%20Rio-blue.svg)
+![Platforms](https://img.shields.io/badge/Supported%20platforms-Win32-red.svg)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/bomrafinha/FormatConverter)
 
 ![GitHub](https://img.shields.io/github/license/bomrafinha/FormatConverter)
