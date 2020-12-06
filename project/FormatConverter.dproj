@@ -131,8 +131,8 @@
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Keys>CompanyName=Ridge Dynamics;FileDescription=$(MSBuildProjectName);FileVersion=1.2.30.477;InternalName=Format Convert;LegalCopyright=;LegalTrademarks=;OriginalFilename=FormatConvert;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
-        <VerInfo_Build>477</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=Ridge Dynamics;FileDescription=$(MSBuildProjectName);FileVersion=1.2.30.479;InternalName=Format Convert;LegalCopyright=;LegalTrademarks=;OriginalFilename=FormatConvert;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>479</VerInfo_Build>
         <VerInfo_MinorVer>2</VerInfo_MinorVer>
         <VerInfo_Release>30</VerInfo_Release>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
@@ -178,10 +178,7 @@
                 <Source>
                     <Source Name="MainSource">FormatConverter.dpk</Source>
                 </Source>
-                <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k250.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp250.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
-                </Excluded_Packages>
+                <Excluded_Packages/>
             </Delphi.Personality>
             <Deployment Version="3">
                 <DeployFile LocalName="$(BDS)\Redist\osx32\libcgunwind.1.0.dylib" Class="DependencyModule">
