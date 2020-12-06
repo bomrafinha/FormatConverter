@@ -18,6 +18,7 @@ type
     function tabular(nivel : integer) : String;
     function getAtributosStr(nodos : IXMLNodeList) : string;
     function typeText(json : String) : string;
+    function checksBlockEnclosure(xmlStr : String) : string;
 
   public
     function stringToString(strContent : String) : String;
@@ -45,6 +46,36 @@ type
 implementation
 
 { TJSONtoXML }
+
+function TJSONtoXML.checksBlockEnclosure(xmlStr: String): string;
+var
+  aux: string;
+
+begin
+  Result := xmlStr;
+
+  aux :=
+  StringReplace(
+    Copy(
+      xmlStr,
+      1,
+      Pos(
+        '>',
+        xmlStr
+      )
+    ),
+    '<',
+    '</',
+    [rfReplaceAll, rfIgnoreCase]
+  );
+
+  Result := IfThen(
+    (pos(aux, xmlStr) + aux.Length) >= (xmlStr.Length),
+    xmlStr,
+    '<xml>' + xmlStr + '</xml>'
+  );
+
+end;
 
 function TJSONtoXML.fileToFile(filePath, filePathResult: String): Boolean;
 var
@@ -592,10 +623,12 @@ var
   aux : String;
 
 begin
-  xmlStr := Trim(
-    Self.nodeToXMLStr(
-      TJSONArray(content),
-      aux
+  xmlStr := Self.checksBlockEnclosure(
+    Trim(
+      Self.nodeToXMLStr(
+        TJSONArray(content),
+        aux
+      )
     )
   );
 

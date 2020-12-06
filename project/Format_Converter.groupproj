@@ -12,16 +12,16 @@
         <Projects Include="CSVtoXML.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="JSONtoCSV.dproj">
-            <Dependencies/>
-        </Projects>
         <Projects Include="JSONtoXML.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="XMLtoCSV.dproj">
+        <Projects Include="JSONtoCSV.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="XMLtoJSON.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="XMLtoCSV.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="FormatConverter.dproj">
@@ -65,15 +65,6 @@
     <Target Name="CSVtoXML:Make">
         <MSBuild Projects="CSVtoXML.dproj" Targets="Make"/>
     </Target>
-    <Target Name="JSONtoCSV">
-        <MSBuild Projects="JSONtoCSV.dproj"/>
-    </Target>
-    <Target Name="JSONtoCSV:Clean">
-        <MSBuild Projects="JSONtoCSV.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="JSONtoCSV:Make">
-        <MSBuild Projects="JSONtoCSV.dproj" Targets="Make"/>
-    </Target>
     <Target Name="JSONtoXML">
         <MSBuild Projects="JSONtoXML.dproj"/>
     </Target>
@@ -83,14 +74,14 @@
     <Target Name="JSONtoXML:Make">
         <MSBuild Projects="JSONtoXML.dproj" Targets="Make"/>
     </Target>
-    <Target Name="XMLtoCSV">
-        <MSBuild Projects="XMLtoCSV.dproj"/>
+    <Target Name="JSONtoCSV">
+        <MSBuild Projects="JSONtoCSV.dproj"/>
     </Target>
-    <Target Name="XMLtoCSV:Clean">
-        <MSBuild Projects="XMLtoCSV.dproj" Targets="Clean"/>
+    <Target Name="JSONtoCSV:Clean">
+        <MSBuild Projects="JSONtoCSV.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="XMLtoCSV:Make">
-        <MSBuild Projects="XMLtoCSV.dproj" Targets="Make"/>
+    <Target Name="JSONtoCSV:Make">
+        <MSBuild Projects="JSONtoCSV.dproj" Targets="Make"/>
     </Target>
     <Target Name="XMLtoJSON">
         <MSBuild Projects="XMLtoJSON.dproj"/>
@@ -100,6 +91,15 @@
     </Target>
     <Target Name="XMLtoJSON:Make">
         <MSBuild Projects="XMLtoJSON.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="XMLtoCSV">
+        <MSBuild Projects="XMLtoCSV.dproj"/>
+    </Target>
+    <Target Name="XMLtoCSV:Clean">
+        <MSBuild Projects="XMLtoCSV.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="XMLtoCSV:Make">
+        <MSBuild Projects="XMLtoCSV.dproj" Targets="Make"/>
     </Target>
     <Target Name="FormatConverter">
         <MSBuild Projects="FormatConverter.dproj"/>
@@ -120,13 +120,13 @@
         <MSBuild Projects="FormatConverterTester.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="Padronizacao;CSVtoJSON;CSVtoXML;JSONtoCSV;JSONtoXML;XMLtoCSV;XMLtoJSON;FormatConverter;FormatConverterTester"/>
+        <CallTarget Targets="Padronizacao;CSVtoJSON;CSVtoXML;JSONtoXML;JSONtoCSV;XMLtoJSON;XMLtoCSV;FormatConverter;FormatConverterTester"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Padronizacao:Clean;CSVtoJSON:Clean;CSVtoXML:Clean;JSONtoCSV:Clean;JSONtoXML:Clean;XMLtoCSV:Clean;XMLtoJSON:Clean;FormatConverter:Clean;FormatConverterTester:Clean"/>
+        <CallTarget Targets="Padronizacao:Clean;CSVtoJSON:Clean;CSVtoXML:Clean;JSONtoXML:Clean;JSONtoCSV:Clean;XMLtoJSON:Clean;XMLtoCSV:Clean;FormatConverter:Clean;FormatConverterTester:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Padronizacao:Make;CSVtoJSON:Make;CSVtoXML:Make;JSONtoCSV:Make;JSONtoXML:Make;XMLtoCSV:Make;XMLtoJSON:Make;FormatConverter:Make;FormatConverterTester:Make"/>
+        <CallTarget Targets="Padronizacao:Make;CSVtoJSON:Make;CSVtoXML:Make;JSONtoXML:Make;JSONtoCSV:Make;XMLtoJSON:Make;XMLtoCSV:Make;FormatConverter:Make;FormatConverterTester:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
